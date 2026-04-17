@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Refurbished & Promotions - 3C Easy</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700', 
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',    /* Gray 800 - 主要文本 */
+                            secondary: '#4b5563', /* Gray 600 - 次要文本 */
+                            muted: '#9ca3af',    /* Gray 400 - 弱化文本 */
+                            light: '#f9fafb'     /* Gray 50 - 浅色背景文本 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    fontSize: {
+                        'xs-muted': ['0.75rem', { lineHeight: '1rem', fontWeight: '400' }],      /* 12px - 弱化小字 */
+                        'sm-sec': ['0.875rem', { lineHeight: '1.25rem', fontWeight: '500' }],    /* 14px - 次要文本 */
+                        'base-main': ['1rem', { lineHeight: '1.5rem', fontWeight: '400' }],      /* 16px - 主要正文 */
+                        'lg-sub': ['1.125rem', { lineHeight: '1.75rem', fontWeight: '500' }],    /* 18px - 副标�?*/
+                        'xl-title': ['1.25rem', { lineHeight: '1.75rem', fontWeight: '600' }],   /* 20px - 小标�?*/
+                        '2xl-title': ['1.5rem', { lineHeight: '2rem', fontWeight: '700' }],      /* 24px - 中标�?*/
+                        '3xl-hero': ['1.875rem', { lineHeight: '2.25rem', fontWeight: '800' }],  /* 30px - 大标�?*/
+                        '4xl-hero': ['2.25rem', { lineHeight: '2.5rem', fontWeight: '800' }],    /* 36px - 超大标题 */
+                        '5xl-hero': ['3rem', { lineHeight: '1', fontWeight: '900' }]             /* 48px - 英雄标题 */
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .hover-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+        .image-zoom { overflow: hidden; }
+        .image-zoom img { transition: transform 0.5s ease; }
+        .hover-card:hover .image-zoom img { transform: scale(1.05); }
+        
+        /* Toast Animation */
+        .toast-enter { animation: slideIn 0.3s ease-out forwards; }
+        .toast-leave { animation: fadeOut 0.3s ease-in forwards; }
+        @keyframes slideIn { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        
+        /* Refurbished Badges */
+        .badge-refurbished { background: linear-gradient(135deg, #10b981, #059669); }
+        .badge-certified { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .badge-savings { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .badge-warranty { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        
+        /* Price Comparison */
+        .price-original { text-decoration: line-through; color: #9ca3af; }
+        .price-savings { color: #ef4444; font-weight: 600; }
+        
+        /* Quality Indicator */
+        .quality-excellent { background: linear-gradient(135deg, #10b981, #059669); }
+        .quality-good { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .quality-fair { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        
+        /* Progress Bar Animation */
+        .progress-bar { transition: width 0.5s ease-in-out; }
+        
+        /* Pulse Animation for Hot Deals */
+        @keyframes pulse-hot {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+        }
+        .hot-deal { animation: pulse-hot 2s infinite; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="refurbished">
+
+    <!-- Store Header -->
+    <div data-include="components/header.html"></div>
+
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        <!-- Page Header -->
+        <div class="bg-gradient-to-r from-brand-50 via-white to-brand-50 border-b border-gray-100">
+            <div class="container mx-auto px-4 lg:px-8 py-12">
+                <div class="max-w-6xl mx-auto">
+                    <div class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10">
+                        <!-- Left: Title & Description -->
+                        <div class="lg:w-2/3 text-center lg:text-left">
+                            <div class="flex items-center justify-center lg:justify-start space-x-3 mb-6">
+                                <div class="bg-white p-2 rounded-full shadow-sm">
+                                    <i class="fa-solid fa-recycle text-brand text-xl"></i>
+                                </div>
+                                <span class="text-sm-sec font-bold text-brand bg-brand-50 px-4 py-1.5 rounded-full uppercase tracking-wider">Official Refurbished Store</span>
+                            </div>
+                            <h1 class="text-3xl md:text-5xl-hero font-black text-text-main mb-6 leading-tight">Certified Refurbished<br class="hidden md:block"> & Promotions</h1>
+                            <p class="text-base-main md:text-lg-sub text-text-secondary mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed font-light">Discover premium quality refurbished electronics with full warranty, rigorous testing, and significant savings. All products are professionally restored and backed by our 12-month warranty.</p>
+                            
+                            <!-- Stats -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8 mb-4">
+                                <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center lg:items-start">
+                                    <div class="w-10 h-10 bg-brand-50 text-brand rounded-xl flex items-center justify-center mb-3">
+                                        <i class="fa-solid fa-shield-check text-lg"></i>
+                                    </div>
+                                    <div class="text-lg md:text-2xl-title font-black text-text-main">12-Month</div>
+                                    <div class="text-[10px] md:text-xs-muted text-text-secondary uppercase tracking-widest font-bold">Warranty</div>
+                                </div>
+                                <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center lg:items-start">
+                                    <div class="w-10 h-10 bg-brand-50 text-brand rounded-xl flex items-center justify-center mb-3">
+                                        <i class="fa-solid fa-percent text-lg"></i>
+                                    </div>
+                                    <div class="text-lg md:text-2xl-title font-black text-text-main">Up to 50%</div>
+                                    <div class="text-[10px] md:text-xs-muted text-text-secondary uppercase tracking-widest font-bold">Savings</div>
+                                </div>
+                                <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center lg:items-start">
+                                    <div class="w-10 h-10 bg-brand-50 text-brand rounded-xl flex items-center justify-center mb-3">
+                                        <i class="fa-solid fa-check-double text-lg"></i>
+                                    </div>
+                                    <div class="text-lg md:text-2xl-title font-black text-text-main">150+ Point</div>
+                                    <div class="text-[10px] md:text-xs-muted text-text-secondary uppercase tracking-widest font-bold">Quality Check</div>
+                                </div>
+                                <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center lg:items-start">
+                                    <div class="w-10 h-10 bg-brand-50 text-brand rounded-xl flex items-center justify-center mb-3">
+                                        <i class="fa-solid fa-truck-fast text-lg"></i>
+                                    </div>
+                                    <div class="text-lg md:text-2xl-title font-black text-text-main">Free</div>
+                                    <div class="text-[10px] md:text-xs-muted text-text-secondary uppercase tracking-widest font-bold">Shipping</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right: Trust Badge -->
+                        <div class="lg:w-1/3 w-full max-w-md mx-auto">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                                <div class="text-center mb-6">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand to-brand-light text-white rounded-full mb-4">
+                                        <i class="fa-solid fa-medal text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-xl-title font-bold text-text-main mb-2">Certified Quality</h3>
+                                    <p class="text-sm-sec text-text-secondary">Every product undergoes rigorous testing and certification</p>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-green-600 text-sm"></i>
+                                        </div>
+                                        <span class="text-sm-sec text-text-main">Full Functional Testing</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-green-600 text-sm"></i>
+                                        </div>
+                                        <span class="text-sm-sec text-text-main">Cosmetic Restoration</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-green-600 text-sm"></i>
+                                        </div>
+                                        <span class="text-sm-sec text-text-main">Battery Health Check</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-green-600 text-sm"></i>
+                                        </div>
+                                        <span class="text-sm-sec text-text-main">Original Accessories</span>
+                                    </div>
+                                </div>
+                                
+                                <button class="w-full mt-6 bg-brand text-white py-3 rounded-xl font-medium hover:bg-brand-dark transition duration-300 flex items-center justify-center space-x-2">
+                                    <i class="fa-solid fa-play-circle"></i>
+                                    <span>Watch Quality Process</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Filter Tabs -->
+        <div class="bg-white border-b border-gray-100 sticky top-[72px] md:top-[136px] z-40">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="flex items-center justify-between py-4">
+                    <!-- Filter Tabs -->
+                    <div class="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar">
+                        <button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-brand text-white font-bold text-sm-sec flex items-center space-x-2 shadow-md shadow-brand/20">
+                            <i class="fa-solid fa-fire"></i>
+                            <span>All Refurbished</span>
+                        </button>
+                        <button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 font-bold text-sm-sec transition duration-300 flex items-center space-x-2">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span>Smartphones</span>
+                        </button>
+                        <button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 font-bold text-sm-sec transition duration-300 flex items-center space-x-2">
+                            <i class="fa-solid fa-laptop"></i>
+                            <span>Laptops</span>
+                        </button>
+                        <button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 font-bold text-sm-sec transition duration-300 flex items-center space-x-2">
+                            <i class="fa-solid fa-tablet-screen-button"></i>
+                            <span>Tablets</span>
+                        </button>
+                        <button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 font-bold text-sm-sec transition duration-300 flex items-center space-x-2">
+                            <i class="fa-solid fa-headphones"></i>
+                            <span>Audio</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Sort & View -->
+                    <div class="hidden lg:flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm-sec text-text-secondary">Sort by:</span>
+                            <select class="bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-sm-sec text-text-main focus:outline-none focus:border-brand">
+                                <option>Best Value</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Savings %</option>
+                                <option>Quality Grade</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <button class="p-2 rounded-lg bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 transition">
+                                <i class="fa-solid fa-grip"></i>
+                            </button>
+                            <button class="p-2 rounded-lg bg-brand-50 text-brand">
+                                <i class="fa-solid fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="container mx-auto px-4 lg:px-8 py-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Left Sidebar - Filters -->
+                <div class="lg:w-1/4">
+                    <div class="sticky top-48 space-y-6">
+                        <!-- Search Filter -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                                Search Refurbished
+                                <i class="fa-solid fa-search text-sm text-text-muted"></i>
+                            </h3>
+                            <div class="relative">
+                                <input type="text" placeholder="Search by model, brand..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm-sec text-text-main placeholder:text-text-muted focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand-50">
+                                <button class="absolute right-3 top-3 text-text-muted hover:text-brand transition">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                                Price Range
+                                <span class="text-sm-sec font-medium text-brand">$199 - $1,299</span>
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="relative pt-1">
+                                    <div class="flex mb-2 items-center justify-between">
+                                        <div>
+                                            <span class="text-xs-muted font-semibold inline-block text-text-secondary">MIN</span>
+                                            <span class="text-sm-sec font-medium text-text-main">$199</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs-muted font-semibold inline-block text-text-secondary">MAX</span>
+                                            <span class="text-sm-sec font-medium text-text-main">$1,299</span>
+                                        </div>
+                                    </div>
+                                    <div class="relative h-2 bg-gray-200 rounded-full">
+                                        <div class="absolute h-2 bg-gradient-to-r from-brand to-brand-light rounded-full" style="width: 70%"></div>
+                                        <div class="absolute w-4 h-4 bg-brand rounded-full -top-1" style="left: 20%"></div>
+                                        <div class="absolute w-4 h-4 bg-brand rounded-full -top-1" style="left: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <button class="px-4 py-2 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg text-sm-sec transition duration-300">Under $300</button>
+                                    <button class="px-4 py-2 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg text-sm-sec transition duration-300">$300-$600</button>
+                                    <button class="px-4 py-2 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg text-sm-sec transition duration-300">$600+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quality Grade -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                                Quality Grade
+                                <i class="fa-solid fa-star text-yellow-500"></i>
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 rounded-full quality-excellent"></div>
+                                        <span class="text-sm-sec text-text-main group-hover:text-brand transition">Excellent (Like New)</span>
+                                    </div>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">42</span>
+                                </div>
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 rounded-full quality-good"></div>
+                                        <span class="text-sm-sec text-text-main group-hover:text-brand transition">Good (Minor Signs)</span>
+                                    </div>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">28</span>
+                                </div>
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 rounded-full quality-fair"></div>
+                                        <span class="text-sm-sec text-text-main group-hover:text-brand transition">Fair (Visible Wear)</span>
+                                    </div>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">15</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Savings -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                                Savings
+                                <i class="fa-solid fa-percent text-red-500"></i>
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-sm-sec text-text-main group-hover:text-brand transition">40%+ Off</span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">18</span>
+                                </div>
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-sm-sec text-text-main group-hover:text-brand transition">30-40% Off</span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">24</span>
+                                </div>
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-sm-sec text-text-main group-hover:text-brand transition">20-30% Off</span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">31</span>
+                                </div>
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-sm-sec text-text-main group-hover:text-brand transition">Under 20% Off</span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">22</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Warranty -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                                Warranty
+                                <i class="fa-solid fa-shield-check text-green-500"></i>
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-sm-sec text-text-main group-hover:text-brand transition">12 Months</span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">85</span>
+                                </div>
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-sm-sec text-text-main group-hover:text-brand transition">6 Months</span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">12</span>
+                                </div>
+                                <div class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-sm-sec text-text-main group-hover:text-brand transition">3 Months</span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">8</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clear All Filters -->
+                        <button class="w-full bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 py-3 rounded-xl font-medium text-sm-sec transition duration-300 flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-filter-circle-xmark"></i>
+                            <span>Clear All Filters</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column - Products Grid -->
+                <div class="lg:w-3/4">
+                    <!-- Products Count & View Options -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-2xl-title font-bold text-text-main">Refurbished Products</h2>
+                            <p class="text-sm-sec text-text-secondary mt-1">Showing <span class="font-medium text-brand">85</span> certified refurbished items</p>
+                        </div>
+                        <div class="hidden lg:flex items-center space-x-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm-sec text-text-secondary">Items per page:</span>
+                                <select class="bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-sm-sec text-text-main focus:outline-none focus:border-brand">
+                                    <option>12</option>
+                                    <option>24</option>
+                                    <option>48</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Product Card 1 -->
+                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover-card overflow-hidden group">
+                            <div class="relative">
+                                <!-- Hot Deal Badge -->
+                                <div class="absolute top-3 left-3 z-10">
+                                    <span class="badge-savings text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1">
+                                        <i class="fa-solid fa-fire"></i>
+                                        <span>HOT DEAL</span>
+                                    </span>
+                                </div>
+                                <!-- Quality Badge -->
+                                <div class="absolute top-3 right-3 z-10">
+                                    <span class="quality-excellent text-white text-xs font-bold px-3 py-1 rounded-full">
+                                        Excellent
+                                    </span>
+                                </div>
+                                <!-- Product Image -->
+                                <div class="image-zoom">
+                                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                         alt="iPhone 14 Pro Max" 
+                                         class="w-full h-48 object-cover">
+                                </div>
+                                <!-- Quick Actions -->
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <div class="flex items-center justify-center space-x-3">
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <!-- Product Info -->
+                                <div class="mb-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="badge-certified text-white text-xs font-bold px-2 py-0.5 rounded">Certified</span>
+                                        <span class="text-xs-muted text-text-secondary">Stock: 12</span>
+                                    </div>
+                                    <h3 class="text-xl-title font-bold text-text-main mb-1">iPhone 14 Pro Max</h3>
+                                    <p class="text-sm-sec text-text-secondary mb-3">256GB · Deep Purple · Unlocked</p>
+                                    
+                                    <!-- Quality Rating -->
+                                    <div class="flex items-center space-x-1 mb-3">
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <span class="text-xs-muted text-text-secondary ml-1">(4.8/5)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Price Comparison -->
+                                <div class="mb-4">
+                                    <div class="flex items-end space-x-2">
+                                        <span class="text-2xl-title font-bold text-text-main">$899</span>
+                                        <span class="price-original text-lg-sub">$1,199</span>
+                                        <span class="price-savings text-sm-sec">Save $300 (25%)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Warranty & Features -->
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-shield-check text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">12-Month Warranty</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-battery-full text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Battery Health: 98%</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-box-open text-brand text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Original Accessories</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-brand text-white py-3 rounded-xl font-medium hover:bg-brand-dark transition duration-300">
+                                        Add to Cart
+                                    </button>
+                                    <button class="w-12 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-xl flex items-center justify-center transition duration-300">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover-card overflow-hidden group">
+                            <div class="relative">
+                                <!-- Limited Stock Badge -->
+                                <div class="absolute top-3 left-3 z-10">
+                                    <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1">
+                                        <i class="fa-solid fa-clock"></i>
+                                        <span>LIMITED STOCK</span>
+                                    </span>
+                                </div>
+                                <!-- Quality Badge -->
+                                <div class="absolute top-3 right-3 z-10">
+                                    <span class="quality-good text-white text-xs font-bold px-3 py-1 rounded-full">
+                                        Good
+                                    </span>
+                                </div>
+                                <!-- Product Image -->
+                                <div class="image-zoom">
+                                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                         alt="MacBook Pro 14" 
+                                         class="w-full h-48 object-cover">
+                                </div>
+                                <!-- Quick Actions -->
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <div class="flex items-center justify-center space-x-3">
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <!-- Product Info -->
+                                <div class="mb-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="badge-certified text-white text-xs font-bold px-2 py-0.5 rounded">Certified</span>
+                                        <span class="text-xs-muted text-text-secondary">Stock: 3</span>
+                                    </div>
+                                    <h3 class="text-xl-title font-bold text-text-main mb-1">MacBook Pro 14"</h3>
+                                    <p class="text-sm-sec text-text-secondary mb-3">M2 Pro · 16GB · 512GB SSD · Space Gray</p>
+                                    
+                                    <!-- Quality Rating -->
+                                    <div class="flex items-center space-x-1 mb-3">
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star-half-alt text-yellow-400 text-sm"></i>
+                                        <span class="text-xs-muted text-text-secondary ml-1">(4.3/5)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Price Comparison -->
+                                <div class="mb-4">
+                                    <div class="flex items-end space-x-2">
+                                        <span class="text-2xl-title font-bold text-text-main">$1,499</span>
+                                        <span class="price-original text-lg-sub">$1,999</span>
+                                        <span class="price-savings text-sm-sec">Save $500 (25%)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Warranty & Features -->
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-shield-check text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">12-Month Warranty</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-bolt text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Cycle Count: 45</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-box-open text-brand text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Original Box</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-brand text-white py-3 rounded-xl font-medium hover:bg-brand-dark transition duration-300">
+                                        Add to Cart
+                                    </button>
+                                    <button class="w-12 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-xl flex items-center justify-center transition duration-300">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover-card overflow-hidden group hot-deal">
+                            <div class="relative">
+                                <!-- Best Value Badge -->
+                                <div class="absolute top-3 left-3 z-10">
+                                    <span class="bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1">
+                                        <i class="fa-solid fa-trophy"></i>
+                                        <span>BEST VALUE</span>
+                                    </span>
+                                </div>
+                                <!-- Quality Badge -->
+                                <div class="absolute top-3 right-3 z-10">
+                                    <span class="quality-excellent text-white text-xs font-bold px-3 py-1 rounded-full">
+                                        Excellent
+                                    </span>
+                                </div>
+                                <!-- Product Image -->
+                                <div class="image-zoom">
+                                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                         alt="Samsung Galaxy Tab S8" 
+                                         class="w-full h-48 object-cover">
+                                </div>
+                                <!-- Quick Actions -->
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <div class="flex items-center justify-center space-x-3">
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <!-- Product Info -->
+                                <div class="mb-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="badge-certified text-white text-xs font-bold px-2 py-0.5 rounded">Certified</span>
+                                        <span class="text-xs-muted text-text-secondary">Stock: 8</span>
+                                    </div>
+                                    <h3 class="text-xl-title font-bold text-text-main mb-1">Samsung Galaxy Tab S8</h3>
+                                    <p class="text-sm-sec text-text-secondary mb-3">11" · 256GB · 5G · Graphite</p>
+                                    
+                                    <!-- Quality Rating -->
+                                    <div class="flex items-center space-x-1 mb-3">
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <span class="text-xs-muted text-text-secondary ml-1">(5.0/5)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Price Comparison -->
+                                <div class="mb-4">
+                                    <div class="flex items-end space-x-2">
+                                        <span class="text-2xl-title font-bold text-text-main">$549</span>
+                                        <span class="price-original text-lg-sub">$849</span>
+                                        <span class="price-savings text-sm-sec">Save $300 (35%)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Warranty & Features -->
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-shield-check text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">12-Month Warranty</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-battery-full text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Battery Health: 100%</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-box-open text-brand text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">S Pen Included</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-brand text-white py-3 rounded-xl font-medium hover:bg-brand-dark transition duration-300">
+                                        Add to Cart
+                                    </button>
+                                    <button class="w-12 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-xl flex items-center justify-center transition duration-300">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 4 -->
+                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover-card overflow-hidden group">
+                            <div class="relative">
+                                <!-- New Arrival Badge -->
+                                <div class="absolute top-3 left-3 z-10">
+                                    <span class="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>NEW ARRIVAL</span>
+                                    </span>
+                                </div>
+                                <!-- Quality Badge -->
+                                <div class="absolute top-3 right-3 z-10">
+                                    <span class="quality-fair text-white text-xs font-bold px-3 py-1 rounded-full">
+                                        Fair
+                                    </span>
+                                </div>
+                                <!-- Product Image -->
+                                <div class="image-zoom">
+                                    <img src="https://images.unsplash.com/photo-1600003263720-95b45a4035d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                         alt="Sony WH-1000XM5" 
+                                         class="w-full h-48 object-cover">
+                                </div>
+                                <!-- Quick Actions -->
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <div class="flex items-center justify-center space-x-3">
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <!-- Product Info -->
+                                <div class="mb-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="badge-certified text-white text-xs font-bold px-2 py-0.5 rounded">Certified</span>
+                                        <span class="text-xs-muted text-text-secondary">Stock: 15</span>
+                                    </div>
+                                    <h3 class="text-xl-title font-bold text-text-main mb-1">Sony WH-1000XM5</h3>
+                                    <p class="text-sm-sec text-text-secondary mb-3">Noise Cancelling Headphones · Black</p>
+                                    
+                                    <!-- Quality Rating -->
+                                    <div class="flex items-center space-x-1 mb-3">
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-regular fa-star text-yellow-400 text-sm"></i>
+                                        <span class="text-xs-muted text-text-secondary ml-1">(4.0/5)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Price Comparison -->
+                                <div class="mb-4">
+                                    <div class="flex items-end space-x-2">
+                                        <span class="text-2xl-title font-bold text-text-main">$249</span>
+                                        <span class="price-original text-lg-sub">$399</span>
+                                        <span class="price-savings text-sm-sec">Save $150 (38%)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Warranty & Features -->
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-shield-check text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">6-Month Warranty</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-volume-high text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Sound Quality: Excellent</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-box-open text-brand text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Carrying Case Included</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-brand text-white py-3 rounded-xl font-medium hover:bg-brand-dark transition duration-300">
+                                        Add to Cart
+                                    </button>
+                                    <button class="w-12 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-xl flex items-center justify-center transition duration-300">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 5 -->
+                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover-card overflow-hidden group">
+                            <div class="relative">
+                                <!-- Free Shipping Badge -->
+                                <div class="absolute top-3 left-3 z-10">
+                                    <span class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1">
+                                        <i class="fa-solid fa-truck"></i>
+                                        <span>FREE SHIPPING</span>
+                                    </span>
+                                </div>
+                                <!-- Quality Badge -->
+                                <div class="absolute top-3 right-3 z-10">
+                                    <span class="quality-good text-white text-xs font-bold px-3 py-1 rounded-full">
+                                        Good
+                                    </span>
+                                </div>
+                                <!-- Product Image -->
+                                <div class="image-zoom">
+                                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                         alt="Dell XPS 15" 
+                                         class="w-full h-48 object-cover">
+                                </div>
+                                <!-- Quick Actions -->
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <div class="flex items-center justify-center space-x-3">
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <!-- Product Info -->
+                                <div class="mb-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="badge-certified text-white text-xs font-bold px-2 py-0.5 rounded">Certified</span>
+                                        <span class="text-xs-muted text-text-secondary">Stock: 6</span>
+                                    </div>
+                                    <h3 class="text-xl-title font-bold text-text-main mb-1">Dell XPS 15 9520</h3>
+                                    <p class="text-sm-sec text-text-secondary mb-3">i7 · 32GB · 1TB SSD · 4K Touch</p>
+                                    
+                                    <!-- Quality Rating -->
+                                    <div class="flex items-center space-x-1 mb-3">
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <span class="text-xs-muted text-text-secondary ml-1">(4.9/5)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Price Comparison -->
+                                <div class="mb-4">
+                                    <div class="flex items-end space-x-2">
+                                        <span class="text-2xl-title font-bold text-text-main">$1,199</span>
+                                        <span class="price-original text-lg-sub">$1,799</span>
+                                        <span class="price-savings text-sm-sec">Save $600 (33%)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Warranty & Features -->
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-shield-check text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">12-Month Warranty</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-bolt text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Battery Cycles: 32</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-box-open text-brand text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Dell Charger Included</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-brand text-white py-3 rounded-xl font-medium hover:bg-brand-dark transition duration-300">
+                                        Add to Cart
+                                    </button>
+                                    <button class="w-12 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-xl flex items-center justify-center transition duration-300">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 6 -->
+                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover-card overflow-hidden group">
+                            <div class="relative">
+                                <!-- Deal of the Day Badge -->
+                                <div class="absolute top-3 left-3 z-10">
+                                    <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1">
+                                        <i class="fa-solid fa-bolt"></i>
+                                        <span>DEAL OF THE DAY</span>
+                                    </span>
+                                </div>
+                                <!-- Quality Badge -->
+                                <div class="absolute top-3 right-3 z-10">
+                                    <span class="quality-excellent text-white text-xs font-bold px-3 py-1 rounded-full">
+                                        Excellent
+                                    </span>
+                                </div>
+                                <!-- Product Image -->
+                                <div class="image-zoom">
+                                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                         alt="iPad Pro 12.9" 
+                                         class="w-full h-48 object-cover">
+                                </div>
+                                <!-- Quick Actions -->
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <div class="flex items-center justify-center space-x-3">
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-brand hover:text-white transition">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <!-- Product Info -->
+                                <div class="mb-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="badge-certified text-white text-xs font-bold px-2 py-0.5 rounded">Certified</span>
+                                        <span class="text-xs-muted text-text-secondary">Stock: 4</span>
+                                    </div>
+                                    <h3 class="text-xl-title font-bold text-text-main mb-1">iPad Pro 12.9" 6th Gen</h3>
+                                    <p class="text-sm-sec text-text-secondary mb-3">M2 · 256GB · Wi-Fi · Space Gray</p>
+                                    
+                                    <!-- Quality Rating -->
+                                    <div class="flex items-center space-x-1 mb-3">
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                        <i class="fa-solid fa-star-half-alt text-yellow-400 text-sm"></i>
+                                        <span class="text-xs-muted text-text-secondary ml-1">(4.5/5)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Price Comparison -->
+                                <div class="mb-4">
+                                    <div class="flex items-end space-x-2">
+                                        <span class="text-2xl-title font-bold text-text-main">$899</span>
+                                        <span class="price-original text-lg-sub">$1,199</span>
+                                        <span class="price-savings text-sm-sec">Save $300 (25%)</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Warranty & Features -->
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-shield-check text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">12-Month Warranty</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-battery-full text-green-500 text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Battery Health: 96%</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid fa-box-open text-brand text-sm"></i>
+                                        <span class="text-sm-sec text-text-main">Original Packaging</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-brand text-white py-3 rounded-xl font-medium hover:bg-brand-dark transition duration-300">
+                                        Add to Cart
+                                    </button>
+                                    <button class="w-12 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-xl flex items-center justify-center transition duration-300">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="mt-12 flex items-center justify-between">
+                        <div class="text-sm-sec text-text-secondary">
+                            Showing 1-6 of 85 products
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="w-10 h-10 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg flex items-center justify-center transition duration-300">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button class="w-10 h-10 bg-brand text-white rounded-lg flex items-center justify-center">1</button>
+                            <button class="w-10 h-10 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg flex items-center justify-center transition duration-300">2</button>
+                            <button class="w-10 h-10 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg flex items-center justify-center transition duration-300">3</button>
+                            <button class="w-10 h-10 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg flex items-center justify-center transition duration-300">4</button>
+                            <span class="text-text-secondary px-2">...</span>
+                            <button class="w-10 h-10 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg flex items-center justify-center transition duration-300">14</button>
+                            <button class="w-10 h-10 bg-gray-50 text-text-secondary hover:text-brand hover:bg-gray-100 rounded-lg flex items-center justify-center transition duration-300">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promotions Banner -->
+        <div class="container mx-auto px-4 lg:px-8 mt-12 mb-8">
+            <div class="bg-gradient-to-r from-brand to-brand-light rounded-2xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="md:w-2/3">
+                        <h2 class="text-3xl-hero font-bold text-white mb-4">Limited Time Promotion</h2>
+                        <p class="text-lg-sub text-white/90 mb-6">Extra 10% off on all refurbished laptops this week only. Use code: <span class="font-bold bg-white/20 px-3 py-1 rounded-lg">REFURB10</span></p>
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-white/20 p-4 rounded-xl">
+                                <div class="text-2xl-title font-bold text-white">48</div>
+                                <div class="text-sm-sec text-white/80">Hours Left</div>
+                            </div>
+                            <div class="bg-white/20 p-4 rounded-xl">
+                                <div class="text-2xl-title font-bold text-white">124</div>
+                                <div class="text-sm-sec text-white/80">Orders Placed</div>
+                            </div>
+                            <div class="bg-white/20 p-4 rounded-xl">
+                                <div class="text-2xl-title font-bold text-white">$24,580</div>
+                                <div class="text-sm-sec text-white/80">Total Savings</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3">
+                        <button class="w-full bg-white text-brand py-4 rounded-xl font-bold text-lg-sub hover:bg-gray-100 transition duration-300">
+                            Shop Laptop Deals
+                        </button>
+                        <p class="text-sm-sec text-white/80 text-center mt-4">Free shipping on all orders over $299</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quality Assurance Section -->
+        <div class="container mx-auto px-4 lg:px-8 py-12">
+            <div class="bg-white rounded-2xl border border-gray-100 p-8 md:p-12">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl-hero font-bold text-text-main mb-4">Our Refurbishment Process</h2>
+                    <p class="text-lg-sub text-text-secondary">Every product undergoes a rigorous 150-point quality inspection to ensure it meets our high standards</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-screwdriver-wrench text-brand text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl-title font-bold text-text-main mb-3">Diagnostic Testing</h3>
+                        <p class="text-sm-sec text-text-secondary">Comprehensive hardware and software diagnostics to identify any issues</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-paint-roller text-brand text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl-title font-bold text-text-main mb-3">Cosmetic Restoration</h3>
+                        <p class="text-sm-sec text-text-secondary">Professional cleaning and minor cosmetic repairs to restore appearance</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-battery-full text-brand text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl-title font-bold text-text-main mb-3">Battery & Component Check</h3>
+                        <p class="text-sm-sec text-text-secondary">Battery health assessment and replacement if below 80% capacity</p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-shield-check text-brand text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl-title font-bold text-text-main mb-3">Final Certification</h3>
+                        <p class="text-sm-sec text-text-secondary">Final quality assurance and certification with 12-month warranty</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="components/footer.html"></div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/include.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script>
+        // Page specific logic can stay here
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... any refurbished page specific scripts
+        });
+    </script>
+</body>
+</html>

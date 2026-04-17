@@ -1,0 +1,760 @@
+?<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screens - 3C Easy</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700', 
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',    /* Gray 800 - ��Ҫ�ı� */
+                            secondary: '#4b5563', /* Gray 600 - �����ı�/������ */
+                            muted: '#9ca3af',    /* Gray 400 - �����ı�/ռλ�� */
+                            light: '#f9fafb'     /* Gray 50 - ��ɫ�ı� */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs-muted': ['0.75rem', { lineHeight: '1rem' }],      /* 12px ����˵�� */
+                        'sm-sec': ['0.875rem', { lineHeight: '1.25rem' }],    /* 14px ������Ϣ/С��ǩ */
+                        'base-main': ['1rem', { lineHeight: '1.5rem' }],      /* 16px ������Ҫ���� */
+                        'lg-sub': ['1.125rem', { lineHeight: '1.75rem' }],    /* 18px С����/ǿ�� */
+                        'xl-title': ['1.25rem', { lineHeight: '1.75rem' }],   /* 20px ��Ƭ���� */
+                        '2xl-title': ['1.5rem', { lineHeight: '2rem' }],      /* 24px ������� */
+                        '3xl-hero': ['1.875rem', { lineHeight: '2.25rem' }],  /* 30px Hero���� */
+                        '5xl-hero': ['3rem', { lineHeight: '1.1' }],          /* 48px Hero���� */
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .hover-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+        .image-zoom { overflow: hidden; }
+        .image-zoom img { transition: transform 0.5s ease; }
+        .hover-card:hover .image-zoom img { transform: scale(1.05); }
+        
+        /* Range Slider Customization */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #ff6700;
+            cursor: pointer;
+            margin-top: -6px;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+        
+        /* Toast Animation */
+        .toast-enter { animation: slideIn 0.3s ease-out forwards; }
+        .toast-leave { animation: fadeOut 0.3s ease-in forwards; }
+        @keyframes slideIn { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="products">
+
+    <!-- Store Header -->
+    <div data-include="components/header.html"></div>
+
+    <main class="pb-20 pt-6">
+        <div class="container mx-auto px-4 lg:px-8">
+            
+            <!-- Breadcrumbs & Top Info -->
+            <div class="flex flex-wrap items-center justify-between mb-6 text-sm-sec text-text-secondary">
+                <div class="flex items-center space-x-2">
+                    <a href="/index.html" class="hover:text-brand transition">Home</a>
+                    <span class="text-gray-300">/</span>
+                    <span class="text-text-main font-medium">Screens</span>
+                </div>
+                <div class="hidden sm:block">
+                    Showing 1�C12 of 37 results
+                </div>
+            </div>
+
+            <!-- Mobile Sticky Filter Toggle (Only visible on mobile when scrolled) -->
+            <div class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[65] w-[calc(100%-2rem)] max-w-md translate-y-[150%] transition-transform duration-500">
+                <button id="sticky-filter-toggle" class="w-full bg-text-main text-white py-4 rounded-2xl font-bold shadow-2xl flex items-center justify-center space-x-3 active:scale-95 transition-transform">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Filter & Sort</span>
+                </button>
+            </div>
+
+            <!-- Refined Category Selection (Tag-based - Optimized for Mobile) -->
+            <div class="mb-8 lg:mb-12" id="category-filter-section">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg md:text-xl-title font-bold text-text-main">Select Model</h2>
+                    <button id="clear-categories" class="text-xs md:text-sm-sec text-text-muted hover:text-brand transition hidden font-medium">Reset</button>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <!-- Horizontal Scrollable Tag List -->
+                    <div id="category-tags-container" class="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar scroll-smooth flex-nowrap mask-fade-right lg:flex-wrap lg:mask-none">
+                        <button class="category-tag whitespace-nowrap px-5 py-2 rounded-full border border-gray-200 bg-white text-sm-sec font-semibold text-text-secondary hover:border-brand/50 hover:text-brand transition-all shadow-sm active-tag" data-category="all">All Models</button>
+                        <button class="category-tag whitespace-nowrap px-5 py-2 rounded-full border border-gray-200 bg-white text-sm-sec font-semibold text-text-secondary hover:border-brand/50 hover:text-brand transition-all shadow-sm" data-category="12-mini">iPhone 12 Mini</button>
+                        <button class="category-tag whitespace-nowrap px-5 py-2 rounded-full border border-gray-200 bg-white text-sm-sec font-semibold text-text-secondary hover:border-brand/50 hover:text-brand transition-all shadow-sm" data-category="12-promax">iPhone 12 ProMax</button>
+                        <button class="category-tag whitespace-nowrap px-5 py-2 rounded-full border border-gray-200 bg-white text-sm-sec font-semibold text-text-secondary hover:border-brand/50 hover:text-brand transition-all shadow-sm" data-category="12-12pro">iPhone 12/12 Pro</button>
+                        <button class="category-tag whitespace-nowrap px-5 py-2 rounded-full border border-gray-200 bg-white text-sm-sec font-semibold text-text-secondary hover:border-brand/50 hover:text-brand transition-all shadow-sm" data-category="13">iPhone 13</button>
+                        <button class="category-tag whitespace-nowrap px-5 py-2 rounded-full border border-gray-200 bg-white text-sm-sec font-semibold text-text-secondary hover:border-brand/50 hover:text-brand transition-all shadow-sm" data-category="13-mini">iPhone 13 Mini</button>
+                    </div>
+
+                    <!-- "More" Dropdown - Hidden on mobile, moved to filter drawer -->
+                    <div class="relative group hidden lg:block" id="more-categories-dropdown">
+                        <button class="px-5 py-2 rounded-full border border-gray-200 bg-gray-50 text-sm-sec font-bold text-text-main hover:bg-white hover:border-brand transition-all duration-300 flex items-center shadow-sm">
+                            More <i class="fa-solid fa-chevron-down ml-2 text-[10px] group-hover:rotate-180 transition-transform"></i>
+                        </button>
+                        
+                        <!-- Dropdown Content -->
+                        <div class="absolute right-0 top-full mt-2 w-64 bg-white border border-gray-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 p-2 grid grid-cols-1 gap-1">
+                            <button class="category-tag w-full text-left px-4 py-2.5 rounded-xl hover:bg-gray-50 text-sm-sec font-medium text-text-secondary hover:text-brand transition-all" data-category="13-pro">iPhone 13 Pro</button>
+                            <button class="category-tag w-full text-left px-4 py-2.5 rounded-xl hover:bg-gray-50 text-sm-sec font-medium text-text-secondary hover:text-brand transition-all" data-category="13-promax">iPhone 13 Pro Max</button>
+                            <button class="category-tag w-full text-left px-4 py-2.5 rounded-xl hover:bg-gray-50 text-sm-sec font-medium text-text-secondary hover:text-brand transition-all" data-category="14">iPhone 14 Series</button>
+                            <button class="category-tag w-full text-left px-4 py-2.5 rounded-xl hover:bg-gray-50 text-sm-sec font-medium text-text-secondary hover:text-brand transition-all" data-category="15">iPhone 15 Series</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+                .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+                .mask-fade-right { mask-image: linear-gradient(to right, black 85%, transparent 100%); }
+                .active-tag {
+                    background-color: #ff6700 !important;
+                    border-color: #ff6700 !important;
+                    color: white !important;
+                    box-shadow: 0 4px 12px rgba(255, 103, 0, 0.2) !important;
+                }
+            </style>
+
+            <!-- Main Layout Grid -->
+            <div class="flex flex-col lg:flex-row gap-10">
+                
+                <!-- Filter Drawer Backdrop (Mobile) -->
+                <div id="filter-drawer-backdrop" class="fixed inset-0 bg-black/60 z-[70] hidden backdrop-blur-sm lg:hidden"></div>
+
+                <!-- Left Sidebar (Filters) - Refined as a full-height mobile drawer -->
+                <aside id="filter-sidebar" class="fixed inset-y-0 right-0 w-full max-w-[320px] bg-white z-[80] transform translate-x-full transition-transform duration-300 lg:relative lg:translate-x-0 lg:w-1/4 xl:w-1/5 lg:bg-transparent lg:z-auto lg:flex-shrink-0 overflow-hidden flex flex-col shadow-2xl lg:shadow-none">
+                    <!-- Mobile Header -->
+                    <div class="flex items-center justify-between p-6 border-b border-gray-100 lg:hidden">
+                        <div>
+                            <h2 class="text-xl font-black text-text-main">Filters</h2>
+                            <p class="text-[10px] text-text-muted uppercase tracking-widest font-bold mt-1">Refine your results</p>
+                        </div>
+                        <button id="filter-drawer-close" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-text-muted hover:text-brand transition active:scale-90">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Scrollable content -->
+                    <div class="flex-1 overflow-y-auto p-6 lg:p-0 custom-scrollbar">
+                        <!-- Mobile Category List (Hidden on desktop as they are in tags) -->
+                        <div class="lg:hidden mb-8">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4 flex items-center justify-between">
+                                All Models
+                            </h3>
+                            <div class="grid grid-cols-1 gap-2">
+                                <button class="category-tag text-left px-4 py-3 rounded-xl bg-gray-50 text-sm-sec font-bold text-text-main hover:bg-brand-50 hover:text-brand transition-all border border-transparent hover:border-brand/20" data-category="13-pro">iPhone 13 Pro</button>
+                                <button class="category-tag text-left px-4 py-3 rounded-xl bg-gray-50 text-sm-sec font-bold text-text-main hover:bg-brand-50 hover:text-brand transition-all border border-transparent hover:border-brand/20" data-category="13-promax">iPhone 13 Pro Max</button>
+                                <button class="category-tag text-left px-4 py-3 rounded-xl bg-gray-50 text-sm-sec font-bold text-text-main hover:bg-brand-50 hover:text-brand transition-all border border-transparent hover:border-brand/20" data-category="14">iPhone 14 Series</button>
+                                <button class="category-tag text-left px-4 py-3 rounded-xl bg-gray-50 text-sm-sec font-bold text-text-main hover:bg-brand-50 hover:text-brand transition-all border border-transparent hover:border-brand/20" data-category="15">iPhone 15 Series</button>
+                            </div>
+                        </div>
+
+                        <!-- Filter Block: Price -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mb-6">
+                        <h3 class="font-bold text-lg-sub text-text-main mb-6 pb-4 border-b border-gray-100 flex items-center justify-between">
+                            Filter By Price
+                            <i class="fa-solid fa-angle-up text-xs text-text-muted cursor-pointer"></i>
+                        </h3>
+                        
+                        <div class="mb-2">
+                            <!-- Custom Range Slider (Visual representation) -->
+                            <div class="relative h-1 bg-gray-200 rounded-full mb-4 mt-8">
+                                <div class="absolute left-[10%] right-[30%] h-full bg-brand rounded-full"></div>
+                                <div class="absolute left-[10%] top-1/2 -translate-y-1/2 w-4 h-4 bg-brand border-2 border-white rounded-full shadow cursor-pointer"></div>
+                                <div class="absolute right-[30%] top-1/2 -translate-y-1/2 w-4 h-4 bg-brand border-2 border-white rounded-full shadow cursor-pointer"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between text-sm-sec text-text-main font-medium mb-6">
+                                <span>Price: <span class="font-bold">$10 �� $110</span></span>
+                            </div>
+                            
+                            <button class="bg-brand hover:bg-brand-dark text-white px-6 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition w-full">
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Block: Categories -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mb-6">
+                        <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                            Categories
+                            <i class="fa-solid fa-angle-up text-xs text-text-muted cursor-pointer"></i>
+                        </h3>
+                        <ul class="space-y-3 text-sm-sec text-text-secondary">
+                            <li class="flex items-center justify-between group cursor-pointer">
+                                <span class="group-hover:text-brand transition flex items-center"><div class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-2 group-hover:bg-brand transition"></div>OLED Screens</span>
+                                <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">24</span>
+                            </li>
+                            <li class="flex items-center justify-between group cursor-pointer text-brand font-medium">
+                                <span class="flex items-center"><div class="w-1.5 h-1.5 rounded-full bg-brand mr-2"></div>INCELL Screens</span>
+                                <span class="text-xs-muted bg-brand-50 px-2 py-0.5 rounded-full text-brand">13</span>
+                            </li>
+                            <li class="flex items-center justify-between group cursor-pointer">
+                                <span class="group-hover:text-brand transition flex items-center"><div class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-2 group-hover:bg-brand transition"></div>Original Parts</span>
+                                <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">8</span>
+                            </li>
+                            <li class="flex items-center justify-between group cursor-pointer">
+                                <span class="group-hover:text-brand transition flex items-center"><div class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-2 group-hover:bg-brand transition"></div>Repair Tools</span>
+                                <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">15</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Filter Block: Brand -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mb-6">
+                        <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                            Brand
+                            <i class="fa-solid fa-angle-up text-xs text-text-muted cursor-pointer"></i>
+                        </h3>
+                        <ul class="space-y-3 text-sm-sec text-text-secondary">
+                            <li class="flex items-center group cursor-pointer">
+                                <div class="w-4 h-4 border border-gray-300 rounded flex items-center justify-center mr-3 group-hover:border-brand transition">
+                                    <i class="fa-solid fa-check text-[10px] text-white opacity-0"></i>
+                                </div>
+                                <span class="group-hover:text-text-main transition">Apple</span>
+                                <span class="text-xs-muted text-text-muted ml-auto">(24)</span>
+                            </li>
+                            <li class="flex items-center group cursor-pointer">
+                                <div class="w-4 h-4 border border-brand bg-brand rounded flex items-center justify-center mr-3">
+                                    <i class="fa-solid fa-check text-[10px] text-white"></i>
+                                </div>
+                                <span class="text-text-main font-medium">3C Easy</span>
+                                <span class="text-xs-muted text-text-muted ml-auto">(37)</span>
+                            </li>
+                            <li class="flex items-center group cursor-pointer">
+                                <div class="w-4 h-4 border border-gray-300 rounded flex items-center justify-center mr-3 group-hover:border-brand transition">
+                                    <i class="fa-solid fa-check text-[10px] text-white opacity-0"></i>
+                                </div>
+                                <span class="group-hover:text-text-main transition">Samsung</span>
+                                <span class="text-xs-muted text-text-muted ml-auto">(12)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Filter Block: Stock Status -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                        <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                            Availability
+                            <i class="fa-solid fa-angle-up text-xs text-text-muted cursor-pointer"></i>
+                        </h3>
+                        <ul class="space-y-3 text-sm-sec text-text-secondary">
+                            <li class="flex items-center group cursor-pointer">
+                                <div class="w-10 h-5 bg-brand rounded-full relative transition mr-3">
+                                    <div class="w-4 h-4 bg-white rounded-full absolute right-0.5 top-0.5 shadow-sm"></div>
+                                </div>
+                                <span class="text-text-main font-medium">In Stock</span>
+                            </li>
+                            <li class="flex items-center group cursor-pointer">
+                                <div class="w-10 h-5 bg-gray-200 rounded-full relative transition mr-3">
+                                    <div class="w-4 h-4 bg-white rounded-full absolute left-0.5 top-0.5 shadow-sm"></div>
+                                </div>
+                                <span class="group-hover:text-text-main transition">Out of Stock</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Apply Filters Button (Mobile only) -->
+                    <div class="mt-8 pt-8 border-t border-gray-100 lg:hidden sticky bottom-0 bg-white pb-6">
+                        <button id="filter-apply-btn" class="w-full bg-brand text-white py-4 rounded-2xl font-bold shadow-xl shadow-brand/20 active:scale-95 transition-transform">
+                            Apply Filters
+                        </button>
+                    </div>
+                </aside>
+                
+                <!-- Right Content Area -->
+                <div class="flex-1">
+            <!-- Toolbar (Title & Sorting) -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 pb-4 border-b border-gray-100 gap-4">
+                <div class="flex items-center justify-between w-full md:w-auto">
+                    <h1 class="text-2xl-title font-extrabold text-text-main">Screens</h1>
+                    <!-- Mobile Filter Toggle -->
+                    <button id="mobile-filter-toggle" class="lg:hidden flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-text-main px-4 py-2 rounded-xl transition font-bold text-sm-sec">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Filters</span>
+                    </button>
+                </div>
+                
+                <div class="flex flex-wrap items-center justify-between md:justify-end gap-4 text-sm-sec text-text-secondary">
+                    <div class="hidden sm:flex items-center space-x-2">
+                        <span>Show:</span>
+                        <div class="flex space-x-2 font-medium">
+                            <a href="#" class="hover:text-brand transition">9</a>
+                            <span class="text-gray-300">/</span>
+                            <a href="#" class="text-brand">12</a>
+                            <span class="text-gray-300">/</span>
+                            <a href="#" class="hover:text-brand transition">18</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center bg-gray-100 p-1 rounded-lg">
+                            <button class="w-8 h-8 rounded flex items-center justify-center text-text-muted hover:text-text-main transition"><i class="fa-solid fa-list-ul"></i></button>
+                            <button class="w-8 h-8 rounded flex items-center justify-center bg-white text-brand shadow-sm"><i class="fa-solid fa-border-all"></i></button>
+                        </div>
+                        
+                        <div class="relative">
+                            <select class="appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 pr-10 focus:outline-none focus:border-brand focus:ring-4 focus:ring-brand-50 cursor-pointer text-sm-sec font-medium transition-all">
+                                <option>Default sorting</option>
+                                <option>Sort by popularity</option>
+                                <option>Sort by latest</option>
+                                <option>Price: low to high</option>
+                                <option>Price: high to low</option>
+                            </select>
+                            <i class="fa-solid fa-angle-down absolute right-4 top-1/2 -translate-y-1/2 text-[10px] text-text-muted pointer-events-none"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    <!-- Products Grid (4 Columns) -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+                        <!-- Product Item 1 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-14%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=16+OLED" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$116.00</span>
+                                    <span class="text-base-main font-extrabold text-brand">$100.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+                        
+                        <!-- Product Item 2 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-8%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=16+Plus+OLED" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$120.00</span>
+                                    <span class="text-base-main font-extrabold text-brand">$110.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                        <!-- Product Item 3 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-22%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=15+OLED" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$85.00</span>
+                                    <span class="text-base-main font-extrabold text-brand">$66.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                        <!-- Product Item 4 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-13%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=15+PRO+OLED" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$112.24</span>
+                                    <span class="text-base-main font-extrabold text-brand">$98.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+                        
+                        <!-- Row 2 -->
+                        <!-- Product Item 5 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-30%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=11+INCELL" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$19.90</span>
+                                    <span class="text-base-main font-extrabold text-brand">$14.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+                        
+                        <!-- Product Item 6 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-30%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=11+PRO+INCELL" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$21.50</span>
+                                    <span class="text-base-main font-extrabold text-brand">$15.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+                        
+                        <!-- Product Item 7 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-30%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=11+PROMAX+INCELL" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$19.90</span>
+                                    <span class="text-base-main font-extrabold text-brand">$14.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+                        
+                        <!-- Product Item 8 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-11%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=12+MINI+INCELL" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$27.99</span>
+                                    <span class="text-base-main font-extrabold text-brand">$25.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+                        
+                        <!-- Row 3 -->
+                        <!-- Product Item 9 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group opacity-60 grayscale hover:grayscale-0 hover:opacity-100">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-gray-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">SOLD OUT</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=12+PRO+INCELL" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-base-main font-extrabold text-brand">$24.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-gray-200 text-text-main font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm hover:bg-brand hover:text-white">
+                                Read More
+                            </button>
+                        </div>
+                        
+                        <!-- Product Item 10 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-19%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=12+PROMAX+SOFT" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$67.00</span>
+                                    <span class="text-base-main font-extrabold text-brand">$54.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+                        
+                        <!-- Product Item 11 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-16%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=12+INCELL" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$17.90</span>
+                                    <span class="text-base-main font-extrabold text-brand">$15.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+                        
+                        <!-- Product Item 12 -->
+                        <div class="bg-white rounded-2xl p-5 border border-transparent hover:border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition duration-300 relative flex flex-col group">
+                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">-37%</span>
+                            </div>
+                            
+                            <div class="h-48 mb-5 relative flex items-center justify-center p-2">
+                                <img src="https://placehold.co/200x300/f8fafc/1f2937?text=13+INCELL" class="h-full object-contain drop-shadow-sm mix-blend-multiply group-hover:scale-105 transition duration-500" alt="Screen">
+                            </div>
+                            
+                            <div class="flex-grow flex flex-col text-center">
+                                <h3 class="font-bold text-text-main text-sm-sec mb-2 line-clamp-2 group-hover:text-brand transition">3C EASY-New Phone</h3>
+                                <div class="flex items-center justify-center space-x-2 mb-4 mt-auto">
+                                    <span class="text-xs-muted text-text-muted line-through">$27.00</span>
+                                    <span class="text-base-main font-extrabold text-brand">$17.00</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-2.5 rounded-full transition text-xs uppercase tracking-wider shadow-sm">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2">
+                        <span class="w-8 h-8 flex items-center justify-center bg-brand text-white rounded font-bold text-sm-sec cursor-pointer">1</span>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center bg-transparent hover:bg-gray-100 text-text-main rounded font-bold text-sm-sec transition cursor-pointer">2</a>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center bg-transparent hover:bg-gray-100 text-text-main rounded font-bold text-sm-sec transition cursor-pointer">3</a>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center bg-transparent hover:bg-gray-100 text-text-main rounded font-bold text-sm-sec transition cursor-pointer">4</a>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center bg-transparent hover:bg-gray-100 text-text-main rounded font-bold text-sm-sec transition cursor-pointer"><i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="components/footer.html"></div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/include.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script>
+        // Mobile Filter Drawer Logic
+         const filterToggle = document.getElementById('mobile-filter-toggle');
+         const stickyFilterToggle = document.getElementById('sticky-filter-toggle');
+         const filterSidebar = document.getElementById('filter-sidebar');
+         const filterBackdrop = document.getElementById('filter-drawer-backdrop');
+         const filterClose = document.getElementById('filter-drawer-close');
+         const filterApplyBtn = document.getElementById('filter-apply-btn');
+
+         function openFilter() {
+             filterSidebar.classList.remove('translate-x-full');
+             filterBackdrop.classList.remove('hidden');
+             document.body.style.overflow = 'hidden';
+         }
+
+         function closeFilter() {
+             filterSidebar.classList.add('translate-x-full');
+             filterBackdrop.classList.add('hidden');
+             document.body.style.overflow = '';
+         }
+
+         filterToggle?.addEventListener('click', openFilter);
+         stickyFilterToggle?.addEventListener('click', openFilter);
+         filterBackdrop?.addEventListener('click', closeFilter);
+         filterClose?.addEventListener('click', closeFilter);
+         filterApplyBtn?.addEventListener('click', closeFilter);
+
+         // Show/Hide sticky filter on scroll
+         window.addEventListener('scroll', () => {
+             if (window.innerWidth < 1024) {
+                 if (window.scrollY > 400) {
+                     stickyFilterToggle?.parentElement?.classList.remove('translate-y-[150%]');
+                     stickyFilterToggle?.parentElement?.classList.add('translate-y-0');
+                 } else {
+                     stickyFilterToggle?.parentElement?.classList.add('translate-y-[150%]');
+                 }
+             }
+         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const clearBtn = document.getElementById('clear-categories');
+            const categoryTags = document.querySelectorAll('.category-tag');
+            const viewAllModelsBtn = document.getElementById('view-all-models-btn');
+
+            // Category Selection Logic (Single Selection)
+            categoryTags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const categoryId = tag.dataset.category;
+                    
+                    // 1. Remove active state from all tags
+                    categoryTags.forEach(t => t.classList.remove('active-tag'));
+                    
+                    // 2. Add active state to clicked tag
+                    tag.classList.add('active-tag');
+
+                    // 3. Update Reset button visibility
+                    if (categoryId !== 'all') {
+                        clearBtn.classList.remove('hidden');
+                    } else {
+                        clearBtn.classList.add('hidden');
+                    }
+
+                    // 4. Proactively show filtering message
+                    if (window.showToast) {
+                        const categoryName = tag.textContent.trim();
+                        window.showToast(`Filtering by ${categoryName}...`, 'info');
+                    }
+
+                    // Optional: Close dropdown if selection was made inside it
+                    const dropdown = document.getElementById('more-categories-dropdown');
+                    // In this CSS-only dropdown (group-hover), we don't need JS to close it unless we want to force it
+                });
+            });
+
+            // Reset / View All logic
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    const allTag = document.querySelector('.category-tag[data-category="all"]');
+                    if (allTag) allTag.click();
+                });
+            }
+
+            if (viewAllModelsBtn) {
+                viewAllModelsBtn.addEventListener('click', () => {
+                    if (window.showToast) {
+                        window.showToast('Showing all available models', 'info');
+                    }
+                    const allTag = document.querySelector('.category-tag[data-category="all"]');
+                    if (allTag) allTag.click();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

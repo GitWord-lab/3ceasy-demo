@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - 3C Easy</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700', 
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',    /* Gray 800 - 主要文本 */
+                            secondary: '#4b5563', /* Gray 600 - 辅助文本/副标�?*/
+                            muted: '#9ca3af',    /* Gray 400 - 弱化文本/占位�?*/
+                            light: '#f9fafb'     /* Gray 50 - 亮色文本 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs-muted': ['0.75rem', { lineHeight: '1rem' }],      /* 12px 辅助说明 */
+                        'sm-sec': ['0.875rem', { lineHeight: '1.25rem' }],    /* 14px 二级信息/小标�?*/
+                        'base-main': ['1rem', { lineHeight: '1.5rem' }],      /* 16px 正文主要字体 */
+                        'lg-sub': ['1.125rem', { lineHeight: '1.75rem' }],    /* 18px 小标�?强调 */
+                        'xl-title': ['1.25rem', { lineHeight: '1.75rem' }],   /* 20px 卡片标题 */
+                        '2xl-title': ['1.5rem', { lineHeight: '2rem' }],      /* 24px 区块标题 */
+                        '3xl-hero': ['1.875rem', { lineHeight: '2.25rem' }],  /* 30px Hero副标 */
+                        '5xl-hero': ['3rem', { lineHeight: '1.1' }],          /* 48px Hero主标 */
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
+        .hero-gradient { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="about">
+
+    <!-- Store Header -->
+    <div data-include="components/header.html"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white py-24 lg:py-32 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-0 left-0 w-96 h-96 bg-brand rounded-full filter blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand rounded-full filter blur-[100px] translate-x-1/2 translate-y-1/2"></div>
+            </div>
+            <div class="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-brand/20 text-brand text-xs font-black uppercase tracking-[0.3em] mb-6">Our Journey</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight tracking-tight">Empowering Your<br><span class="text-brand">Digital Lifestyle</span></h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-12 font-medium">From professional repair parts to the latest lifestyle electronics, 3C Easy is your trusted partner in the world of high-performance technology.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/pages/products.html" class="bg-brand hover:bg-brand-dark text-white px-10 py-4 rounded-full font-black transition-all shadow-xl hover:-translate-y-1">Shop Collection</a>
+                    <a href="#our-story" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-10 py-4 rounded-full font-black transition-all backdrop-blur-sm">Our Story</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-20 border-b border-gray-100">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+                    <div>
+                        <div class="text-4xl lg:text-5xl font-black text-text-main mb-2 tracking-tight">50K<span class="text-brand">+</span></div>
+                        <div class="text-sm font-bold text-text-muted uppercase tracking-widest">Happy Customers</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl lg:text-5xl font-black text-text-main mb-2 tracking-tight">10<span class="text-brand">+</span></div>
+                        <div class="text-sm font-bold text-text-muted uppercase tracking-widest">Years Experience</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl lg:text-5xl font-black text-text-main mb-2 tracking-tight">200<span class="text-brand">+</span></div>
+                        <div class="text-sm font-bold text-text-muted uppercase tracking-widest">Global Partners</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl lg:text-5xl font-black text-text-main mb-2 tracking-tight">24<span class="text-brand">/</span>7</div>
+                        <div class="text-sm font-bold text-text-muted uppercase tracking-widest">Expert Support</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Story Section -->
+        <section id="our-story" class="py-24 lg:py-32 bg-gray-50">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                    <div class="w-full lg:w-1/2">
+                        <div class="relative group">
+                            <div class="absolute inset-0 bg-brand rounded-[3rem] rotate-3 group-hover:rotate-6 transition duration-500 opacity-20"></div>
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000&auto=format&fit=crop" class="relative rounded-[3rem] w-full h-[500px] object-cover shadow-2xl group-hover:-translate-y-2 transition duration-500" alt="About Us">
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2">
+                        <span class="text-brand font-black text-xs uppercase tracking-[0.4em] mb-6 block">Who we are</span>
+                        <h2 class="text-4xl font-black text-text-main mb-8 leading-tight tracking-tight">Redefining Tech Distribution with Quality and Ease</h2>
+                        <p class="text-text-secondary mb-6 leading-relaxed text-lg">Founded in 2014, 3C Easy began with a simple mission: to bridge the gap between high-end electronics and professional repair services. We realized that finding genuine parts and quality 3C products shouldn't be a challenge.</p>
+                        <p class="text-text-secondary mb-10 leading-relaxed text-lg">Today, we have grown into a leading international supplier, providing everything from OLED screens and motherboard components to premium audio devices and smartphones. Our rigorous testing process ensures that every item in our store meets the highest standards of performance.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand flex items-center justify-center flex-shrink-0 shadow-sm">
+                                    <i class="fa-solid fa-microchip text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-text-main text-lg mb-1">Precision Quality</h4>
+                                    <p class="text-text-muted text-sm leading-relaxed">Every component is tested in our lab before it reaches your hands.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand flex items-center justify-center flex-shrink-0 shadow-sm">
+                                    <i class="fa-solid fa-earth-americas text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-text-main text-lg mb-1">Global Vision</h4>
+                                    <p class="text-text-muted text-sm leading-relaxed">Serving repair professionals and tech enthusiasts across 50+ countries.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="py-24 lg:py-32">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <span class="text-brand font-black text-xs uppercase tracking-[0.4em] mb-6 block">Core Values</span>
+                    <h2 class="text-4xl font-black text-text-main mb-6 tracking-tight">Why Choose 3C Easy?</h2>
+                    <p class="text-text-secondary text-lg">We don't just sell products; we provide solutions that power your business and lifestyle.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Value 1 -->
+                    <div class="p-10 rounded-[2.5rem] bg-white border border-gray-100 hover:border-brand/30 hover:shadow-2xl transition-all duration-500 group">
+                        <div class="w-16 h-16 rounded-3xl bg-orange-50 text-brand flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-shield-check text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-text-main mb-4 group-hover:text-brand transition-colors">Integrity First</h3>
+                        <p class="text-text-secondary leading-relaxed">Transparency is the core of our business. We provide accurate product descriptions and honest pricing.</p>
+                    </div>
+                    <!-- Value 2 -->
+                    <div class="p-10 rounded-[2.5rem] bg-white border border-gray-100 hover:border-brand/30 hover:shadow-2xl transition-all duration-500 group">
+                        <div class="w-16 h-16 rounded-3xl bg-blue-50 text-blue-600 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-bolt text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-text-main mb-4 group-hover:text-blue-600 transition-colors">Fast Logistics</h3>
+                        <p class="text-text-secondary leading-relaxed">Time is money. Our optimized supply chain ensures your orders are processed and shipped within 24 hours.</p>
+                    </div>
+                    <!-- Value 3 -->
+                    <div class="p-10 rounded-[2.5rem] bg-white border border-gray-100 hover:border-brand/30 hover:shadow-2xl transition-all duration-500 group">
+                        <div class="w-16 h-16 rounded-3xl bg-purple-50 text-purple-600 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-headset text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-text-main mb-4 group-hover:text-purple-600 transition-colors">Expert Support</h3>
+                        <p class="text-text-secondary leading-relaxed">Our technical team is always ready to help you with installation guides or troubleshooting advice.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="bg-brand rounded-[4rem] p-12 lg:p-20 text-center relative overflow-hidden shadow-2xl">
+                    <div class="absolute inset-0 opacity-20">
+                        <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full filter blur-[80px] -translate-x-1/2 -translate-y-1/2"></div>
+                        <div class="absolute bottom-0 right-0 w-64 h-64 bg-white rounded-full filter blur-[80px] translate-x-1/2 translate-y-1/2"></div>
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="text-4xl lg:text-5xl font-black text-white mb-8 tracking-tight leading-tight">Ready to Upgrade Your Tech?</h2>
+                        <p class="text-white/80 text-lg mb-12 max-w-2xl mx-auto">Explore our wide range of professional repair parts and premium consumer electronics.</p>
+                        <a href="/pages/products.html" class="inline-block bg-white text-brand px-12 py-5 rounded-full font-black text-lg hover:bg-gray-900 hover:text-white transition-all shadow-2xl hover:-translate-y-1">Start Shopping Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="components/footer.html"></div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/include.js"></script>
+    <script src="/assets/js/common.js"></script>
+</body>
+</html>

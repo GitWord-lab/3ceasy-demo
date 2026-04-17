@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Activities - 3C Easy</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700', 
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',    /* Gray 800 */
+                            secondary: '#4b5563', /* Gray 600 */
+                            muted: '#9ca3af',    /* Gray 400 */
+                            light: '#f9fafb'     /* Gray 50 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs-muted': ['0.75rem', { lineHeight: '1rem' }],      /* 12px 辅助说明 */
+                        'sm-sec': ['0.875rem', { lineHeight: '1.25rem' }],    /* 14px 二级信息/小标�?*/
+                        'base-main': ['1rem', { lineHeight: '1.5rem' }],      /* 16px 正文主要字体 */
+                        'lg-sub': ['1.125rem', { lineHeight: '1.75rem' }],    /* 18px 小标�?强调 */
+                        'xl-title': ['1.25rem', { lineHeight: '1.75rem' }],   /* 20px 卡片标题 */
+                        '2xl-title': ['1.5rem', { lineHeight: '2rem' }],      /* 24px 区块标题 */
+                        '3xl-hero': ['1.875rem', { lineHeight: '2.25rem' }],  /* 30px Hero副标 */
+                        '5xl-hero': ['3rem', { lineHeight: '1.1' }],          /* 48px Hero主标 */
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .image-zoom:hover img { transform: scale(1.05); }
+        .image-zoom img { transition: transform 0.5s ease; }
+        .status-live { background-color: #ef4444; }
+        .status-upcoming { background-color: #3b82f6; }
+        .status-exclusive { background-color: #8b5cf6; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="events">
+
+    <!-- Store Header -->
+    <div data-include="components/header.html"></div>
+
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        <!-- Page Header -->
+        <div class="bg-gradient-to-r from-brand-50 via-white to-brand-50 border-b border-gray-100">
+            <div class="container mx-auto px-4 lg:px-8 py-12">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-5xl-hero font-bold text-text-main mb-4">Events & Activities</h1>
+                    <p class="text-lg-sub text-text-secondary mb-8 max-w-2xl mx-auto">Discover exclusive promotions, product launches, workshops, and community events from 3C Easy. Stay updated with the latest tech happenings.</p>
+                    
+                    <!-- Event Stats -->
+                    <div class="flex flex-wrap justify-center gap-6 mb-8">
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 min-w-[120px]">
+                            <div class="text-2xl-title font-bold text-brand mb-1">12</div>
+                            <div class="text-sm-sec text-text-secondary">Upcoming Events</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 min-w-[120px]">
+                            <div class="text-2xl-title font-bold text-brand mb-1">8</div>
+                            <div class="text-sm-sec text-text-secondary">Live Now</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 min-w-[120px]">
+                            <div class="text-2xl-title font-bold text-brand mb-1">45</div>
+                            <div class="text-sm-sec text-text-secondary">Past Events</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Filter Tabs -->
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <button class="px-5 py-2.5 bg-brand text-white rounded-full text-sm-sec font-medium hover:bg-brand-dark transition shadow-sm">All Events</button>
+                        <button class="px-5 py-2.5 bg-white text-text-main rounded-full text-sm-sec font-medium hover:bg-gray-50 transition border border-gray-200">Live Now</button>
+                        <button class="px-5 py-2.5 bg-white text-text-main rounded-full text-sm-sec font-medium hover:bg-gray-50 transition border border-gray-200">Upcoming</button>
+                        <button class="px-5 py-2.5 bg-white text-text-main rounded-full text-sm-sec font-medium hover:bg-gray-50 transition border border-gray-200">Workshops</button>
+                        <button class="px-5 py-2.5 bg-white text-text-main rounded-full text-sm-sec font-medium hover:bg-gray-50 transition border border-gray-200">Promotions</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Content -->
+        <div class="container mx-auto px-4 lg:px-8 py-12">
+            <!-- Mobile Filter Toggle -->
+            <div class="lg:hidden mb-6">
+                <button id="mobile-event-filter-toggle" class="w-full flex items-center justify-center space-x-2 bg-white border border-gray-200 text-text-main px-6 py-3 rounded-2xl transition font-bold shadow-sm">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Filter Events</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Filter Drawer Backdrop (Mobile) -->
+                <div id="event-filter-backdrop" class="fixed inset-0 bg-black/50 z-[70] hidden backdrop-blur-sm lg:hidden"></div>
+
+                <!-- Left Sidebar - Filters -->
+                <aside id="event-filter-sidebar" class="fixed inset-y-0 left-0 w-[300px] bg-white z-[80] transform -translate-x-full transition-transform duration-300 lg:relative lg:translate-x-0 lg:w-full lg:bg-transparent lg:z-auto lg:flex-shrink-0 lg:col-span-1 overflow-y-auto lg:overflow-visible p-6 lg:p-0 shadow-2xl lg:shadow-none">
+                    <div class="flex items-center justify-between mb-8 lg:hidden">
+                        <h2 class="text-xl font-bold text-text-main">Filter Events</h2>
+                        <button id="event-filter-close" class="p-2 text-text-muted hover:text-brand transition">
+                            <i class="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="sticky top-24 space-y-6">
+                        <!-- Search Events -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4">Search Events</h3>
+                            <div class="relative">
+                                <input type="text" placeholder="Search events..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm-sec text-text-main focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand-50 transition">
+                                <i class="fa-solid fa-magnifying-glass absolute right-4 top-3.5 text-text-muted"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Event Type Filter -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4 pb-4 border-b border-gray-100 flex items-center justify-between">
+                                Event Type
+                                <i class="fa-solid fa-angle-up text-xs text-text-muted cursor-pointer"></i>
+                            </h3>
+                            <ul class="space-y-3 text-sm-sec text-text-secondary">
+                                <li class="flex items-center justify-between group cursor-pointer">
+                                    <span class="group-hover:text-brand transition flex items-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-2 group-hover:bg-brand transition"></div>
+                                        Product Launch
+                                    </span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">8</span>
+                                </li>
+                                <li class="flex items-center justify-between group cursor-pointer">
+                                    <span class="group-hover:text-brand transition flex items-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-2 group-hover:bg-brand transition"></div>
+                                        Flash Sale
+                                    </span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">12</span>
+                                </li>
+                                <li class="flex items-center justify-between group cursor-pointer">
+                                    <span class="group-hover:text-brand transition flex items-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-2 group-hover:bg-brand transition"></div>
+                                        Workshop
+                                    </span>
+                                    <span class="text-xs-muted bg-gray-50 px-2 py-0.5 rounded-full">6</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Date Range Filter -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4">Date Range</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="text-sm-sec text-text-secondary mb-1 block">From</label>
+                                    <input type="date" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm-sec text-text-main focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand-50 transition">
+                                </div>
+                                <div>
+                                    <label class="text-sm-sec text-text-secondary mb-1 block">To</label>
+                                    <input type="date" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm-sec text-text-main focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand-50 transition">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Location Filter -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-lg-sub text-text-main mb-4">Location</h3>
+                            <div class="space-y-3">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer">
+                                    <div class="w-5 h-5 border border-gray-300 rounded mr-3 flex items-center justify-center peer-checked:bg-brand peer-checked:border-brand transition">
+                                        <i class="fa-solid fa-check text-white text-xs hidden peer-checked:block"></i>
+                                    </div>
+                                    <span class="text-sm-sec text-text-main">Online Events</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer">
+                                    <div class="w-5 h-5 border border-gray-300 rounded mr-3 flex items-center justify-center peer-checked:bg-brand peer-checked:border-brand transition">
+                                        <i class="fa-solid fa-check text-white text-xs hidden peer-checked:block"></i>
+                                    </div>
+                                    <span class="text-sm-sec text-text-main">In-Store Events</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Clear Filters Button -->
+                        <button class="w-full py-3 bg-gray-50 text-text-main rounded-xl text-sm-sec font-medium hover:bg-gray-100 transition border border-gray-200">
+                            <i class="fa-solid fa-filter-circle-xmark mr-2"></i> Clear All Filters
+                        </button>
+                    </div>
+                </aside>
+                
+                <!-- Main Content - Events Grid -->
+                <div class="lg:col-span-3">
+                    <!-- Featured Event Banner -->
+                    <div class="mb-8">
+                        <div class="bg-gradient-to-r from-brand to-brand-dark rounded-2xl overflow-hidden shadow-lg">
+                            <div class="p-8 md:p-12 flex flex-col md:flex-row items-center">
+                                <div class="md:w-2/3 mb-6 md:mb-0 md:pr-8">
+                                    <div class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs-muted font-medium mb-4">
+                                        <i class="fa-solid fa-fire mr-2"></i> FEATURED EVENT
+                                    </div>
+                                    <h2 class="text-3xl font-bold text-white mb-4">GaN Charger Tech Summit 2024</h2>
+                                    <p class="text-white/90 mb-6">Join industry leaders for a deep dive into the latest GaN charging technology. Live demos, expert panels, and exclusive product previews.</p>
+                                    <div class="flex flex-wrap gap-4 mb-6">
+                                        <div class="bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2">
+                                            <div class="text-xs-muted text-white/80">Date</div>
+                                            <div class="text-white font-bold">May 15-17, 2024</div>
+                                        </div>
+                                        <div class="bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2">
+                                            <div class="text-xs-muted text-white/80">Location</div>
+                                            <div class="text-white font-bold">San Francisco & Online</div>
+                                        </div>
+                                        <div class="bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2">
+                                            <div class="text-xs-muted text-white/80">Seats Left</div>
+                                            <div class="text-white font-bold">42 / 200</div>
+                                        </div>
+                                    </div>
+                                    <button class="bg-white text-brand font-bold px-6 py-3 rounded-full hover:bg-gray-100 transition shadow-lg inline-flex items-center">
+                                        Register Now <i class="fa-solid fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                                <div class="md:w-1/3 w-full">
+                                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                                        <div class="text-center mb-4">
+                                            <div class="text-4xl font-bold text-white">15</div>
+                                            <div class="text-white/80 text-sm">Days Left</div>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between text-white/80 text-sm">
+                                                <span>Registration</span>
+                                                <span class="font-bold">78%</span>
+                                            </div>
+                                            <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                                                <div class="h-full bg-white rounded-full" style="width: 78%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Events Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                        <!-- Event Card 1 -->
+                        <div class="event-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="relative">
+                                <div class="image-zoom h-48 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="Workshop">
+                                </div>
+                                <div class="absolute top-4 left-4">
+                                    <span class="status-live text-white text-xs-muted font-bold px-3 py-1.5 rounded-full inline-flex items-center">
+                                        <i class="fa-solid fa-circle animate-pulse mr-1.5 text-[8px]"></i> LIVE NOW
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xs-muted text-text-muted bg-gray-50 px-3 py-1 rounded-full">Workshop</span>
+                                    <div class="text-xs-muted text-text-muted flex items-center">
+                                        <i class="fa-solid fa-calendar-day mr-1.5"></i> Apr 10, 2024
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-xl-title text-text-main mb-3">Wireless Charging Masterclass</h3>
+                                <p class="text-sm-sec text-text-secondary mb-4 line-clamp-2">Learn about the latest wireless charging standards, compatibility issues, and best practices.</p>
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+                                    <div class="text-sm-sec font-bold text-brand">Free</div>
+                                    <button class="bg-brand text-white px-4 py-2 rounded-full text-xs font-medium hover:bg-brand-dark transition shadow-sm">
+                                        Join Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Event Card 2 -->
+                        <div class="event-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="relative">
+                                <div class="image-zoom h-48 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="Flash Sale">
+                                </div>
+                                <div class="absolute top-4 left-4">
+                                    <span class="status-upcoming text-white text-xs-muted font-bold px-3 py-1.5 rounded-full">
+                                        UPCOMING
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xs-muted text-text-muted bg-gray-50 px-3 py-1 rounded-full">Flash Sale</span>
+                                    <div class="text-xs-muted text-text-muted flex items-center">
+                                        <i class="fa-solid fa-clock mr-1.5"></i> Starts in 3 days
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-xl-title text-text-main mb-3">Weekend Power Bank Blowout</h3>
+                                <p class="text-sm-sec text-text-secondary mb-4 line-clamp-2">Get up to 60% off on selected power banks and portable chargers. Limited stock available.</p>
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+                                    <div class="text-sm-sec font-bold text-brand">Up to 60% OFF</div>
+                                    <button class="bg-gray-50 text-text-main px-4 py-2 rounded-full text-xs font-medium hover:bg-gray-100 transition border border-gray-200">
+                                        Remind Me
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="components/footer.html"></div>
+
+    <script src="/assets/js/include.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script>
+        // Mobile Event Filter Drawer Logic
+        const eventFilterToggle = document.getElementById('mobile-event-filter-toggle');
+        const eventFilterSidebar = document.getElementById('event-filter-sidebar');
+        const eventFilterBackdrop = document.getElementById('event-filter-backdrop');
+        const eventFilterClose = document.getElementById('event-filter-close');
+
+        function openEventFilter() {
+            eventFilterSidebar.classList.remove('-translate-x-full');
+            eventFilterBackdrop.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEventFilter() {
+            eventFilterSidebar.classList.add('-translate-x-full');
+            eventFilterBackdrop.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        eventFilterToggle?.addEventListener('click', openEventFilter);
+        eventFilterBackdrop?.addEventListener('click', closeEventFilter);
+        eventFilterClose?.addEventListener('click', closeEventFilter);
+    </script>
+</body>
+</html>
+

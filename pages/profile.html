@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - 3C Easy</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700', 
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',    /* Gray 800 */
+                            secondary: '#4b5563', /* Gray 600 */
+                            muted: '#9ca3af',    /* Gray 400 */
+                            light: '#f9fafb'     /* Gray 50 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs-muted': ['0.75rem', { lineHeight: '1rem' }],      /* 12px 辅助说明 */
+                        'sm-sec': ['0.875rem', { lineHeight: '1.25rem' }],    /* 14px 二级信息/小标�?*/
+                        'base-main': ['1rem', { lineHeight: '1.5rem' }],      /* 16px 正文主要字体 */
+                        'lg-sub': ['1.125rem', { lineHeight: '1.75rem' }],    /* 18px 小标�?强调 */
+                        'xl-title': ['1.25rem', { lineHeight: '1.75rem' }],   /* 20px 卡片标题 */
+                        '2xl-title': ['1.5rem', { lineHeight: '2rem' }],      /* 24px 区块标题 */
+                        '3xl-hero': ['1.875rem', { lineHeight: '2.25rem' }],  /* 30px Hero副标 */
+                        '5xl-hero': ['3rem', { lineHeight: '1.1' }],          /* 48px Hero主标 */
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .nav-active { background-color: #fff5f0; color: #ff6700; border-right: 4px solid #ff6700; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="profile">
+
+    <!-- Store Header -->
+    <div data-include="components/header.html"></div>
+
+    <main class="py-8 md:py-12">
+        <div class="container mx-auto px-4 lg:px-8">
+            <!-- Page Header -->
+            <div class="mb-8 md:mb-12">
+                <h1 class="text-3xl md:text-5xl-hero font-black text-text-main">My Account</h1>
+                <p class="text-sm md:text-lg-sub text-text-secondary mt-2">Manage your profile, orders, and addresses.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Account Sidebar Navigation -->
+                <aside class="w-full lg:w-1/4">
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden sticky top-28">
+                        <!-- User Quick Info -->
+                        <div class="p-6 bg-gradient-to-br from-gray-50 to-white border-b border-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="relative group">
+                                    <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md">
+                                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover" alt="User Avatar">
+                                    </div>
+                                    <button class="absolute -bottom-1 -right-1 w-6 h-6 bg-brand text-white rounded-full flex items-center justify-center shadow-lg border-2 border-white hover:scale-110 transition">
+                                        <i class="fa-solid fa-camera text-[10px]"></i>
+                                    </button>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-text-main text-lg">Alex Johnson</h2>
+                                    <p class="text-xs text-text-muted font-medium">alex.j@example.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Menu -->
+                        <nav class="p-2 overflow-x-auto no-scrollbar lg:overflow-visible">
+                            <ul class="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-1">
+                                <li class="flex-shrink-0">
+                                    <a href="#profile" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold transition-all group whitespace-nowrap">
+                                        <i class="fa-solid fa-user w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>Personal Info</span>
+                                    </a>
+                                </li>
+                                <li class="flex-shrink-0">
+                                    <a href="#wallet" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold text-text-secondary hover:bg-gray-50 hover:text-brand transition-all group whitespace-nowrap">
+                                        <i class="fa-solid fa-wallet w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>Wallet & Membership</span>
+                                    </a>
+                                </li>
+                                <li class="flex-shrink-0">
+                                    <a href="#orders" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold text-text-secondary hover:bg-gray-50 hover:text-brand transition-all group whitespace-nowrap">
+                                        <i class="fa-solid fa-box-archive w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>My Orders</span>
+                                        <span class="ml-2 lg:ml-auto bg-gray-100 text-text-muted text-[10px] px-2 py-0.5 rounded-full font-black">12</span>
+                                    </a>
+                                </li>
+                                <li class="flex-shrink-0">
+                                    <a href="#addresses" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold text-text-secondary hover:bg-gray-50 hover:text-brand transition-all group whitespace-nowrap">
+                                        <i class="fa-solid fa-location-dot w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>Addresses</span>
+                                    </a>
+                                </li>
+                                <li class="flex-shrink-0">
+                                    <a href="#wishlist" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold text-text-secondary hover:bg-gray-50 hover:text-brand transition-all group whitespace-nowrap">
+                                        <i class="fa-solid fa-heart w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>Wishlist</span>
+                                    </a>
+                                </li>
+                                <li class="flex-shrink-0 lg:hidden">
+                                    <a href="#settings" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold text-text-secondary hover:bg-gray-50 hover:text-brand transition-all group whitespace-nowrap">
+                                        <i class="fa-solid fa-gear w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <div class="hidden lg:block h-px bg-gray-50 my-2 mx-4"></div>
+                                <li class="hidden lg:block">
+                                    <a href="#settings" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold text-text-secondary hover:bg-gray-50 hover:text-brand transition-all group">
+                                        <i class="fa-solid fa-gear w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li class="flex-shrink-0">
+                                    <a href="../index.html" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold text-red-500 hover:bg-red-50 transition-all group whitespace-nowrap">
+                                        <i class="fa-solid fa-right-from-bracket w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>Sign Out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+
+                <!-- Main Content Content -->
+                <div class="w-full lg:w-3/4 space-y-8">
+                    <!-- Section: Wallet & Membership -->
+                    <div id="wallet" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Wallet Balance Card -->
+                        <div class="bg-gradient-to-br from-brand to-brand-dark rounded-[2rem] p-6 md:p-8 text-white shadow-xl shadow-brand/20 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-500">
+                                <i class="fa-solid fa-wallet text-8xl md:text-9xl"></i>
+                            </div>
+                            <div class="relative z-10">
+                                <span class="text-[10px] md:text-xs font-black uppercase tracking-widest opacity-80">Wallet Balance</span>
+                                <div class="text-3xl md:text-5xl font-black mt-2 mb-6 md:mb-8 tracking-tight">$428.50</div>
+                                <div class="flex items-center space-x-3 md:space-x-4">
+                                    <button class="bg-white text-brand px-5 md:px-6 py-2 md:py-2.5 rounded-xl font-black text-xs md:text-sm-sec shadow-lg active:scale-95 transition-all">Top Up</button>
+                                    <button class="bg-white/20 hover:bg-white/30 text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl font-black text-xs md:text-sm-sec backdrop-blur-sm active:scale-95 transition-all">Withdraw</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Membership & Loyalty Card -->
+                        <div class="bg-white rounded-[2rem] p-6 md:p-8 border border-gray-100 shadow-sm relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-8 text-brand/5 group-hover:scale-110 transition-transform duration-500">
+                                <i class="fa-solid fa-crown text-8xl md:text-9xl"></i>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] md:text-xs font-black text-text-muted uppercase tracking-widest">Membership Tier</span>
+                                    <span class="bg-brand-50 text-brand px-3 py-1 rounded-full text-[10px] font-black uppercase">Gold Member</span>
+                                </div>
+                                <div class="text-2xl md:text-3xl font-black text-text-main mt-1 tracking-tight">8,450 <span class="text-xs md:text-sm font-bold text-text-secondary">Points</span></div>
+                                
+                                <!-- Progress Bar -->
+                                <div class="mt-5 md:mt-6 mb-2">
+                                    <div class="flex justify-between text-[10px] md:text-xs font-bold mb-2">
+                                        <span class="text-text-secondary">Next: Platinum</span>
+                                        <span class="text-brand">1,550 pts left</span>
+                                    </div>
+                                    <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                        <div class="h-full bg-brand rounded-full" style="width: 84.5%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coupons Section -->
+                        <div class="md:col-span-2 bg-white rounded-[2rem] border border-gray-100 p-8 shadow-sm">
+                            <div class="flex items-center justify-between mb-8">
+                                <h3 class="text-xl font-black text-text-main">My Coupons</h3>
+                                <button class="text-brand font-bold text-sm-sec hover:underline">View All Coupons</button>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <!-- Coupon 1 -->
+                                <div class="relative group">
+                                    <div class="bg-brand-50 border-2 border-brand/10 border-dashed rounded-2xl p-4 flex items-center gap-4 group-hover:bg-brand-50/80 transition-all cursor-pointer">
+                                        <div class="w-12 h-12 rounded-xl bg-brand text-white flex items-center justify-center flex-shrink-0 shadow-lg">
+                                            <i class="fa-solid fa-tag"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-brand font-black text-lg leading-tight">$20 OFF</div>
+                                            <p class="text-[10px] text-text-secondary font-bold uppercase mt-0.5">Min. Spend $100</p>
+                                        </div>
+                                    </div>
+                                    <div class="absolute -right-2 -top-2 scale-0 group-hover:scale-100 transition-transform">
+                                        <span class="bg-brand text-white text-[8px] font-black px-2 py-1 rounded-full uppercase shadow-lg">Active</span>
+                                    </div>
+                                </div>
+                                <!-- Coupon 2 -->
+                                <div class="relative group">
+                                    <div class="bg-blue-50 border-2 border-blue-100 border-dashed rounded-2xl p-4 flex items-center gap-4 group-hover:bg-blue-50/80 transition-all cursor-pointer">
+                                        <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-lg">
+                                            <i class="fa-solid fa-truck"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-blue-600 font-black text-lg leading-tight">Free Shipping</div>
+                                            <p class="text-[10px] text-text-secondary font-bold uppercase mt-0.5">No Min. Spend</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Coupon 3 -->
+                                <div class="relative group">
+                                    <div class="bg-purple-50 border-2 border-purple-100 border-dashed rounded-2xl p-4 flex items-center gap-4 group-hover:bg-purple-50/80 transition-all cursor-pointer">
+                                        <div class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center flex-shrink-0 shadow-lg">
+                                            <i class="fa-solid fa-gift"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-purple-600 font-black text-lg leading-tight">10% OFF</div>
+                                            <p class="text-[10px] text-text-secondary font-bold uppercase mt-0.5">Site Wide Discount</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Referral & Promotion Section -->
+                        <div class="md:col-span-2 bg-gray-900 rounded-[2.5rem] p-8 md:p-10 relative overflow-hidden shadow-2xl">
+                            <div class="absolute inset-0 opacity-10">
+                                <div class="absolute top-0 left-0 w-64 h-64 bg-brand rounded-full filter blur-[80px] -translate-x-1/2 -translate-y-1/2"></div>
+                                <div class="absolute bottom-0 right-0 w-64 h-64 bg-brand rounded-full filter blur-[80px] translate-x-1/2 translate-y-1/2"></div>
+                            </div>
+                            <div class="relative z-10 flex flex-col md:flex-row items-center gap-10">
+                                <div class="flex-1 text-center md:text-left">
+                                    <h3 class="text-2xl font-black text-white mb-4">Refer Friends & Earn</h3>
+                                    <p class="text-gray-400 mb-8 font-medium">Invite your friends to 3C Easy and get $10 for every successful referral.</p>
+                                    <div class="flex items-center space-x-4 bg-white/10 p-2 rounded-2xl border border-white/10 backdrop-blur-sm max-w-sm mx-auto md:mx-0">
+                                        <code class="flex-1 px-4 text-brand font-black text-lg uppercase">3CEASY-ALEXJ</code>
+                                        <button class="bg-brand text-white px-6 py-2.5 rounded-xl font-black text-sm-sec hover:bg-brand-dark transition-all active:scale-95 shadow-lg shadow-brand/20">Copy Code</button>
+                                    </div>
+                                </div>
+                                <div class="w-full md:w-64 grid grid-cols-2 gap-4">
+                                    <div class="bg-white/5 p-4 rounded-3xl border border-white/5 text-center backdrop-blur-sm">
+                                        <div class="text-brand font-black text-2xl mb-1">14</div>
+                                        <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Referrals</div>
+                                    </div>
+                                    <div class="bg-white/5 p-4 rounded-3xl border border-white/5 text-center backdrop-blur-sm">
+                                        <div class="text-brand font-black text-2xl mb-1">$140</div>
+                                        <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Earned</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Personal Info -->
+                    <div id="profile" class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-6 md:p-10">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+                            <h3 class="text-xl font-black text-text-main">Personal Information</h3>
+                            <button class="text-brand font-bold text-sm-sec hover:underline flex items-center">
+                                <i class="fa-solid fa-pen-to-square mr-2"></i> Edit Profile
+                            </button>
+                        </div>
+                        
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-black text-text-muted uppercase tracking-widest ml-1">First Name</label>
+                                <input type="text" value="Alex" class="w-full px-5 py-3.5 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-brand transition outline-none text-text-main font-semibold">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-black text-text-muted uppercase tracking-widest ml-1">Last Name</label>
+                                <input type="text" value="Johnson" class="w-full px-5 py-3.5 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-brand transition outline-none text-text-main font-semibold">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-black text-text-muted uppercase tracking-widest ml-1">Email Address</label>
+                                <input type="email" value="alex.j@example.com" class="w-full px-5 py-3.5 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-brand transition outline-none text-text-main font-semibold">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-black text-text-muted uppercase tracking-widest ml-1">Phone Number</label>
+                                <input type="tel" value="+1 (555) 000-0000" class="w-full px-5 py-3.5 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-brand transition outline-none text-text-main font-semibold">
+                            </div>
+                            <div class="md:col-span-2 pt-4">
+                                <button type="button" class="bg-brand text-white px-8 py-3.5 rounded-2xl font-black shadow-lg shadow-brand/20 hover:-translate-y-0.5 transition active:scale-95">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Section: Recent Orders (Preview) -->
+                    <div id="orders" class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-6 md:p-10">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+                            <h3 class="text-xl font-black text-text-main">Recent Orders</h3>
+                            <div class="flex items-center gap-4">
+                                <select class="bg-gray-50 border-none rounded-xl px-4 py-2 text-xs font-bold text-text-secondary focus:ring-2 focus:ring-brand/20 outline-none">
+                                    <option>Last 3 months</option>
+                                    <option>Last 6 months</option>
+                                    <option>2023 Orders</option>
+                                </select>
+                                <a href="#" class="text-brand font-bold text-sm-sec hover:underline">View All</a>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto no-scrollbar -mx-8 md:-mx-10 hidden md:block">
+                            <div class="min-w-[800px] px-8 md:px-10">
+                                <table class="w-full text-left">
+                                    <thead>
+                                        <tr class="text-xs font-black text-text-muted uppercase tracking-widest border-b border-gray-50">
+                                            <th class="pb-4 pl-2">Order Details</th>
+                                            <th class="pb-4">Date</th>
+                                            <th class="pb-4">Status</th>
+                                            <th class="pb-4">Total</th>
+                                            <th class="pb-4 text-right pr-2">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-50">
+                                        <!-- Order 1 -->
+                                        <tr class="group hover:bg-gray-50/50 transition-colors">
+                                            <td class="py-6 pl-2">
+                                                <div class="flex items-center gap-4">
+                                                    <div class="w-12 h-12 rounded-xl bg-gray-100 flex-shrink-0 overflow-hidden">
+                                                        <img src="https://placehold.co/100x100/f8fafc/1f2937?text=iPhone" class="w-full h-full object-cover">
+                                                    </div>
+                                                    <div>
+                                                        <div class="font-bold text-text-main group-hover:text-brand transition-colors">#3C-25984</div>
+                                                        <p class="text-[10px] text-text-muted font-bold">2 Items: iPhone 15 Pro, Case</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-6 text-sm font-medium text-text-secondary">Mar 28, 2024</td>
+                                            <td class="py-6">
+                                                <span class="inline-flex items-center px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-black uppercase">
+                                                    <span class="w-1 h-1 bg-green-600 rounded-full mr-2"></span>
+                                                    Delivered
+                                                </span>
+                                            </td>
+                                            <td class="py-6 font-black text-text-main">$1,229.00</td>
+                                            <td class="py-6 text-right pr-2">
+                                                <div class="flex items-center justify-end gap-2">
+                                                    <button class="p-2 text-text-muted hover:text-brand hover:bg-brand-50 rounded-xl transition-all"><i class="fa-solid fa-file-invoice"></i></button>
+                                                    <button class="px-4 py-2 bg-white border border-gray-200 rounded-xl text-xs font-bold hover:border-brand hover:text-brand transition-all shadow-sm">Details</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- Order 2 -->
+                                        <tr class="group hover:bg-gray-50/50 transition-colors">
+                                            <td class="py-6 pl-2">
+                                                <div class="flex items-center gap-4">
+                                                    <div class="w-12 h-12 rounded-xl bg-gray-100 flex-shrink-0 overflow-hidden">
+                                                        <img src="https://placehold.co/100x100/f8fafc/1f2937?text=Audio" class="w-full h-full object-cover">
+                                                    </div>
+                                                    <div>
+                                                        <div class="font-bold text-text-main group-hover:text-brand transition-colors">#3C-25971</div>
+                                                        <p class="text-[10px] text-text-muted font-bold">1 Item: AirPods Pro Max</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-6 text-sm font-medium text-text-secondary">Mar 15, 2024</td>
+                                            <td class="py-6">
+                                                <span class="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black uppercase animate-pulse">
+                                                    <span class="w-1 h-1 bg-blue-600 rounded-full mr-2"></span>
+                                                    Processing
+                                                </span>
+                                            </td>
+                                            <td class="py-6 font-black text-text-main">$549.00</td>
+                                            <td class="py-6 text-right pr-2">
+                                                <div class="flex items-center justify-end gap-2">
+                                                    <button class="p-2 text-text-muted hover:text-brand hover:bg-brand-50 rounded-xl transition-all"><i class="fa-solid fa-truck-fast"></i></button>
+                                                    <button class="px-4 py-2 bg-white border border-gray-200 rounded-xl text-xs font-bold hover:border-brand hover:text-brand transition-all shadow-sm">Track</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- Order 3 -->
+                                        <tr class="group hover:bg-gray-50/50 transition-colors">
+                                            <td class="py-6 pl-2">
+                                                <div class="flex items-center gap-4">
+                                                    <div class="w-12 h-12 rounded-xl bg-gray-100 flex-shrink-0 overflow-hidden text-center flex items-center justify-center">
+                                                        <i class="fa-solid fa-box text-text-muted"></i>
+                                                    </div>
+                                                    <div>
+                                                        <div class="font-bold text-text-main group-hover:text-brand transition-colors">#3C-25890</div>
+                                                        <p class="text-[10px] text-text-muted font-bold">3 Items: Cable, Charger, Screen</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-6 text-sm font-medium text-text-secondary">Feb 10, 2024</td>
+                                            <td class="py-6">
+                                                <span class="inline-flex items-center px-3 py-1 bg-red-50 text-red-600 rounded-full text-[10px] font-black uppercase">
+                                                    <span class="w-1 h-1 bg-red-600 rounded-full mr-2"></span>
+                                                    Cancelled
+                                                </span>
+                                            </td>
+                                            <td class="py-6 font-black text-text-main">$124.50</td>
+                                            <td class="py-6 text-right pr-2">
+                                                <div class="flex items-center justify-end gap-2">
+                                                    <button class="px-4 py-2 bg-brand text-white rounded-xl text-xs font-bold hover:bg-brand-dark transition-all shadow-md shadow-brand/20">Reorder</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Order Cards -->
+                        <div class="md:hidden space-y-4">
+                            <!-- Order Card 1 -->
+                            <div class="bg-gray-50 rounded-3xl p-5 border border-transparent hover:border-brand/10 transition-all">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <div class="font-black text-text-main">#3C-25984</div>
+                                        <div class="text-[10px] text-text-muted font-bold uppercase mt-1">Mar 28, 2024</div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-black uppercase">Delivered</span>
+                                </div>
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-14 h-14 rounded-2xl bg-white flex-shrink-0 p-1">
+                                        <img src="https://placehold.co/100x100/ffffff/1f2937?text=iPhone" class="w-full h-full object-cover rounded-xl">
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="text-xs font-bold text-text-main">iPhone 15 Pro, Case</div>
+                                        <div class="text-sm font-black text-brand mt-1">$1,229.00</div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="flex-1 py-2.5 bg-white border border-gray-200 rounded-xl text-xs font-bold hover:text-brand transition-all">Details</button>
+                                    <button class="p-2.5 bg-white border border-gray-200 rounded-xl text-text-muted"><i class="fa-solid fa-file-invoice"></i></button>
+                                </div>
+                            </div>
+                            <!-- Order Card 2 -->
+                            <div class="bg-gray-50 rounded-3xl p-5 border border-transparent hover:border-brand/10 transition-all">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <div class="font-black text-text-main">#3C-25971</div>
+                                        <div class="text-[10px] text-text-muted font-bold uppercase mt-1">Mar 15, 2024</div>
+                                    </div>
+                                    <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black uppercase">Processing</span>
+                                </div>
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-14 h-14 rounded-2xl bg-white flex-shrink-0 p-1">
+                                        <img src="https://placehold.co/100x100/ffffff/1f2937?text=Audio" class="w-full h-full object-cover rounded-xl">
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="text-xs font-bold text-text-main">AirPods Pro Max</div>
+                                        <div class="text-sm font-black text-brand mt-1">$549.00</div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="flex-1 py-2.5 bg-brand text-white rounded-xl text-xs font-bold shadow-md shadow-brand/10">Track</button>
+                                    <button class="flex-1 py-2.5 bg-white border border-gray-200 rounded-xl text-xs font-bold">Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Security -->
+                    <div id="settings" class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-6 md:p-10">
+                        <h3 class="text-xl font-black text-text-main mb-8">Account Security</h3>
+                        <div class="space-y-6">
+                            <!-- Password Row -->
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-5 md:p-6 bg-gray-50 rounded-3xl border border-transparent hover:border-gray-100 transition gap-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-white rounded-2xl flex-shrink-0 flex items-center justify-center text-text-secondary shadow-sm">
+                                        <i class="fa-solid fa-lock text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-text-main">Password</p>
+                                        <p class="text-xs text-text-muted mt-0.5">Last changed 3 months ago</p>
+                                    </div>
+                                </div>
+                                <button class="w-full sm:w-auto bg-white border border-gray-200 px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-brand hover:text-white hover:border-brand transition shadow-sm active:scale-95">Change</button>
+                            </div>
+                            
+                            <!-- 2FA Row -->
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-5 md:p-6 bg-gray-50 rounded-3xl border border-transparent hover:border-gray-100 transition gap-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-white rounded-2xl flex-shrink-0 flex items-center justify-center text-text-secondary shadow-sm">
+                                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-text-main">Two-Factor Authentication</p>
+                                        <p class="text-xs text-text-muted mt-0.5">Adds an extra layer of security</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                                    <span class="text-xs font-black text-green-600 uppercase">Enabled</span>
+                                    <button class="bg-white border border-gray-200 px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-red-50 hover:text-red-500 hover:border-red-100 transition shadow-sm active:scale-95">Disable</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholders for other sections to prevent scroll-spy confusion -->
+                    <div id="addresses" class="h-20"></div>
+                    <div id="wishlist" class="h-20"></div>
+                    <div id="notifications" class="h-20"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="components/footer.html"></div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/include.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script>
+        // Handle Sidebar Active State
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('aside nav a');
+            const sections = document.querySelectorAll('main [id]');
+
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    link.classList.remove('nav-active', 'bg-brand-50', 'text-brand');
+                    link.classList.add('text-text-secondary');
+                    
+                    // Only highlight if current matches a valid ID and isn't just '#'
+                    if (current && href === `#${current}`) {
+                        link.classList.add('nav-active', 'bg-brand-50', 'text-brand');
+                        link.classList.remove('text-text-secondary');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Initial call
+        });
+    </script>
+</body>
+</html>
+

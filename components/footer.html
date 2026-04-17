@@ -1,0 +1,124 @@
+    <!-- Light Theme Footer -->
+    <footer class="bg-white border-t border-gray-200 text-gray-600 pt-16 pb-8">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-12 border-b border-gray-100 pb-12">
+                <!-- Brand Info -->
+                <div class="sm:col-span-2 lg:col-span-2">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="bg-brand text-white p-1.5 rounded-lg">
+                            <i class="fa-solid fa-bolt text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-gray-900 tracking-tight">3C <span class="text-brand">Easy</span></span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-6 max-w-sm">Your one-stop hub for everyday tech essentials, replacement parts, and portable power solutions, keeping your devices online at all times.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-brand hover:text-white transition shadow-sm"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-brand hover:text-white transition shadow-sm"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-brand hover:text-white transition shadow-sm"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-brand hover:text-white transition shadow-sm"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Categories -->
+                <div class="mobile-footer-list">
+                    <h4 class="text-gray-900 font-bold mb-6 flex items-center justify-between cursor-pointer md:cursor-default group" onclick="toggleFooterList(this)">
+                        Categories
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 md:hidden group-[.active]:rotate-180"></i>
+                    </h4>
+                    <ul class="space-y-3 text-sm hidden md:block transition-all duration-300 overflow-hidden">
+                        <li><a href="#" class="hover:text-brand transition">Chargers</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Power Banks</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Batteries</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Screens</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Audio</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Cables</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div class="mobile-footer-list">
+                    <h4 class="text-gray-900 font-bold mb-6 flex items-center justify-between cursor-pointer md:cursor-default group" onclick="toggleFooterList(this)">
+                        Support
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 md:hidden group-[.active]:rotate-180"></i>
+                    </h4>
+                    <ul class="space-y-3 text-sm hidden md:block transition-all duration-300 overflow-hidden">
+                        <li><a href="#" class="hover:text-brand transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Returns & Exchanges</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Order Status</a></li>
+                        <li><a href="#" class="hover:text-brand transition">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Explore -->
+                <div class="mobile-footer-list">
+                    <h4 class="text-gray-900 font-bold mb-6 flex items-center justify-between cursor-pointer md:cursor-default group" onclick="toggleFooterList(this)">
+                        Explore
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 md:hidden group-[.active]:rotate-180"></i>
+                    </h4>
+                    <ul class="space-y-3 text-sm hidden md:block transition-all duration-300 overflow-hidden">
+                        <li><a href="/index.html" class="hover:text-brand transition">Home</a></li>
+                        <li><a href="/pages/products.html" class="hover:text-brand transition">Products</a></li>
+                        <li><a href="/pages/events.html" class="hover:text-brand transition">Events</a></li>
+                        <li><a href="#" class="hover:text-brand transition">Blog</a></li>
+                        <li><a href="/pages/about.html" class="hover:text-brand transition">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Address Info -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-xs text-gray-500 mb-8">
+                <div>
+                    <h5 class="font-bold text-gray-700 mb-3 uppercase tracking-wider">Los Angeles</h5>
+                    <p class="leading-relaxed">650 S Los Angeles St 825,<br>Los Angeles, CA 90014</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-gray-700 mb-3 uppercase tracking-wider">New York</h5>
+                    <p class="leading-relaxed">127 West 26th St.,<br>New York, NY 10001</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-gray-700 mb-3 uppercase tracking-wider">Thailand</h5>
+                    <p class="leading-relaxed">44/1 Rama I Rd, Khwaeng<br>Pathum Wan, Bangkok 10330</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-gray-700 mb-3 uppercase tracking-wider">China</h5>
+                    <p class="leading-relaxed">No.9, Qinfu 1st Street,<br>Shenzhen, Guangdong, China</p>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-[11px] text-gray-500 pt-8 border-t border-gray-100">
+                <p class="text-center md:text-left mb-6 md:mb-0">Copyright © 2026 <span class="text-gray-800 font-bold">3C Easy</span>. All rights reserved.</p>
+                <div class="flex items-center space-x-4 text-2xl opacity-70">
+                    <i class="fa-brands fa-cc-visa hover:text-brand transition cursor-pointer hover:opacity-100"></i>
+                    <i class="fa-brands fa-cc-mastercard hover:text-brand transition cursor-pointer hover:opacity-100"></i>
+                    <i class="fa-brands fa-cc-paypal hover:text-brand transition cursor-pointer hover:opacity-100"></i>
+                    <i class="fa-brands fa-cc-amex hover:text-brand transition cursor-pointer hover:opacity-100"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer Interaction Script -->
+    <script>
+        function toggleFooterList(header) {
+            if (window.innerWidth >= 768) return; // Only for mobile
+            
+            const list = header.nextElementSibling;
+            const icon = header.querySelector('i');
+            
+            // Toggle active class on header for icon rotation
+            header.classList.toggle('active');
+            
+            // Toggle list visibility
+            if (list.classList.contains('hidden')) {
+                list.classList.remove('hidden');
+                // Force layout for transition if needed, but 'hidden' is enough for now
+            } else {
+                list.classList.add('hidden');
+            }
+        }
+    </script>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2"></div>

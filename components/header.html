@@ -1,0 +1,454 @@
+    <!-- Store Header -->
+    <header class="bg-white sticky top-0 z-50 transition-all duration-300 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
+        <!-- Top Utility Bar - Clean & Minimal -->
+        <div class="bg-gray-50 border-b border-gray-100 text-text-secondary text-xs-muted hidden md:block">
+            <div class="container mx-auto px-4 lg:px-8 h-9 flex items-center justify-between">
+                <!-- Left: Welcome & Quick Links -->
+                <div class="flex items-center space-x-6">
+                    <span class="font-medium text-text-main">Welcome to 3C Easy Store</span>
+                    <div class="h-3 w-px bg-gray-300"></div>
+                    <a href="#" class="hover:text-brand transition flex items-center"><i class="fa-solid fa-mobile-screen-button mr-1.5"></i> Get App</a>
+                    <a href="#" class="hover:text-brand transition flex items-center"><i class="fa-solid fa-location-dot mr-1.5"></i> Store Locator</a>
+                </div>
+                <!-- Right: Support & Settings -->
+                <div class="flex items-center space-x-5">
+                    <a href="#" class="hover:text-brand transition flex items-center"><i class="fa-solid fa-headset mr-1.5"></i> Support</a>
+                    <a href="#" class="hover:text-brand transition flex items-center"><i class="fa-solid fa-truck-fast mr-1.5"></i> Track Order</a>
+                    <div class="h-3 w-px bg-gray-300"></div>
+                    <!-- Currency & Language -->
+                    <div class="flex items-center space-x-4">
+                        <div class="group relative cursor-pointer flex items-center hover:text-brand transition">
+                            <span>USD ($)</span> <i class="fa-solid fa-angle-down ml-1 text-[10px]"></i>
+                        </div>
+                        <div class="group relative cursor-pointer flex items-center hover:text-brand transition">
+                            <img src="https://flagcdn.com/w20/us.png" alt="EN" class="w-4 h-3 mr-1.5 rounded-sm">
+                            <span>EN</span> <i class="fa-solid fa-angle-down ml-1 text-[10px]"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header - Spacious & Focused -->
+        <div class="container mx-auto px-4 lg:px-8 py-4 lg:py-5">
+            <div class="flex items-center justify-between gap-4 lg:gap-12">
+                <!-- Mobile Menu Toggle (Left) -->
+                <button id="mobile-menu-toggle" class="md:hidden p-2 text-text-main hover:text-brand transition-colors">
+                    <i class="fa-solid fa-bars-staggered text-xl"></i>
+                </button>
+
+                <!-- Logo Area -->
+                <a href="/index.html" class="flex items-center space-x-2 lg:space-x-2.5 flex-shrink-0 group mr-auto md:mr-0">
+                    <div class="bg-gradient-to-br from-brand to-brand-light text-white p-2 lg:p-2.5 rounded-xl shadow-sm group-hover:shadow-md transition duration-300 group-hover:-translate-y-0.5">
+                        <i class="fa-solid fa-bolt text-lg lg:text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl lg:text-2xl-title font-extrabold tracking-tight text-text-main leading-none">3C <span class="text-brand">Easy</span></span>
+                        <span class="hidden xs:block text-[10px] text-text-muted font-medium tracking-widest uppercase mt-0.5">Tech Essentials</span>
+                    </div>
+                </a>
+                
+                <!-- Central Search - Modern Pill Shape (Hidden on Mobile) -->
+                <div class="hidden md:flex flex-1 max-w-2xl relative">
+                    <div class="flex w-full bg-gray-50 border border-gray-200 rounded-full overflow-hidden focus-within:bg-white focus-within:border-brand focus-within:ring-4 focus-within:ring-brand-50 transition-all duration-300 hover:border-gray-300">
+                        <!-- Minimal Category Dropdown -->
+                        <div class="relative flex items-center pl-5 pr-3 border-r border-gray-200 group/cat">
+                            <select class="bg-transparent text-sm-sec text-text-secondary font-medium focus:outline-none appearance-none cursor-pointer pr-4 w-full">
+                                <option>All</option>
+                                <option>Phones</option>
+                                <option>Audio</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-3 text-[10px] text-text-muted group-hover/cat:text-text-main transition"></i>
+                        </div>
+                        <!-- Clean Input -->
+                        <input type="text" placeholder="Search smartphones, chargers, accessories..." class="flex-1 px-4 py-3 bg-transparent text-sm-sec text-text-main focus:outline-none w-full placeholder-text-muted">
+                        <!-- Elegant Search Button -->
+                        <button class="px-6 text-text-secondary hover:text-brand transition flex items-center justify-center bg-transparent">
+                            <i class="fa-solid fa-magnifying-glass text-lg-sub"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Right Action Icons - Minimalist -->
+                <div class="flex items-center space-x-1 md:space-x-2 lg:space-x-4 flex-shrink-0">
+                    <!-- Mobile Search Icon (Only Mobile) -->
+                    <button id="mobile-search-toggle" class="md:hidden p-2 text-text-secondary hover:text-brand transition">
+                        <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                    </button>
+
+                    <!-- User Account (Desktop only) -->
+                    <div class="hidden md:block group relative">
+                        <a href="/pages/profile.html" class="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-50 transition border border-transparent hover:border-gray-100">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 text-text-secondary flex items-center justify-center group-hover:bg-brand group-hover:text-white transition shadow-sm">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            <div class="hidden lg:block text-left">
+                                <p class="text-[11px] text-text-muted leading-tight">My Profile</p>
+                                <p class="text-sm-sec font-bold text-text-main leading-tight group-hover:text-brand transition">Alex Johnson</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="h-8 w-px bg-gray-200 hidden lg:block mx-1"></div>
+
+                    <!-- Wishlist -->
+                    <a href="#" class="relative p-2 rounded-full hover:bg-gray-50 transition text-text-secondary hover:text-brand group">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fa-regular fa-heart text-xl lg:text-xl-title group-hover:scale-110 transition duration-300"></i>
+                        </div>
+                        <span class="absolute top-1 right-1 bg-text-main text-white text-[10px] font-bold min-w-[18px] h-[18px] flex items-center justify-center rounded-full border-2 border-white shadow-sm">0</span>
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="#" class="flex items-center p-2 rounded-full hover:bg-gray-50 transition border border-transparent hover:border-gray-100 group">
+                        <div class="relative w-10 h-10 rounded-full flex items-center justify-center text-text-main group-hover:text-brand">
+                            <i class="fa-solid fa-cart-shopping text-xl lg:text-xl-title group-hover:scale-110 transition duration-300"></i>
+                            <span class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold min-w-[20px] h-[20px] flex items-center justify-center rounded-full border-2 border-white shadow-sm">3</span>
+                        </div>
+                        <div class="hidden lg:block text-left ml-2">
+                            <p class="text-[11px] text-text-muted leading-tight">Total</p>
+                            <p class="text-sm-sec font-bold text-brand leading-tight">$199.00</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar (Expandable) -->
+            <div id="mobile-search-bar" class="md:hidden mt-4 hidden">
+                <div class="flex w-full bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden focus-within:bg-white focus-within:border-brand transition-all duration-300">
+                    <input type="text" placeholder="Search smartphones, accessories..." class="flex-1 px-5 py-3 bg-transparent text-sm-sec text-text-main focus:outline-none w-full">
+                    <button class="px-5 text-brand bg-transparent">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Clean Navigation Menu (Hidden on Mobile) -->
+        <div class="border-t border-gray-100 bg-white relative hidden md:block">
+            <div class="container mx-auto px-4 lg:px-8">
+                <nav class="flex items-center h-14">
+                    <!-- Modern Department Dropdown -->
+                    <div class="group h-full flex items-center mr-8 static">
+                        <div class="h-full flex items-center cursor-pointer">
+                            <button class="bg-text-main hover:bg-black text-white px-6 h-10 rounded-full flex items-center space-x-3 transition font-medium text-sm-sec shadow-sm pointer-events-none">
+                                <div class="flex flex-col gap-[3px] items-start w-3">
+                                    <span class="w-3 h-[2px] bg-white rounded-full"></span>
+                                    <span class="w-2 h-[2px] bg-white rounded-full transition-all group-hover:w-3"></span>
+                                    <span class="w-3 h-[2px] bg-white rounded-full"></span>
+                                </div>
+                                <span>Departments</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Mega Menu (MobileSentrix Style Accessories) - FULL WIDTH -->
+                        <div class="absolute left-0 top-full w-full bg-white border-t border-gray-100 shadow-[0_25px_50px_-15px_rgba(0,0,0,0.15)] z-50 min-h-[520px] overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
+                            <div class="container mx-auto px-4 lg:px-8 h-full flex">
+                                <!-- Sidebar (Vertical Categories) -->
+                                <ul class="w-64 bg-white py-6 pr-4 flex flex-col border-r border-gray-100 min-h-[520px] text-sm font-medium text-gray-600">
+                                    <li class="px-6 py-2.5 hover:text-brand transition cursor-pointer font-bold border-b border-gray-50 mb-2">Genuine Apple Parts</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg">iPhone</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg">iPad</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg">Watch</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg font-bold text-gray-900 mt-2 border-t pt-4">MacBook Pro</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg">MacBook Air</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg border-t mt-2 pt-4">Apollo SSDs</li>
+                                </ul>
+                                
+                                <!-- Content Area (Grid Style) -->
+                                <div class="flex-1 p-10 bg-white overflow-y-auto max-h-[600px]">
+                                    <div class="relative mb-10 max-w-md">
+                                        <input type="text" placeholder="Search by model or model number" class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-brand transition-all">
+                                        <i class="fa-solid fa-magnifying-glass absolute left-5 top-4 text-gray-400 text-sm"></i>
+                                    </div>
+
+                                    <div class="grid grid-cols-4 gap-x-12 gap-y-12">
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm mb-6 border-b pb-3 uppercase tracking-wider">iPhone</h4>
+                                            <ul class="space-y-4 text-[13px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition flex items-center">iPhone 15 <span class="ml-2 px-1.5 py-0.5 bg-green-500 text-white text-[8px] rounded font-black uppercase">new</span></a></li>
+                                                <li><a href="#" class="hover:text-brand transition">iPhone 14 Pro Max</a></li>
+                                                <li><a href="#" class="text-brand font-bold mt-2 inline-block border-b border-brand/20">View all models</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm mb-6 border-b pb-3 uppercase tracking-wider">iPad</h4>
+                                            <ul class="space-y-4 text-[13px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition">iPad Pro 13" (2024)</a></li>
+                                                <li><a href="#" class="hover:text-brand transition">iPad Air 5th Gen</a></li>
+                                                <li><a href="#" class="text-brand font-bold mt-2 inline-block border-b border-brand/20">View all models</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm mb-6 border-b pb-3 uppercase tracking-wider">Watch</h4>
+                                            <ul class="space-y-4 text-[13px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition">Ultra 2 (49MM)</a></li>
+                                                <li><a href="#" class="hover:text-brand transition">Series 9 (45MM)</a></li>
+                                                <li><a href="#" class="text-brand font-bold mt-2 inline-block border-b border-brand/20">View all models</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm mb-6 border-b pb-3 uppercase tracking-wider">Audio</h4>
+                                            <ul class="space-y-4 text-[13px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition">AirPods Pro (USB-C)</a></li>
+                                                <li><a href="#" class="hover:text-brand transition">AirPods Max</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Horizontal Links -->
+                    <ul class="flex h-full space-x-2 text-sm-sec font-medium text-text-secondary">
+                        <li class="h-full flex items-center">
+                            <a href="/index.html" class="nav-link px-4 py-2 rounded-full transition" data-page="home">Home</a>
+                        </li>
+                        <li class="h-full flex items-center group/nav static">
+                            <div class="h-full flex items-center cursor-pointer">
+                                <a href="/pages/products.html" class="nav-link px-4 py-2 rounded-full transition flex items-center" data-page="products">
+                                    Products <i class="fa-solid fa-angle-down ml-1.5 text-[10px] group-hover/nav:rotate-180 duration-300"></i>
+                                </a>
+                            </div>
+                            
+                            <!-- Exquisite 3C Mega Menu - FULL WIDTH -->
+                            <div class="absolute left-0 top-full w-full bg-white border-t border-gray-100 shadow-[0_25px_50px_-15px_rgba(0,0,0,0.2)] z-50 min-h-[450px] overflow-hidden opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 pointer-events-none group-hover/nav:pointer-events-auto">
+                                <div class="container mx-auto px-4 lg:px-8 py-16 flex gap-20">
+                                    <!-- Left: Category Grid -->
+                                    <div class="flex-1 grid grid-cols-3 gap-x-20">
+                                        <!-- Smartphones -->
+                                        <div>
+                                            <div class="flex items-center space-x-4 mb-10">
+                                                <div class="w-14 h-14 rounded-[1.25rem] bg-orange-50 text-brand flex items-center justify-center shadow-sm">
+                                                    <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                                                </div>
+                                                <h4 class="font-black text-gray-900 text-xl tracking-tight">Smartphones</h4>
+                                            </div>
+                                            <ul class="space-y-5 text-[16px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition flex items-center justify-between group/link">iPhone 15 Pro Max <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/link:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0"></i></a></li>
+                                                <li><a href="#" class="hover:text-brand transition flex items-center justify-between group/link">Galaxy S24 Ultra <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/link:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0"></i></a></li>
+                                                <li><a href="#" class="hover:text-brand transition flex items-center justify-between group/link">Gaming Phones <span class="ml-2 px-2 py-0.5 bg-brand text-white text-[9px] rounded-full uppercase font-black">Pro</span> <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/link:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0"></i></a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Audio -->
+                                        <div>
+                                            <div class="flex items-center space-x-4 mb-10">
+                                                <div class="w-14 h-14 rounded-[1.25rem] bg-blue-50 text-blue-600 flex items-center justify-center shadow-sm">
+                                                    <i class="fa-solid fa-headphones-simple text-2xl"></i>
+                                                </div>
+                                                <h4 class="font-black text-gray-900 text-xl tracking-tight">Audio</h4>
+                                            </div>
+                                            <ul class="space-y-5 text-[16px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition flex items-center justify-between group/link">Noise Cancelling <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/link:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0"></i></a></li>
+                                                <li><a href="#" class="hover:text-brand transition flex items-center justify-between group/link">Hi-Fi Speakers <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/link:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0"></i></a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Computers -->
+                                        <div>
+                                            <div class="flex items-center space-x-4 mb-10">
+                                                <div class="w-14 h-14 rounded-[1.25rem] bg-purple-50 text-purple-600 flex items-center justify-center shadow-sm">
+                                                    <i class="fa-solid fa-laptop text-2xl"></i>
+                                                </div>
+                                                <h4 class="font-black text-gray-900 text-xl tracking-tight">Computers</h4>
+                                            </div>
+                                            <ul class="space-y-5 text-[16px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition flex items-center justify-between group/link">MacBook Pro M3 <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/link:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0"></i></a></li>
+                                                <li><a href="#" class="hover:text-brand transition flex items-center justify-between group/link">iPad Pro Series <i class="fa-solid fa-arrow-right text-[10px] opacity-0 group-hover/link:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Featured Promo -->
+                                    <div class="w-[400px] flex flex-col">
+                                        <div class="relative group/card overflow-hidden rounded-[3rem] bg-gray-900 h-full flex flex-col justify-end p-12 text-white cursor-pointer shadow-2xl">
+                                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover/card:scale-110 transition duration-1000" alt="Promo">
+                                            <div class="relative z-10">
+                                                <span class="text-brand font-black text-xs uppercase tracking-[0.4em] mb-5 block">Special Collection</span>
+                                                <h5 class="text-4xl font-black mb-6 leading-tight">Mastery in<br>Sound</h5>
+                                                <button class="bg-white text-gray-900 px-10 py-4 rounded-full text-sm font-black hover:bg-brand hover:text-white transition-all shadow-xl">Explore Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="h-full flex items-center">
+                            <a href="/pages/refurbished.html" class="nav-link px-4 py-2 rounded-full transition" data-page="refurbished">Refurbished</a>
+                        </li>
+                        <li class="h-full flex items-center">
+                            <a href="/pages/events.html" class="nav-link px-4 py-2 rounded-full transition" data-page="events">Events</a>
+                        </li>
+                        <li class="h-full flex items-center">
+                            <a href="/pages/about.html" class="nav-link px-4 py-2 rounded-full transition" data-page="about">About</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Flash Deals -->
+                    <div class="ml-auto">
+                        <a href="#" class="flex items-center text-sm-sec font-bold text-text-main hover:text-brand transition bg-brand-50 px-4 py-2 rounded-full">
+                            <span class="relative flex h-2 w-2 mr-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+                            </span>
+                            Flash Deals
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu-drawer" class="fixed inset-0 z-[60] md:hidden invisible opacity-0 transition-all duration-300">
+            <!-- Backdrop -->
+            <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+            <!-- Content -->
+            <div class="absolute left-0 top-0 bottom-0 w-[300px] bg-white shadow-2xl flex flex-col -translate-x-full transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1)" id="mobile-drawer-content">
+                <!-- Mobile Drawer Header -->
+                <div class="p-6 bg-gradient-to-r from-gray-50 to-white border-b border-gray-100 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-brand text-white p-2 rounded-xl shadow-sm">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="text-xl font-black text-text-main tracking-tight">3C <span class="text-brand">Easy</span></span>
+                    </div>
+                    <button id="mobile-menu-close" class="w-10 h-10 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-text-muted hover:text-brand transition-all active:scale-90">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto custom-scrollbar">
+                    <!-- User Quick Access (Enhanced) -->
+                    <div class="p-4">
+                        <div class="bg-brand-50 rounded-3xl p-5 border border-brand/5 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-brand/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700"></div>
+                            <div class="relative z-10 flex items-center space-x-4">
+                                <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-md border-2 border-white">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover" alt="User">
+                                </div>
+                                <div>
+                                    <p class="font-black text-text-main text-base leading-tight">Alex Johnson</p>
+                                    <p class="text-xs text-text-muted font-medium mt-0.5">Gold Member</p>
+                                    <a href="/pages/profile.html" class="inline-flex items-center text-xs text-brand font-bold mt-2 hover:translate-x-1 transition-transform">
+                                        Account Settings <i class="fa-solid fa-chevron-right ml-1 text-[8px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Links -->
+                    <div class="px-4 py-2">
+                        <span class="text-[10px] text-text-muted font-black uppercase tracking-[0.2em] px-4 mb-3 block">Navigation</span>
+                        <nav class="space-y-1">
+                            <a href="/index.html" class="nav-link flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-text-secondary font-bold transition-all group" data-page="home">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-text-muted group-hover:bg-brand/10 group-hover:text-brand transition-colors">
+                                        <i class="fa-solid fa-house text-sm"></i>
+                                    </div>
+                                    <span>Home</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all"></i>
+                            </a>
+                            <a href="/pages/products.html" class="nav-link flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-text-secondary font-bold transition-all group" data-page="products">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-text-muted group-hover:bg-brand/10 group-hover:text-brand transition-colors">
+                                        <i class="fa-solid fa-box text-sm"></i>
+                                    </div>
+                                    <span>Products</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all"></i>
+                            </a>
+                            <a href="/pages/refurbished.html" class="nav-link flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-text-secondary font-bold transition-all group" data-page="refurbished">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-text-muted group-hover:bg-brand/10 group-hover:text-brand transition-colors">
+                                        <i class="fa-solid fa-recycle text-sm"></i>
+                                    </div>
+                                    <span>Refurbished</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all"></i>
+                            </a>
+                            <a href="/pages/events.html" class="nav-link flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-text-secondary font-bold transition-all group" data-page="events">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-text-muted group-hover:bg-brand/10 group-hover:text-brand transition-colors">
+                                        <i class="fa-solid fa-calendar-star text-sm"></i>
+                                    </div>
+                                    <span>Events</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all"></i>
+                            </a>
+                            <a href="/pages/about.html" class="nav-link flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-text-secondary font-bold transition-all group" data-page="about">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-text-muted group-hover:bg-brand/10 group-hover:text-brand transition-colors">
+                                        <i class="fa-solid fa-circle-info text-sm"></i>
+                                    </div>
+                                    <span>About Us</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all"></i>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Support Section -->
+                    <div class="px-4 py-4 mt-4 border-t border-gray-100">
+                        <span class="text-[10px] text-text-muted font-black uppercase tracking-[0.2em] px-4 mb-3 block">Support</span>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="#" class="flex flex-col items-center justify-center p-4 rounded-2xl bg-gray-50 hover:bg-brand-50 hover:text-brand transition-all border border-transparent hover:border-brand/10 group">
+                                <i class="fa-solid fa-headset text-lg mb-2 text-text-muted group-hover:text-brand transition-colors"></i>
+                                <span class="text-xs font-bold">Support</span>
+                            </a>
+                            <a href="#" class="flex flex-col items-center justify-center p-4 rounded-2xl bg-gray-50 hover:bg-brand-50 hover:text-brand transition-all border border-transparent hover:border-brand/10 group">
+                                <i class="fa-solid fa-truck-fast text-lg mb-2 text-text-muted group-hover:text-brand transition-colors"></i>
+                                <span class="text-xs font-bold">Orders</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action -->
+                <div class="p-6 border-t border-gray-100 bg-gray-50/50">
+                    <button class="w-full bg-white text-red-500 py-4 rounded-2xl font-black text-sm border border-red-100 shadow-sm hover:bg-red-50 transition-all active:scale-95 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Sign Out</span>
+                    </button>
+                    <p class="text-[10px] text-text-muted text-center mt-4 font-medium italic">Version 2.1.0 - 3C Easy Official</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Header Interaction Script -->
+        <script>
+            (function() {
+                const toggle = document.getElementById('mobile-menu-toggle');
+                const drawer = document.getElementById('mobile-menu-drawer');
+                const backdrop = document.getElementById('mobile-menu-backdrop');
+                const close = document.getElementById('mobile-menu-close');
+                const content = document.getElementById('mobile-drawer-content');
+                const searchToggle = document.getElementById('mobile-search-toggle');
+                const searchBar = document.getElementById('mobile-search-bar');
+
+                function openDrawer() {
+                    drawer.classList.remove('invisible', 'opacity-0');
+                    content.classList.remove('-translate-x-full');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeDrawer() {
+                    drawer.classList.add('opacity-0');
+                    content.classList.add('-translate-x-full');
+                    setTimeout(() => drawer.classList.add('invisible'), 300);
+                    document.body.style.overflow = '';
+                }
+
+                toggle?.addEventListener('click', openDrawer);
+                backdrop?.addEventListener('click', closeDrawer);
+                close?.addEventListener('click', closeDrawer);
+
+                searchToggle?.addEventListener('click', () => {
+                    searchBar.classList.toggle('hidden');
+                });
+            })();
+        </script>
+    </header>
