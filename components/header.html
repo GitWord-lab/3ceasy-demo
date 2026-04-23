@@ -38,14 +38,8 @@
                 </button>
 
                 <!-- Logo Area -->
-                <a href="/index.html" class="flex items-center space-x-2 lg:space-x-2.5 flex-shrink-0 group mr-auto md:mr-0">
-                    <div class="bg-gradient-to-br from-brand to-brand-light text-white p-2 lg:p-2.5 rounded-xl shadow-sm group-hover:shadow-md transition duration-300 group-hover:-translate-y-0.5">
-                        <i class="fa-solid fa-bolt text-lg lg:text-xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-xl lg:text-2xl-title font-extrabold tracking-tight text-text-main leading-none">3C <span class="text-brand">Easy</span></span>
-                        <span class="hidden xs:block text-[10px] text-text-muted font-medium tracking-widest uppercase mt-0.5">Tech Essentials</span>
-                    </div>
+                <a href="/index.html" class="flex items-center flex-shrink-0 group mr-auto md:mr-0">
+                    <img src="/assets/img/3ceasy%20logo.svg" alt="3C Easy Logo" class="h-10 lg:h-12 w-auto group-hover:scale-105 transition-transform duration-300">
                 </a>
                 
                 <!-- Central Search - Modern Pill Shape (Hidden on Mobile) -->
@@ -100,16 +94,16 @@
                     </a>
 
                     <!-- Cart -->
-                    <a href="#" class="flex items-center p-2 rounded-full hover:bg-gray-50 transition border border-transparent hover:border-gray-100 group">
+                    <button onclick="toggleCart()" class="flex items-center p-2 rounded-full hover:bg-gray-50 transition border border-transparent hover:border-gray-100 group">
                         <div class="relative w-10 h-10 rounded-full flex items-center justify-center text-text-main group-hover:text-brand">
                             <i class="fa-solid fa-cart-shopping text-xl lg:text-xl-title group-hover:scale-110 transition duration-300"></i>
-                            <span class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold min-w-[20px] h-[20px] flex items-center justify-center rounded-full border-2 border-white shadow-sm">3</span>
+                            <span class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold min-w-[20px] h-[20px] flex items-center justify-center rounded-full border-2 border-white shadow-sm cart-badge-count hidden">0</span>
                         </div>
                         <div class="hidden lg:block text-left ml-2">
                             <p class="text-[11px] text-text-muted leading-tight">Total</p>
-                            <p class="text-sm-sec font-bold text-brand leading-tight">$199.00</p>
+                            <p class="text-sm-sec font-bold text-brand leading-tight header-cart-total">$0.00</p>
                         </div>
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -127,22 +121,18 @@
         <!-- Clean Navigation Menu (Hidden on Mobile) -->
         <div class="border-t border-gray-100 bg-white relative hidden md:block">
             <div class="container mx-auto px-4 lg:px-8">
-                <nav class="flex items-center h-14">
-                    <!-- Modern Department Dropdown -->
-                    <div class="group h-full flex items-center mr-8 static">
-                        <div class="h-full flex items-center cursor-pointer">
-                            <button class="bg-text-main hover:bg-black text-white px-6 h-10 rounded-full flex items-center space-x-3 transition font-medium text-sm-sec shadow-sm pointer-events-none">
-                                <div class="flex flex-col gap-[3px] items-start w-3">
-                                    <span class="w-3 h-[2px] bg-white rounded-full"></span>
-                                    <span class="w-2 h-[2px] bg-white rounded-full transition-all group-hover:w-3"></span>
-                                    <span class="w-3 h-[2px] bg-white rounded-full"></span>
-                                </div>
-                                <span>Departments</span>
-                            </button>
-                        </div>
-                        
-                        <!-- Mega Menu (MobileSentrix Style Accessories) - FULL WIDTH -->
-                        <div class="absolute left-0 top-full w-full bg-white border-t border-gray-100 shadow-[0_25px_50px_-15px_rgba(0,0,0,0.15)] z-50 min-h-[520px] overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
+                <nav class="flex items-center justify-between h-14 w-full">
+                    <!-- Horizontal Links -->
+                    <ul class="flex h-full space-x-2 text-sm-sec font-semibold text-text-main">
+                        <li class="h-full flex items-center group static">
+                            <div class="h-full flex items-center cursor-pointer">
+                                <a href="#" class="nav-link px-4 py-2 rounded-full transition flex items-center gap-1.5 hover:text-brand hover:bg-brand-50" data-page="phone-parts">
+                                    <span>Apple Parts</span><i class="fa-solid fa-angle-down text-[10px]"></i>
+                                </a>
+                            </div>
+                            
+                            <!-- Mega Menu (MobileSentrix Style Accessories) - FULL WIDTH -->
+                            <div class="absolute left-0 top-full w-full bg-white border-t border-gray-100 shadow-[0_25px_50px_-15px_rgba(0,0,0,0.15)] z-50 min-h-[520px] overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
                             <div class="container mx-auto px-4 lg:px-8 h-full flex">
                                 <!-- Sidebar (Vertical Categories) -->
                                 <ul class="w-64 bg-white py-6 pr-4 flex flex-col border-r border-gray-100 min-h-[520px] text-sm font-medium text-gray-600">
@@ -197,18 +187,78 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Horizontal Links -->
-                    <ul class="flex h-full space-x-2 text-sm-sec font-medium text-text-secondary">
-                        <li class="h-full flex items-center">
-                            <a href="/index.html" class="nav-link px-4 py-2 rounded-full transition" data-page="home">Home</a>
                         </li>
+
+                        <li class="h-full flex items-center group static">
+                            <div class="h-full flex items-center cursor-pointer">
+                                <a href="#" class="nav-link px-4 py-2 rounded-full transition flex items-center gap-1.5 hover:text-brand hover:bg-brand-50" data-page="samsung-parts">
+                                    <span>Samsung Parts</span><i class="fa-solid fa-angle-down text-[10px]"></i>
+                                </a>
+                            </div>
+                            
+                            <!-- Mega Menu (MobileSentrix Style Accessories) - FULL WIDTH -->
+                            <div class="absolute left-0 top-full w-full bg-white border-t border-gray-100 shadow-[0_25px_50px_-15px_rgba(0,0,0,0.15)] z-50 min-h-[520px] overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
+                            <div class="container mx-auto px-4 lg:px-8 h-full flex">
+                                <!-- Sidebar (Vertical Categories) -->
+                                <ul class="w-64 bg-white py-6 pr-4 flex flex-col border-r border-gray-100 min-h-[520px] text-sm font-medium text-gray-600">
+                                    <li class="px-6 py-2.5 hover:text-brand transition cursor-pointer font-bold border-b border-gray-50 mb-2">Genuine Samsung Parts</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg">Galaxy S Series</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg">Galaxy Z Series</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg">Galaxy Note Series</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg font-bold text-gray-900 mt-2 border-t pt-4">Galaxy Tab</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg">Galaxy Watch</li>
+                                    <li class="px-6 py-2.5 hover:bg-gray-50 hover:text-brand transition cursor-pointer rounded-lg border-t mt-2 pt-4">Accessories</li>
+                                </ul>
+                                
+                                <!-- Content Area (Grid Style) -->
+                                <div class="flex-1 p-10 bg-white overflow-y-auto max-h-[600px]">
+                                    <div class="relative mb-10 max-w-md">
+                                        <input type="text" placeholder="Search by model or model number" class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-brand transition-all">
+                                        <i class="fa-solid fa-magnifying-glass absolute left-5 top-4 text-gray-400 text-sm"></i>
+                                    </div>
+
+                                    <div class="grid grid-cols-4 gap-x-12 gap-y-12">
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm mb-6 border-b pb-3 uppercase tracking-wider">Galaxy S</h4>
+                                            <ul class="space-y-4 text-[13px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition flex items-center">Galaxy S24 Ultra <span class="ml-2 px-1.5 py-0.5 bg-green-500 text-white text-[8px] rounded font-black uppercase">new</span></a></li>
+                                                <li><a href="#" class="hover:text-brand transition">Galaxy S23 Ultra</a></li>
+                                                <li><a href="#" class="text-brand font-bold mt-2 inline-block border-b border-brand/20">View all models</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm mb-6 border-b pb-3 uppercase tracking-wider">Galaxy Z</h4>
+                                            <ul class="space-y-4 text-[13px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition">Z Fold 5</a></li>
+                                                <li><a href="#" class="hover:text-brand transition">Z Flip 5</a></li>
+                                                <li><a href="#" class="text-brand font-bold mt-2 inline-block border-b border-brand/20">View all models</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm mb-6 border-b pb-3 uppercase tracking-wider">Galaxy Tab</h4>
+                                            <ul class="space-y-4 text-[13px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition">Tab S9 Ultra</a></li>
+                                                <li><a href="#" class="hover:text-brand transition">Tab S8</a></li>
+                                                <li><a href="#" class="text-brand font-bold mt-2 inline-block border-b border-brand/20">View all models</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm mb-6 border-b pb-3 uppercase tracking-wider">Accessories</h4>
+                                            <ul class="space-y-4 text-[13px] text-gray-500 font-medium">
+                                                <li><a href="#" class="hover:text-brand transition">Galaxy Buds 2 Pro</a></li>
+                                                <li><a href="#" class="hover:text-brand transition">S Pen</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </li>
+
                         <li class="h-full flex items-center group/nav static">
                             <div class="h-full flex items-center cursor-pointer">
-                                <a href="/pages/products.html" class="nav-link px-4 py-2 rounded-full transition flex items-center" data-page="products">
-                                    Products <i class="fa-solid fa-angle-down ml-1.5 text-[10px] group-hover/nav:rotate-180 duration-300"></i>
+                                <a href="/pages/products.html" class="nav-link px-4 py-2 rounded-full transition flex items-center gap-1.5 hover:text-brand hover:bg-brand-50" data-page="products">
+                                    <span>Products</span><i class="fa-solid fa-angle-down text-[10px]"></i>
                                 </a>
                             </div>
                             
@@ -276,13 +326,13 @@
                             </div>
                         </li>
                         <li class="h-full flex items-center">
-                            <a href="/pages/refurbished.html" class="nav-link px-4 py-2 rounded-full transition" data-page="refurbished">Refurbished</a>
+                            <a href="/pages/refurbished.html" class="nav-link px-4 py-2 rounded-full transition hover:text-brand hover:bg-brand-50" data-page="refurbished">Refurbished</a>
                         </li>
                         <li class="h-full flex items-center">
-                            <a href="/pages/events.html" class="nav-link px-4 py-2 rounded-full transition" data-page="events">Events</a>
+                            <a href="/pages/events.html" class="nav-link px-4 py-2 rounded-full transition hover:text-brand hover:bg-brand-50" data-page="events">Events</a>
                         </li>
                         <li class="h-full flex items-center">
-                            <a href="/pages/about.html" class="nav-link px-4 py-2 rounded-full transition" data-page="about">About</a>
+                            <a href="/pages/about.html" class="nav-link px-4 py-2 rounded-full transition hover:text-brand hover:bg-brand-50" data-page="about">About</a>
                         </li>
                     </ul>
                     
@@ -451,4 +501,40 @@
                 });
             })();
         </script>
+        <!-- Cart Drawer -->
+        <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-[0_0_40px_rgba(0,0,0,0.1)] transform translate-x-full transition-transform duration-300 z-[100] flex flex-col">
+            <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+                <h2 class="text-xl-title font-extrabold text-text-main flex items-center">
+                    <i class="fa-solid fa-cart-shopping mr-3 text-brand"></i> Your Cart
+                </h2>
+                <button onclick="toggleCart()" class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-text-muted hover:text-brand hover:border-brand transition shadow-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-6" id="drawer-cart-items">
+                <!-- Cart items will be dynamically rendered here by JS -->
+            </div>
+            
+            <div class="p-6 bg-gray-50/50 border-t border-gray-100 mt-auto">
+                <div class="flex justify-between text-sm-sec font-bold text-text-secondary mb-2">
+                    <span>Subtotal</span>
+                    <span id="drawer-cart-subtotal">$899.00</span>
+                </div>
+                <div class="flex justify-between text-xs text-text-muted mb-6">
+                    <span>Shipping</span>
+                    <span>Calculated at checkout</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <a href="/pages/cart.html" class="w-full bg-white border-2 border-brand text-brand hover:bg-brand hover:text-white font-extrabold py-3.5 rounded-xl transition flex items-center justify-center">
+                        View Full Cart
+                    </a>
+                    <a href="/pages/checkout.html" class="w-full bg-brand hover:bg-brand-dark text-white font-extrabold py-3.5 rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2">
+                        <span>Checkout</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="cart-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300" onclick="toggleCart()"></div>
     </header>

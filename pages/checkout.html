@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - 3C Easy</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700', 
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',
+                            secondary: '#4b5563',
+                            muted: '#9ca3af',
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs-muted': ['0.75rem', { lineHeight: '1rem' }],
+                        'sm-sec': ['0.875rem', { lineHeight: '1.25rem' }],
+                        'base-main': ['1rem', { lineHeight: '1.5rem' }],
+                        'lg-sub': ['1.125rem', { lineHeight: '1.75rem' }],
+                        'xl-title': ['1.25rem', { lineHeight: '1.75rem' }],
+                        '2xl-title': ['1.5rem', { lineHeight: '2rem' }],
+                        '3xl-hero': ['1.875rem', { lineHeight: '2.25rem' }],
+                        '5xl-hero': ['3rem', { lineHeight: '1.1' }],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="checkout">
+
+    <!-- Store Header -->
+    <div data-include="../components/header.html"></div>
+
+    <main class="py-12">
+        <div class="container mx-auto px-4 lg:px-8">
+            <!-- Header -->
+            <div class="mb-8 flex items-center justify-between">
+                <h1 class="text-3xl font-extrabold text-text-main">Checkout</h1>
+                <a href="/pages/cart.html" class="text-text-muted hover:text-brand transition text-sm font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Return to Cart
+                </a>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Checkout Form (Left) -->
+                <div class="flex-1 space-y-6">
+                    <!-- Contact Info -->
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 lg:p-8">
+                        <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+                            <h2 class="text-xl font-extrabold text-text-main">1. Contact Information</h2>
+                            <span class="text-sm text-text-muted">Already have an account? <a href="#" class="text-brand hover:underline font-bold">Log in</a></span>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold text-text-secondary mb-2">Email Address</label>
+                                <input type="email" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition" placeholder="you@example.com">
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="newsletter" class="w-4 h-4 text-brand bg-gray-50 border-gray-300 rounded focus:ring-brand focus:ring-2">
+                                <label for="newsletter" class="ml-2 text-sm text-text-secondary cursor-pointer">Keep me up to date on news and exclusive offers</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 lg:p-8">
+                        <div class="mb-6 border-b border-gray-100 pb-4">
+                            <h2 class="text-xl font-extrabold text-text-main">2. Shipping Address</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="md:col-span-1">
+                                <label class="block text-sm font-bold text-text-secondary mb-2">First Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition" placeholder="First Name">
+                            </div>
+                            <div class="md:col-span-1">
+                                <label class="block text-sm font-bold text-text-secondary mb-2">Last Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition" placeholder="Last Name">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-bold text-text-secondary mb-2">Address</label>
+                                <input type="text" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition" placeholder="Address, suite, etc.">
+                            </div>
+                            <div class="md:col-span-1">
+                                <label class="block text-sm font-bold text-text-secondary mb-2">City</label>
+                                <input type="text" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition" placeholder="City">
+                            </div>
+                            <div class="md:col-span-1">
+                                <label class="block text-sm font-bold text-text-secondary mb-2">State / Province</label>
+                                <div class="relative">
+                                    <select class="w-full appearance-none px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition cursor-pointer text-text-main">
+                                        <option value="" disabled selected>Select State</option>
+                                        <option value="NY">New York</option>
+                                        <option value="CA">California</option>
+                                        <option value="TX">Texas</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-text-muted">
+                                        <i class="fa-solid fa-angle-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-1">
+                                <label class="block text-sm font-bold text-text-secondary mb-2">ZIP / Postal Code</label>
+                                <input type="text" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition" placeholder="ZIP Code">
+                            </div>
+                            <div class="md:col-span-1">
+                                <label class="block text-sm font-bold text-text-secondary mb-2">Phone</label>
+                                <input type="tel" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition" placeholder="Phone Number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment -->
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 lg:p-8">
+                        <div class="mb-6 border-b border-gray-100 pb-4 flex items-center justify-between">
+                            <h2 class="text-xl font-extrabold text-text-main">3. Payment Method</h2>
+                            <div class="flex gap-2 text-xl text-gray-300">
+                                <i class="fa-brands fa-cc-visa hover:text-[#1434CB] transition cursor-pointer"></i>
+                                <i class="fa-brands fa-cc-mastercard hover:text-[#EB001B] transition cursor-pointer"></i>
+                                <i class="fa-brands fa-cc-paypal hover:text-[#00457C] transition cursor-pointer"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <!-- Card Option -->
+                            <label class="flex items-center justify-between p-4 border-2 border-brand rounded-xl bg-brand-50 cursor-pointer transition">
+                                <div class="flex items-center gap-3">
+                                    <input type="radio" name="payment" class="w-5 h-5 text-brand focus:ring-brand" checked>
+                                    <span class="font-bold text-text-main">Credit / Debit Card</span>
+                                </div>
+                                <i class="fa-regular fa-credit-card text-brand text-lg"></i>
+                            </label>
+
+                            <!-- PayPal Option -->
+                            <label class="flex items-center justify-between p-4 border-2 border-gray-100 rounded-xl bg-white hover:bg-gray-50 cursor-pointer transition">
+                                <div class="flex items-center gap-3">
+                                    <input type="radio" name="payment" class="w-5 h-5 text-brand focus:ring-brand">
+                                    <span class="font-bold text-text-main">PayPal</span>
+                                </div>
+                                <i class="fa-brands fa-paypal text-[#00457C] text-lg"></i>
+                            </label>
+
+                            <!-- Credit Card Details (Simulated) -->
+                            <div class="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-text-secondary mb-1">Card Number</label>
+                                    <div class="relative">
+                                        <input type="text" class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-brand transition" placeholder="0000 0000 0000 0000">
+                                        <i class="fa-regular fa-credit-card absolute right-3 top-3 text-gray-300"></i>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-text-secondary mb-1">Expiration Date</label>
+                                        <input type="text" class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-brand transition" placeholder="MM / YY">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-text-secondary mb-1">Security Code</label>
+                                        <input type="text" class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-brand transition" placeholder="CVC">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary (Right) -->
+                <div class="w-full lg:w-96 flex-shrink-0">
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 lg:p-8 sticky top-24">
+                        <h2 class="text-xl font-extrabold text-text-main mb-6 pb-4 border-b border-gray-100">Order Summary</h2>
+                        
+                        <!-- Miniature Cart Items -->
+                        <div class="space-y-4 mb-6 pb-6 border-b border-gray-100 max-h-64 overflow-y-auto pr-2" id="checkout-items">
+                            <!-- Items rendered by JS -->
+                        </div>
+                        
+                        <!-- Totals -->
+                        <div class="space-y-4 mb-6 pb-6 border-b border-gray-100">
+                            <div class="flex justify-between text-text-secondary text-sm">
+                                <span>Subtotal</span>
+                                <span class="font-bold text-text-main" id="checkout-subtotal">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-text-secondary text-sm">
+                                <span>Shipping</span>
+                                <span class="font-bold text-text-main">Free</span>
+                            </div>
+                            <div class="flex justify-between text-text-secondary text-sm">
+                                <span>Tax (10%)</span>
+                                <span class="font-bold text-text-main" id="checkout-tax">$0.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-end mb-8">
+                            <span class="text-lg font-bold text-text-main">Total</span>
+                            <div class="text-right">
+                                <span class="text-[10px] text-text-muted block uppercase tracking-wide">USD</span>
+                                <span class="text-3xl font-black text-brand" id="checkout-total">$0.00</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="handleCheckout()" class="w-full bg-brand hover:bg-brand-dark text-white font-extrabold py-4 rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2 mb-4 block text-center">
+                            Place Order Now <i class="fa-solid fa-check"></i>
+                        </button>
+                        
+                        <p class="text-xs text-center text-text-muted">
+                            By placing your order you agree to our <a href="#" class="underline">Terms</a> & <a href="#" class="underline">Privacy</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="../components/footer.html"></div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script>
+        window.renderCheckoutPage = function() {
+            const container = document.getElementById('checkout-items');
+            if (!container) return;
+
+            const cart = CartManager.getCart();
+            
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-text-muted text-sm text-center py-4">Your cart is empty.</p>`;
+                document.getElementById('checkout-subtotal').textContent = '$0.00';
+                document.getElementById('checkout-tax').textContent = '$0.00';
+                document.getElementById('checkout-total').textContent = '$0.00';
+                return;
+            }
+
+            let html = '';
+            cart.forEach(item => {
+                html += `
+                    <div class="flex items-center gap-3">
+                        <div class="w-16 h-16 bg-gray-50 rounded-lg border border-gray-100 p-1 relative flex-shrink-0">
+                            <span class="absolute -top-2 -right-2 bg-text-secondary text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold">${item.quantity}</span>
+                            <img src="${item.image}" class="w-full h-full object-cover rounded-md" alt="${item.name}">
+                        </div>
+                        <div class="flex-1 flex flex-col justify-center">
+                            <h4 class="text-xs font-bold text-text-main leading-snug line-clamp-2">${item.name}</h4>
+                            <span class="text-[10px] text-text-muted mt-0.5">${item.variant}</span>
+                        </div>
+                        <span class="font-bold text-sm text-text-main">$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            
+            const subtotal = CartManager.getSubtotal();
+            const tax = subtotal * 0.1; // 10% tax example
+            const total = subtotal + tax;
+
+            document.getElementById('checkout-subtotal').textContent = '$' + subtotal.toFixed(2);
+            document.getElementById('checkout-tax').textContent = '$' + tax.toFixed(2);
+            document.getElementById('checkout-total').textContent = '$' + total.toFixed(2);
+        };
+
+        function handleCheckout() {
+            const cart = CartManager.getCart();
+            if (cart.length === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            alert('Order placed successfully! Redirecting...');
+            CartManager.clearCart();
+            window.location.href = '../index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCheckoutPage();
+        });
+    </script>
+</body>
+</html>

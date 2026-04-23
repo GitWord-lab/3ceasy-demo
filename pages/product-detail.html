@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - 3C Easy</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700', 
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',
+                            secondary: '#4b5563',
+                            muted: '#9ca3af',
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs-muted': ['0.75rem', { lineHeight: '1rem' }],
+                        'sm-sec': ['0.875rem', { lineHeight: '1.25rem' }],
+                        'base-main': ['1rem', { lineHeight: '1.5rem' }],
+                        'lg-sub': ['1.125rem', { lineHeight: '1.75rem' }],
+                        'xl-title': ['1.25rem', { lineHeight: '1.75rem' }],
+                        '2xl-title': ['1.5rem', { lineHeight: '2rem' }],
+                        '3xl-hero': ['1.875rem', { lineHeight: '2.25rem' }],
+                        '5xl-hero': ['3rem', { lineHeight: '1.1' }],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="products">
+
+    <!-- Store Header -->
+    <div data-include="../components/header.html"></div>
+
+    <main class="py-12">
+        <div class="container mx-auto px-4 lg:px-8">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center text-sm-sec text-text-muted mb-8 space-x-2">
+                <a href="../index.html" class="hover:text-brand transition">Home</a>
+                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                <a href="products.html" class="hover:text-brand transition">Smartphones</a>
+                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                <span class="text-text-main font-medium">3C EASY New Smartphone 16 128GB</span>
+            </nav>
+
+            <!-- Product Section -->
+            <div class="bg-white rounded-[2rem] p-6 lg:p-12 shadow-sm border border-gray-100 flex flex-col lg:flex-row gap-12 lg:gap-20">
+                
+                <!-- Product Image Gallery -->
+                <div class="w-full lg:w-1/2 flex flex-col gap-4">
+                    <div class="relative bg-gray-50 rounded-[2rem] aspect-square flex items-center justify-center p-12 overflow-hidden border border-gray-100">
+                        <span class="absolute top-6 left-6 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-lg z-10">-10%</span>
+                        <div class="w-full h-full flex items-center justify-center text-gray-400 text-4xl font-bold tracking-tight">
+                            iPhone 16
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-4">
+                        <button class="bg-gray-50 aspect-square rounded-2xl border-2 border-brand flex items-center justify-center text-xs font-bold text-gray-400">Front</button>
+                        <button class="bg-gray-50 aspect-square rounded-2xl border border-gray-100 hover:border-gray-300 transition flex items-center justify-center text-xs font-bold text-gray-400">Back</button>
+                        <button class="bg-gray-50 aspect-square rounded-2xl border border-gray-100 hover:border-gray-300 transition flex items-center justify-center text-xs font-bold text-gray-400">Side</button>
+                        <button class="bg-gray-50 aspect-square rounded-2xl border border-gray-100 hover:border-gray-300 transition flex items-center justify-center text-xs font-bold text-gray-400">Box</button>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="w-full lg:w-1/2 flex flex-col">
+                    <div class="mb-6">
+                        <h1 class="text-3xl lg:text-4xl font-extrabold text-text-main mb-4 leading-tight">3C EASY New Smartphone 16 128GB</h1>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="flex items-center text-brand text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <span class="text-sm-sec text-text-muted font-medium">(128 Reviews)</span>
+                            <span class="h-4 w-px bg-gray-300"></span>
+                            <span class="text-sm-sec font-bold text-green-500"><i class="fa-solid fa-check-circle mr-1"></i> In Stock</span>
+                        </div>
+                        <div class="flex items-end space-x-3">
+                            <span class="text-4xl font-black text-text-main">$899.00</span>
+                            <span class="text-xl font-medium text-text-muted line-through mb-1">$999.00</span>
+                        </div>
+                    </div>
+
+                    <p class="text-text-secondary text-base-main leading-relaxed mb-8">
+                        Experience the next generation of mobile technology with our latest smartphone. Features an advanced A-series chip, stunning Super Retina display, and an all-day battery life. Perfect for professionals and enthusiasts alike.
+                    </p>
+
+                    <!-- Options & Quantity -->
+                    <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-text-main text-lg">Product Options</h3>
+                            <span class="text-xs text-brand bg-brand-50 px-2 py-1 rounded font-medium">Bulk Discount Available</span>
+                        </div>
+                        
+                        <!-- Variant Selector -->
+                        <div class="mb-6">
+                            <label for="detail-variant" class="block font-extrabold text-text-secondary text-xs mb-2 uppercase tracking-wide">Select Variant</label>
+                            <div class="relative w-full md:max-w-xs group">
+                                <select id="detail-variant" class="w-full appearance-none bg-white border-2 border-gray-200 text-text-main py-3.5 px-4 pr-10 rounded-xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-brand/10 focus:border-brand hover:border-gray-300 transition-all cursor-pointer shadow-sm">
+                                    <option value="899" selected>Black / 128GB - $899.00</option>
+                                    <option value="899">White / 128GB - $899.00</option>
+                                    <option value="999">Black / 256GB - $999.00</option>
+                                    <option value="999">Blue / 256GB - $999.00</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-text-muted group-hover:text-brand transition-colors">
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quantity Selector -->
+                        <div>
+                            <label class="block font-extrabold text-text-secondary text-xs mb-2 uppercase tracking-wide">Quantity</label>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                                <div class="flex items-center border-2 border-gray-200 bg-white rounded-xl overflow-hidden h-12 w-36 flex-shrink-0 shadow-sm hover:border-gray-300 transition-colors">
+                                    <button type="button" class="w-12 h-full flex-shrink-0 flex items-center justify-center text-text-secondary hover:bg-gray-50 hover:text-brand transition" onclick="document.getElementById('qty').stepDown()">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="qty" value="1" min="1" step="1" class="w-12 h-full flex-1 text-center font-bold text-text-main focus:outline-none border-x-2 border-gray-200 bg-transparent p-0 m-0 text-lg">
+                                    <button type="button" class="w-12 h-full flex-shrink-0 flex items-center justify-center text-text-secondary hover:bg-gray-50 hover:text-brand transition" onclick="document.getElementById('qty').stepUp()">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                                <span class="text-sm-sec text-text-muted"><i class="fa-solid fa-circle-info mr-1 text-brand/70"></i> Enter desired quantity</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex gap-4 mt-auto">
+                        <button onclick="addDetailPageToCart(this)" class="flex-1 bg-text-main hover:bg-black text-white py-4 rounded-full font-bold transition flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl" id="detail-add-btn">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Add to Cart</span>
+                        </button>
+                        <button class="w-14 h-14 rounded-full bg-gray-50 text-text-main flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition">
+                            <i class="fa-regular fa-heart text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Key Features -->
+                    <div class="grid grid-cols-2 gap-4 mt-10 pt-10 border-t border-gray-100">
+                        <div class="flex items-center space-x-3 text-text-secondary">
+                            <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-brand">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-text-main">Free Shipping</h4>
+                                <p class="text-xs">On orders over $5000</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 text-text-secondary">
+                            <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-brand">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-text-main">1 Year Warranty</h4>
+                                <p class="text-xs">Genuine guarantee</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="../components/footer.html"></div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script>
+        // Custom add to cart for detail page
+        window.addDetailPageToCart = function(btn) {
+            const id = 'p1';
+            const name = '3C EASY New Smartphone 16 128GB';
+            
+            const variantSelect = document.getElementById('detail-variant');
+            let price = 899.00;
+            let variant = 'Default';
+            if (variantSelect) {
+                variant = variantSelect.options[variantSelect.selectedIndex].text;
+                price = parseFloat(variantSelect.value || 899.00);
+            }
+            
+            const image = 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=400&auto=format&fit=crop';
+            
+            const qtyInput = document.getElementById('qty');
+            const quantity = parseInt(qtyInput ? qtyInput.value : 1);
+            
+            addToCartBtn(btn, { id, name, price, image, variant, quantity });
+            
+            setTimeout(() => {
+                toggleCart();
+            }, 500);
+        };
+    </script>
+</body>
+</html>

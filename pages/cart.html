@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - 3C Easy</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700', 
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',
+                            secondary: '#4b5563',
+                            muted: '#9ca3af',
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xs-muted': ['0.75rem', { lineHeight: '1rem' }],
+                        'sm-sec': ['0.875rem', { lineHeight: '1.25rem' }],
+                        'base-main': ['1rem', { lineHeight: '1.5rem' }],
+                        'lg-sub': ['1.125rem', { lineHeight: '1.75rem' }],
+                        'xl-title': ['1.25rem', { lineHeight: '1.75rem' }],
+                        '2xl-title': ['1.5rem', { lineHeight: '2rem' }],
+                        '3xl-hero': ['1.875rem', { lineHeight: '2.25rem' }],
+                        '5xl-hero': ['3rem', { lineHeight: '1.1' }],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type="number"] { -moz-appearance: textfield; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="cart">
+
+    <!-- Store Header -->
+    <div data-include="../components/header.html"></div>
+
+    <main class="py-12">
+        <div class="container mx-auto px-4 lg:px-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-extrabold text-text-main">Shopping Cart</h1>
+                <p class="text-text-secondary mt-2" id="cart-page-subtitle">You have 0 items in your cart.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Cart Items (Left) -->
+                <div class="flex-1">
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                        <!-- Desktop Table Header -->
+                        <div class="hidden md:grid grid-cols-12 gap-4 p-6 bg-gray-50 border-b border-gray-100 font-bold text-sm text-text-secondary">
+                            <div class="col-span-6">Product</div>
+                            <div class="col-span-2 text-center">Price</div>
+                            <div class="col-span-2 text-center">Quantity</div>
+                            <div class="col-span-2 text-right">Total</div>
+                        </div>
+
+                        <!-- Items Container -->
+                        <div id="cart-page-items">
+                            <!-- Items will be rendered here by JS -->
+                        </div>
+
+                    </div>
+                    
+                    <div class="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <a href="../index.html" class="text-text-main font-bold hover:text-brand transition flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+                        </a>
+                        <button onclick="CartManager.clearCart()" class="text-text-muted hover:text-red-500 transition font-medium text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-trash"></i> Clear Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Order Summary (Right) -->
+                <div class="w-full lg:w-96 flex-shrink-0">
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 lg:p-8 sticky top-24">
+                        <h2 class="text-xl font-extrabold text-text-main mb-6 pb-4 border-b border-gray-100">Order Summary</h2>
+                        
+                        <div class="space-y-4 mb-6 pb-6 border-b border-gray-100">
+                            <div class="flex justify-between text-text-secondary">
+                                <span>Subtotal</span>
+                                <span class="font-bold text-text-main" id="page-subtotal">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-text-secondary">
+                                <span>Shipping Estimate</span>
+                                <span class="font-bold text-text-main">Free</span>
+                            </div>
+                            <div class="flex justify-between text-text-secondary">
+                                <span>Tax Estimate</span>
+                                <span class="font-bold text-text-main">$0.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-end mb-8">
+                            <span class="text-lg font-bold text-text-main">Total</span>
+                            <span class="text-3xl font-black text-brand" id="page-total">$0.00</span>
+                        </div>
+                        
+                        <a href="/pages/checkout.html" class="w-full bg-text-main hover:bg-black text-white font-extrabold py-4 rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2 mb-4 block text-center">
+                            Proceed to Checkout <i class="fa-solid fa-lock text-sm"></i>
+                        </a>
+                        
+                        <p class="text-xs text-center text-text-muted flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-shield-halved"></i> Secure Checkout Guaranteed
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="../components/footer.html"></div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script>
+        window.renderCartPage = function() {
+            const container = document.getElementById('cart-page-items');
+            if (!container) return;
+
+            const cart = CartManager.getCart();
+            document.getElementById('cart-page-subtitle').textContent = `You have ${CartManager.getTotalItems()} items in your cart.`;
+            
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="p-12 flex flex-col items-center justify-center text-text-muted">
+                        <i class="fa-solid fa-cart-arrow-down text-6xl mb-4 text-gray-200"></i>
+                        <p class="text-lg font-medium">Your cart is empty.</p>
+                        <a href="../index.html" class="mt-4 px-6 py-2 bg-brand text-white font-bold rounded-xl hover:bg-brand-dark transition">Start Shopping</a>
+                    </div>
+                `;
+                document.getElementById('page-subtotal').textContent = '$0.00';
+                document.getElementById('page-total').textContent = '$0.00';
+                return;
+            }
+
+            let html = '';
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                html += `
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-6 border-b border-gray-100 items-center cart-page-item">
+                        <!-- Product -->
+                        <div class="col-span-1 md:col-span-6 flex items-center gap-4">
+                            <button onclick="CartManager.removeItem('${item.id}', '${item.variant}')" class="text-gray-300 hover:text-red-500 transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+                            <div class="w-24 h-24 bg-gray-50 rounded-xl p-2 border border-gray-100 flex-shrink-0">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover rounded-lg">
+                            </div>
+                            <div class="flex flex-col">
+                                <a href="/pages/product-detail.html" class="font-bold text-text-main hover:text-brand transition line-clamp-2">${item.name}</a>
+                                <span class="text-sm text-text-muted mt-1">${item.variant}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Price -->
+                        <div class="col-span-1 md:col-span-2 flex justify-between md:justify-center items-center mt-4 md:mt-0">
+                            <span class="md:hidden font-bold text-text-secondary text-sm">Price:</span>
+                            <span class="font-bold text-text-main item-unit-price">$${item.price.toFixed(2)}</span>
+                        </div>
+                        
+                        <!-- Quantity -->
+                        <div class="col-span-1 md:col-span-2 flex justify-between md:justify-center items-center mt-4 md:mt-0">
+                            <span class="md:hidden font-bold text-text-secondary text-sm">Quantity:</span>
+                            <div class="flex items-center border border-gray-200 bg-white rounded-lg overflow-hidden h-9 w-[100px] flex-shrink-0">
+                                <button type="button" class="w-8 h-full flex-shrink-0 flex items-center justify-center text-text-secondary hover:bg-gray-50 hover:text-brand transition text-xs" onclick="CartManager.updateQuantity('${item.id}', '${item.variant}', ${item.quantity - 1})">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <input type="number" value="${item.quantity}" min="1" step="1" class="w-8 h-full flex-1 text-center font-bold text-text-main focus:outline-none border-x border-gray-200 text-sm bg-transparent p-0 m-0 page-qty" onchange="CartManager.updateQuantity('${item.id}', '${item.variant}', parseInt(this.value))">
+                                <button type="button" class="w-8 h-full flex-shrink-0 flex items-center justify-center text-text-secondary hover:bg-gray-50 hover:text-brand transition text-xs" onclick="CartManager.updateQuantity('${item.id}', '${item.variant}', ${item.quantity + 1})">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Total -->
+                        <div class="col-span-1 md:col-span-2 flex justify-between md:justify-end items-center mt-4 md:mt-0">
+                            <span class="md:hidden font-bold text-text-secondary text-sm">Total:</span>
+                            <span class="font-extrabold text-brand item-total-price">$${itemTotal.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            
+            const subtotal = CartManager.getSubtotal();
+            const formattedTotal = '$' + subtotal.toFixed(2);
+            document.getElementById('page-subtotal').textContent = formattedTotal;
+            document.getElementById('page-total').textContent = formattedTotal;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCartPage();
+        });
+    </script>
+</body>
+</html>

@@ -58,6 +58,17 @@
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        
+        /* Hide spin buttons for number inputs globally */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        
         .hover-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .hover-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
         .image-zoom { overflow: hidden; }
@@ -417,34 +428,182 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
                 <!-- Product Items (Same as before but with slightly adjusted padding/gap for mobile) -->
                 <!-- Product 1 -->
-                <div class="bg-white rounded-xl md:rounded-2xl p-3 md:p-5 border border-gray-100 hover:shadow-lg transition duration-300 relative flex flex-col group">
-                    <div class="absolute top-2 left-2 md:top-4 md:left-4 z-10 flex flex-col gap-1 md:gap-2">
-                        <span class="bg-red-500 text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded shadow-sm">-10%</span>
+                <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 relative flex flex-col group overflow-hidden">
+                    <div class="absolute top-4 left-4 z-10">
+                        <span class="bg-[#e95a53] text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">-10%</span>
                     </div>
                     
-                    <div class="h-32 md:h-48 mb-3 md:mb-5 relative flex items-center justify-center p-2">
-                        <img src="https://placehold.co/300x400/f8fafc/1f2937?text=iPhone+16" class="h-full object-contain mix-blend-multiply" alt="Product">
+                    <div class="h-48 mb-4 relative flex items-center justify-center p-4 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors overflow-hidden">
+                        <a href="/pages/product-detail.html" class="absolute inset-0 z-0"></a>
+                        <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg relative z-0" alt="iPhone 15 Pro Max">
+                        
+                        <!-- Quick View Overlay Button -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            <button onclick="openQuickView('p1', 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=400&auto=format&fit=crop', 'Apple iPhone 15 Pro Max 256GB', '$1199.00', '$1299.00')" class="pointer-events-auto transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-text-main font-bold text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-brand hover:text-white">
+                                <i class="fa-solid fa-eye"></i> Quick View
+                            </button>
+                        </div>
                     </div>
                     
-                    <div class="flex-grow flex flex-col">
-                        <h3 class="font-bold text-text-main text-xs md:text-sm-sec mb-1 md:mb-2 line-clamp-2 group-hover:text-brand transition leading-snug">3C EASY New Smartphone 16 128GB</h3>
-                        <div class="flex items-center mb-2">
-                            <div class="flex text-brand text-[8px] md:text-[10px]">
+                    <div class="flex-grow flex flex-col z-10">
+                        <a href="/pages/product-detail.html">
+                            <h3 class="font-bold text-text-main text-sm mb-2 line-clamp-2 group-hover:text-brand transition leading-snug">Apple iPhone 15 Pro Max 256GB</h3>
+                        </a>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[#ff6700] text-[10px] gap-0.5">
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
                             </div>
                         </div>
-                        <div class="flex items-end space-x-1 md:space-x-2 mb-3 md:mb-5 mt-auto">
-                            <span class="text-sm md:text-xl-title font-extrabold text-text-main">$899.00</span>
-                            <span class="text-[10px] md:text-xs-muted text-text-muted line-through mb-0.5">$999.00</span>
+                        <div class="flex items-end space-x-2 mb-5 mt-auto">
+                            <span class="text-xl font-extrabold text-[#1f2937]">$1199.00</span>
+                            <span class="text-xs text-gray-400 line-through mb-0.5">$1299.00</span>
                         </div>
                     </div>
                     
-                    <button onclick="addToCart(this)" class="w-full bg-white border border-gray-200 text-text-main hover:bg-brand hover:border-brand hover:text-white font-bold py-2 rounded-lg md:rounded-xl transition text-[10px] md:text-sm-sec shadow-sm">
+                    <button onclick="addToCartBtn(this, {id: 'p1', name: 'Apple iPhone 15 Pro Max 256GB', price: 1199.00, image: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=400&auto=format&fit=crop', variant: 'Default', quantity: 1})" class="w-full bg-white border border-gray-200 text-text-main hover:border-text-main font-bold py-2.5 rounded-xl transition text-sm shadow-sm z-10">
                         Add to Cart
                     </button>
                 </div>
-                <!-- ... other products follow same pattern ... -->
-                <!-- [Rest of the products omitted for brevity in this tool call, but I will ensure they all use the responsive classes] -->
+
+                <!-- Product 2 -->
+                <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 relative flex flex-col group overflow-hidden">
+                    <div class="absolute top-4 left-4 z-10">
+                        <span class="bg-[#e95a53] text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">-15%</span>
+                    </div>
+                    
+                    <div class="h-48 mb-4 relative flex items-center justify-center p-4 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors overflow-hidden">
+                        <a href="/pages/product-detail.html" class="absolute inset-0 z-0"></a>
+                        <img src="https://images.unsplash.com/photo-1608229864205-d576a912fb27?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg relative z-0 mix-blend-multiply" alt="Power Bank">
+                        
+                        <!-- Quick View Overlay Button -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            <button onclick="openQuickView('p2', 'https://images.unsplash.com/photo-1608229864205-d576a912fb27?q=80&w=400&auto=format&fit=crop', 'Baseus 20000mAh Power Bank 65W Fast Charging', '$49.99', '$59.99')" class="pointer-events-auto transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-text-main font-bold text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-brand hover:text-white">
+                                <i class="fa-solid fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow flex flex-col z-10">
+                        <a href="/pages/product-detail.html">
+                            <h3 class="font-bold text-text-main text-sm mb-2 line-clamp-2 group-hover:text-brand transition leading-snug">Baseus 20000mAh Power Bank 65W Fast Charging</h3>
+                        </a>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[#ff6700] text-[10px] gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-end space-x-2 mb-5 mt-auto">
+                            <span class="text-xl font-extrabold text-[#1f2937]">$49.99</span>
+                            <span class="text-xs text-gray-400 line-through mb-0.5">$59.99</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="addToCartBtn(this, {id: 'p2', name: 'Baseus 20000mAh Power Bank 65W Fast Charging', price: 49.99, image: 'https://images.unsplash.com/photo-1608229864205-d576a912fb27?q=80&w=400&auto=format&fit=crop', variant: 'Default', quantity: 1})" class="w-full bg-white border border-gray-200 text-text-main hover:border-text-main font-bold py-2.5 rounded-xl transition text-sm shadow-sm z-10">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 relative flex flex-col group overflow-hidden">
+                    <div class="h-48 mb-4 relative flex items-center justify-center p-4 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors overflow-hidden">
+                        <a href="/pages/product-detail.html" class="absolute inset-0 z-0"></a>
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg relative z-0 mix-blend-multiply" alt="Charger">
+                        
+                        <!-- Quick View Overlay Button -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            <button onclick="openQuickView('p3', 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=400&auto=format&fit=crop', 'Anker GaN 100W Wall Charger 3 Ports', '$39.00')" class="pointer-events-auto transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-text-main font-bold text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-brand hover:text-white">
+                                <i class="fa-solid fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow flex flex-col z-10">
+                        <a href="/pages/product-detail.html">
+                            <h3 class="font-bold text-text-main text-sm mb-2 line-clamp-2 group-hover:text-brand transition leading-snug">Anker GaN 100W Wall Charger 3 Ports</h3>
+                        </a>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[#ff6700] text-[10px] gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-end space-x-2 mb-5 mt-auto">
+                            <span class="text-xl font-extrabold text-[#1f2937]">$39.00</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="addToCartBtn(this, {id: 'p3', name: 'Anker GaN 100W Wall Charger 3 Ports', price: 39.00, image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=400&auto=format&fit=crop', variant: 'Default', quantity: 1})" class="w-full bg-white border border-gray-200 text-text-main hover:border-text-main font-bold py-2.5 rounded-xl transition text-sm shadow-sm z-10">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 relative flex flex-col group overflow-hidden">
+                    <div class="h-48 mb-4 relative flex items-center justify-center p-4 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors overflow-hidden">
+                        <a href="/pages/product-detail.html" class="absolute inset-0 z-0"></a>
+                        <img src="https://images.unsplash.com/photo-1615526675159-e248c3021d3f?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg relative z-0 mix-blend-multiply" alt="USB Cable">
+                        
+                        <!-- Quick View Overlay Button -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            <button onclick="openQuickView('p4', 'https://images.unsplash.com/photo-1615526675159-e248c3021d3f?q=80&w=400&auto=format&fit=crop', 'Premium Braided USB-C to USB-C Cable (2m)', '$12.50')" class="pointer-events-auto transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-text-main font-bold text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-brand hover:text-white">
+                                <i class="fa-solid fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow flex flex-col z-10">
+                        <a href="/pages/product-detail.html">
+                            <h3 class="font-bold text-text-main text-sm mb-2 line-clamp-2 group-hover:text-brand transition leading-snug">Premium Braided USB-C to USB-C Cable (2m)</h3>
+                        </a>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[#ff6700] text-[10px] gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-end space-x-2 mb-5 mt-auto">
+                            <span class="text-xl font-extrabold text-[#1f2937]">$12.50</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="addToCartBtn(this, {id: 'p4', name: 'Premium Braided USB-C to USB-C Cable (2m)', price: 12.50, image: 'https://images.unsplash.com/photo-1615526675159-e248c3021d3f?q=80&w=400&auto=format&fit=crop', variant: 'Default', quantity: 1})" class="w-full bg-white border border-gray-200 text-text-main hover:border-text-main font-bold py-2.5 rounded-xl transition text-sm shadow-sm z-10">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 relative flex flex-col group overflow-hidden">
+                    <div class="absolute top-4 left-4 z-10">
+                        <span class="bg-brand text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">HOT</span>
+                    </div>
+                    <div class="h-48 mb-4 relative flex items-center justify-center p-4 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors overflow-hidden">
+                        <a href="/pages/product-detail.html" class="absolute inset-0 z-0"></a>
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg relative z-0" alt="Apple Watch">
+                        
+                        <!-- Quick View Overlay Button -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            <button onclick="openQuickView('p5', 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=400&auto=format&fit=crop', 'Apple Watch Ultra 2 GPS + Cellular', '$799.00')" class="pointer-events-auto transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-text-main font-bold text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:bg-brand hover:text-white">
+                                <i class="fa-solid fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow flex flex-col z-10">
+                        <a href="/pages/product-detail.html">
+                            <h3 class="font-bold text-text-main text-sm mb-2 line-clamp-2 group-hover:text-brand transition leading-snug">Apple Watch Ultra 2 GPS + Cellular</h3>
+                        </a>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[#ff6700] text-[10px] gap-0.5">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-end space-x-2 mb-5 mt-auto">
+                            <span class="text-xl font-extrabold text-[#1f2937]">$799.00</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="addToCartBtn(this, {id: 'p5', name: 'Apple Watch Ultra 2 GPS + Cellular', price: 799.00, image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=400&auto=format&fit=crop', variant: 'Default', quantity: 1})" class="w-full bg-white border border-gray-200 text-text-main hover:border-text-main font-bold py-2.5 rounded-xl transition text-sm shadow-sm z-10">
+                        Add to Cart
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -471,6 +630,96 @@
             </div>
         </section>
     </main>
+
+    <!-- Quick View Modal -->
+    <div id="quickview-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 sm:p-6">
+        <div class="backdrop absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300" onclick="closeQuickView()"></div>
+        
+        <div class="modal-content relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row opacity-0 scale-95 translate-y-4 transition-all duration-300 max-h-[90vh]">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full flex items-center justify-center z-10 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <!-- Left: Image -->
+            <div class="w-full md:w-1/2 bg-gray-50 p-8 flex items-center justify-center">
+                <img id="qv-img" src="" alt="Product" class="max-w-full max-h-80 object-contain mix-blend-multiply">
+            </div>
+            
+            <!-- Right: Details -->
+            <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col">
+                <span class="text-brand font-bold text-xs uppercase tracking-wider mb-2">Quick View</span>
+                <h2 id="qv-title" class="text-2xl font-extrabold text-text-main mb-4 leading-snug">Product Title</h2>
+                
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="flex items-center text-brand text-sm">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <span class="text-sm-sec text-text-muted font-medium">(Reviews)</span>
+                    <span class="h-4 w-px bg-gray-300"></span>
+                    <span class="text-sm-sec font-bold text-green-500"><i class="fa-solid fa-check-circle mr-1"></i> In Stock</span>
+                </div>
+                
+                <div class="flex items-end space-x-3 mb-6 pb-6 border-b border-gray-100">
+                    <span id="qv-price" class="text-4xl font-black text-text-main">$0.00</span>
+                    <span id="qv-old-price" class="text-xl font-medium text-text-muted line-through mb-1">$0.00</span>
+                </div>
+
+                <p class="text-text-secondary text-sm leading-relaxed mb-8">
+                    This is a quick preview of the product. It contains the most essential features, high quality standards, and fast shipping guarantees that 3C Easy provides.
+                </p>
+
+                <!-- Options & Quantity -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 mb-8 mt-auto shadow-sm">
+                    <!-- Variant Selector -->
+                    <div class="mb-6">
+                        <label for="qv-variant" class="block font-extrabold text-text-secondary text-xs mb-2 uppercase tracking-wide flex items-center justify-between">
+                            <span>Select Variant</span>
+                            <span class="text-[10px] text-brand bg-brand-50 px-2 py-0.5 rounded font-bold">Options Available</span>
+                        </label>
+                        <div class="relative group">
+                            <select id="qv-variant" class="w-full appearance-none bg-white border-2 border-gray-200 text-text-main py-3.5 px-4 pr-10 rounded-xl text-sm font-bold focus:outline-none focus:ring-4 focus:ring-brand/10 focus:border-brand hover:border-gray-300 transition-all cursor-pointer shadow-sm">
+                                <option value="v1">Black / 128GB - $899.00</option>
+                                <option value="v2">White / 128GB - $899.00</option>
+                                <option value="v3">Black / 256GB - $999.00</option>
+                                <option value="v4">Blue / 256GB - $999.00</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-text-muted group-hover:text-brand transition-colors">
+                                <i class="fa-solid fa-angle-down text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quantity Selector -->
+                    <div>
+                        <label class="block font-extrabold text-text-secondary text-xs mb-2 uppercase tracking-wide">Quantity</label>
+                        <div class="flex items-center border-2 border-gray-200 bg-white rounded-xl overflow-hidden h-12 w-36 flex-shrink-0 shadow-sm hover:border-gray-300 transition-colors">
+                            <button type="button" class="w-12 h-full flex-shrink-0 flex items-center justify-center text-text-secondary hover:bg-gray-50 hover:text-brand transition" onclick="this.parentElement.querySelector('input').stepDown()">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <input type="number" value="1" min="1" step="1" class="w-12 h-full flex-1 text-center font-bold text-text-main focus:outline-none border-x-2 border-gray-200 bg-transparent p-0 m-0 text-lg">
+                            <button type="button" class="w-12 h-full flex-shrink-0 flex items-center justify-center text-text-secondary hover:bg-gray-50 hover:text-brand transition" onclick="this.parentElement.querySelector('input').stepUp()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                    <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100">
+                        <button onclick="addQuickViewToCart(this)" class="flex-1 bg-brand hover:bg-brand-dark text-white py-3.5 rounded-xl font-extrabold transition flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                            <i class="fa-solid fa-cart-plus"></i> <span>Add to Cart</span>
+                        </button>
+                        <a href="/pages/product-detail.html" class="w-14 h-14 bg-gray-50 hover:bg-gray-100 text-text-main rounded-xl flex items-center justify-center transition border border-gray-200">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Store Footer -->
     <div data-include="components/footer.html"></div>

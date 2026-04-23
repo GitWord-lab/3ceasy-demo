@@ -43,21 +43,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (link.getAttribute('data-page') === bodyPage) {
                     // 通用高亮样式
-                    link.classList.add('bg-brand-50', 'text-brand');
+                    link.classList.add('text-brand', 'font-bold');
                     
                     if (isMobile) {
                         // 移动端菜单特定逻辑：让图标也变色
+                        link.classList.add('bg-brand-50');
                         const iconContainer = link.querySelector('div > div');
                         if (iconContainer) {
                             iconContainer.classList.remove('bg-gray-100', 'text-text-muted');
                             iconContainer.classList.add('bg-brand', 'text-white');
                         }
-                    } else {
-                        // 桌面端特定逻辑
-                        link.classList.add('font-bold');
                     }
                 } else {
-                    link.classList.remove('bg-brand-50', 'text-brand', 'font-bold');
+                    link.classList.remove('text-brand', 'font-bold', 'bg-brand-50');
                     
                     if (isMobile) {
                         const iconContainer = link.querySelector('div > div');
