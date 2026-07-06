@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3C Easy B2B Wholesale - Your professional partner for high-quality electronic accessories. Tiered pricing, dedicated account managers, and fast global logistics for retailers, repair shops, and enterprise buyers.">
+    <meta name="keywords" content="3C accessories wholesale, electronics wholesale, B2B electronics, phone parts wholesale, repair parts supplier, 3C Easy wholesale">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="3C Easy | B2B Wholesale - Professional Electronics Partner">
+    <meta property="og:description" content="Join the 3C Easy B2B Wholesale Program and unlock exclusive wholesale pricing, priority shipping, and dedicated account support.">
+    <title>3C Easy | B2B Wholesale - Professional Electronics Partner</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700',
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',
+                            secondary: '#4b5563',
+                            muted: '#9ca3af',
+                            light: '#f9fafb'
+                        },
+                        b2b: {
+                            dark: '#0a1628',
+                            mid: '#132142',
+                            accent: '#1a2d54',
+                            card: '#f0f4ff',
+                            blue: '#2563eb',
+                            teal: '#0d9488'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        body { font-family: 'Inter', sans-serif; }
+
+        /* B2B theme gradients */
+        .b2b-gradient { background: linear-gradient(135deg, #0a1628 0%, #132142 50%, #1a2d54 100%); }
+        .b2b-gradient-light { background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 50%, #f8fafc 100%); }
+        .b2b-hero-gradient { background: linear-gradient(135deg, #0a1628 0%, #0f1f3d 40%, #132142 100%); }
+        .b2b-card-gradient { background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%); }
+
+        /* Entrance animations (Framer Motion style) */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 103, 0, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 103, 0, 0.6); }
+        }
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll-triggered reveal classes */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.from-bottom {
+            transform: translateY(60px);
+        }
+        .reveal.from-left {
+            transform: translateX(-60px);
+        }
+        .reveal.from-right {
+            transform: translateX(60px);
+        }
+        .reveal.scale-in {
+            transform: scale(0.85);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        /* Animation delays */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        .delay-600 { transition-delay: 0.6s; }
+
+        /* Advantage card hover effects */
+        .advantage-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+        .advantage-card:hover {
+            transform: translateY(-8px);
+            border-color: #e2e8f0;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        .advantage-card:hover .advantage-icon {
+            transform: scale(1.15) rotate(-5deg);
+        }
+        .advantage-icon {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Process step connector line */
+        .step-connector {
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: calc(100% + 0px);
+            height: 2px;
+            background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 50%, #e2e8f0 100%);
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+
+        /* FAQ accordion */
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .faq-question {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .faq-question:hover {
+            color: #ff6700;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 400px;
+            padding-bottom: 1.5rem;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        .faq-icon {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Floating apply button */
+        .float-apply-btn {
+            animation: pulseGlow 2.5s infinite, floatUpDown 4s ease-in-out infinite;
+        }
+        .float-apply-btn:hover {
+            animation: none;
+        }
+
+        /* Price table row hover */
+        .price-row {
+            transition: all 0.3s ease;
+        }
+        .price-row:hover {
+            background: #f8fafc;
+            transform: scale(1.01);
+        }
+
+        /* Hero background pattern */
+        .hero-pattern {
+            background-image: radial-gradient(circle at 25% 25%, rgba(255, 103, 0, 0.08) 0%, transparent 50%),
+                              radial-gradient(circle at 75% 75%, rgba(37, 99, 235, 0.06) 0%, transparent 50%);
+        }
+
+        /* Stat numbers */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+        }
+
+        /* Document checklist checkbox */
+        .doc-check:checked + label {
+            color: #2563eb;
+        }
+        .doc-check:checked + label .check-circle {
+            background: #2563eb;
+            border-color: #2563eb;
+        }
+        .doc-check:checked + label .check-circle i {
+            opacity: 1;
+        }
+
+        /* Responsive table horizontal scroll */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+        }
+
+        /* ===== Mobile optimizations (< 640px) ===== */
+        @media (max-width: 639px) {
+            /* Reduce reveal animation distance for smoother feel */
+            .reveal.from-bottom { transform: translateY(30px); }
+            .reveal.from-left { transform: translateX(-30px); }
+            .reveal.from-right { transform: translateX(30px); }
+            .reveal.scale-in { transform: scale(0.92); }
+
+            /* Disable card hover lift on touch devices */
+            .advantage-card:hover { transform: none; }
+            .advantage-card:hover .advantage-icon { transform: none; }
+
+            /* Disable price row hover scale on mobile */
+            .price-row:hover { transform: none; }
+
+            /* Smaller floating button */
+            .float-apply-btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.875rem;
+                bottom: 1rem;
+                right: 1rem;
+                animation: none;
+            }
+
+            /* Toast full-width */
+            #toast-container {
+                left: 1rem;
+                right: 1rem;
+                bottom: 5rem;
+            }
+            .toast-enter {
+                min-width: auto !important;
+                width: 100%;
+            }
+
+            /* Table scroll hint visible */
+            .table-wrapper {
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+            }
+        }
+
+        /* ===== Tablet optimizations (640px - 1023px) ===== */
+        @media (min-width: 640px) and (max-width: 1023px) {
+            .reveal.from-bottom { transform: translateY(45px); }
+            .reveal.from-left { transform: translateX(-45px); }
+            .reveal.from-right { transform: translateX(45px); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased bg-gray-50" data-page="b2b">
+
+    <!-- Store Header -->
+    <div data-include="../components/header.html"></div>
+
+    <main>
+        <!-- ======================================== -->
+        <!-- Hero Section -->
+        <!-- ======================================== -->
+        <section class="bg-white hero-pattern relative overflow-hidden border-b border-gray-100">
+            <!-- Background decorations -->
+            <div class="absolute top-0 right-0 w-1/2 h-full opacity-5" aria-hidden="true">
+                <div class="absolute top-20 right-20 w-96 h-96 bg-brand rounded-full blur-3xl"></div>
+                <div class="absolute bottom-20 right-60 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
+                <div class="absolute top-1/2 right-40 w-64 h-64 bg-teal-500 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24 lg:py-32 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
+                    <!-- Left content -->
+                    <div class="text-center sm:text-left">
+                        <!-- Badge -->
+                        <div class="inline-flex items-center bg-brand-50 border border-brand/20 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 text-xs sm:text-sm font-semibold text-[#383838]">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                            Trusted by 5,000+ Business Clients
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4 sm:mb-6 tracking-tight text-[#383838]">
+                            Scale Your
+                            <span class="text-brand">Wholesale Business</span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg md:text-xl text-[#555] mb-6 sm:mb-8 leading-relaxed max-w-none sm:max-w-xl">
+                            Join the 3C Easy B2B Partner Program and unlock exclusive tiered pricing, priority shipping, dedicated account management, and flexible payment terms — built for retailers, repair shops, and bulk buyers.
+                        </p>
+
+                        <!-- Key stats -->
+                        <div class="grid grid-cols-3 gap-3 sm:gap-6 mb-8 sm:mb-10 sm:max-w-md">
+                            <div class="text-center">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-black text-brand stat-number">50K+</div>
+                                <div class="text-[10px] sm:text-xs text-[#666] font-semibold mt-1">SKUs</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-black text-brand stat-number">48h</div>
+                                <div class="text-[10px] sm:text-xs text-[#666] font-semibold mt-1">Fast Shipping</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl sm:text-3xl md:text-4xl font-black text-brand stat-number">30+</div>
+                                <div class="text-[10px] sm:text-xs text-[#666] font-semibold mt-1">Countries</div>
+                            </div>
+                        </div>
+
+                        <!-- CTA buttons -->
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center sm:items-start">
+                            <a href="#apply-section" class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 sm:hover:-translate-y-1 shadow-[0_10px_30px_-8px_rgba(255,103,0,0.5)] text-base sm:text-lg group text-center w-full sm:w-auto">
+                                Apply for Wholesale Account
+                                <i class="fa-solid fa-arrow-right ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                            <a href="#pricing-section" class="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-[#383838] border-2 border-gray-200 font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all duration-300 text-base sm:text-lg hover:border-brand hover:text-brand text-center w-full sm:w-auto">
+                                View Pricing
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right visual card -->
+                    <div class="hidden lg:block">
+                        <div class="relative">
+                            <!-- Floating pricing card -->
+                            <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div>
+                                        <div class="text-[#888] text-xs uppercase tracking-wider font-bold">Wholesale Quote</div>
+                                        <div class="text-[#383838] text-2xl font-black">iPhone 15 Pro Max</div>
+                                    </div>
+                                    <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full border border-green-200">Bulk Deal</span>
+                                </div>
+                                <div class="space-y-3 mb-4">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-[#666]">1-9 units</span>
+                                        <span class="text-[#383838] font-bold">$1,099/ea</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-[#666]">10-49 units</span>
+                                        <span class="text-[#383838] font-bold">$1,029/ea</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm bg-brand-50 rounded-lg px-3 py-2 -mx-3">
+                                        <span class="text-brand font-bold">50+ units</span>
+                                        <span class="text-brand font-black">$979/ea</span>
+                                    </div>
+                                </div>
+                                <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
+                                    <span class="text-[#888] text-sm">Estimated Savings</span>
+                                    <span class="text-green-600 font-black text-lg">Up to $120/ea</span>
+                                </div>
+                            </div>
+
+                            <!-- Decorative floating badge -->
+                            <div class="absolute -top-6 -right-6 w-16 h-16 bg-brand rounded-2xl flex items-center justify-center shadow-xl transform rotate-12 hover:rotate-0 transition-transform" aria-hidden="true">
+                                <i class="fa-solid fa-crown text-white text-xl"></i>
+                            </div>
+                            <div class="absolute -bottom-4 -left-4 bg-b2b-dark text-[#383838] px-4 py-2 rounded-xl shadow-lg text-sm font-bold flex items-center gap-2" aria-hidden="true">
+                                <i class="fa-solid fa-check-circle text-green-400"></i> Verified Supplier
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom gradient transition -->
+            <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 to-transparent"></div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Why Choose Us - Advantage Cards -->
+        <!-- ======================================== -->
+        <section class="py-12 sm:py-16 md:py-24 bg-white relative" aria-labelledby="advantages-heading">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section header -->
+                <div class="text-center mb-10 sm:mb-14 reveal from-bottom">
+                    <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 sm:mb-3 block">Why Choose Us</span>
+                    <h2 id="advantages-heading" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-b2b-dark mb-3 sm:mb-4"><span class="text-brand">Key Advantages</span> for Wholesale Partners</h2>
+                    <p class="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">We're more than a supplier — we're a reliable partner for your business growth. Every service is meticulously designed to ensure a smooth, efficient, and competitive procurement experience.</p>
+                </div>
+
+                <!-- Advantage cards grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Card 1 -->
+                    <article class="advantage-card bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm border border-gray-100">
+                        <div class="advantage-icon w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-brand to-brand-dark flex items-center justify-center mb-4 sm:mb-6 text-white shadow-lg shadow-brand/20">
+                            <i class="fa-solid fa-tags text-base sm:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-black text-b2b-dark mb-2 sm:mb-3">Tiered Wholesale Pricing</h3>
+                        <p class="text-text-secondary text-sm leading-relaxed">The more you buy, the less you pay per unit. Transparent tiered pricing with up to 40% off retail — maximizing your profit margins.</p>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="advantage-card bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm border border-gray-100">
+                        <div class="advantage-icon w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center mb-4 sm:mb-6 text-white shadow-lg shadow-blue-500/20">
+                            <i class="fa-solid fa-rocket text-base sm:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-black text-b2b-dark mb-2 sm:mb-3">48-Hour Express Shipping</h3>
+                        <p class="text-text-secondary text-sm leading-relaxed">Warehouses in Los Angeles, New York, Shenzhen, and Bangkok. Orders ship within 48 hours, delivered globally in 3-7 days.</p>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="advantage-card bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm border border-gray-100">
+                        <div class="advantage-icon w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center mb-4 sm:mb-6 text-white shadow-lg shadow-teal-500/20">
+                            <i class="fa-solid fa-headset text-base sm:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-black text-b2b-dark mb-2 sm:mb-3">Dedicated Account Manager</h3>
+                        <p class="text-text-secondary text-sm leading-relaxed">Every wholesale client gets a personal account manager for one-on-one support — from product selection to after-sales, every step of the way.</p>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="advantage-card bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm border border-gray-100">
+                        <div class="advantage-icon w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center mb-4 sm:mb-6 text-white shadow-lg shadow-purple-500/20">
+                            <i class="fa-solid fa-shield-halved text-base sm:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-black text-b2b-dark mb-2 sm:mb-3">90-Day Quality Warranty</h3>
+                        <p class="text-text-secondary text-sm leading-relaxed">All wholesale products include an extended 90-day warranty. Free replacement for defective items — complete peace of mind.</p>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="advantage-card bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm border border-gray-100">
+                        <div class="advantage-icon w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center mb-4 sm:mb-6 text-white shadow-lg shadow-amber-500/20">
+                            <i class="fa-solid fa-credit-card text-base sm:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-black text-b2b-dark mb-2 sm:mb-3">Flexible Payment Terms</h3>
+                        <p class="text-text-secondary text-sm leading-relaxed">Qualified clients enjoy Net 30/60 payment terms, easing cash flow pressure so you can focus on growing your business.</p>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="advantage-card bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm border border-gray-100">
+                        <div class="advantage-icon w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center mb-4 sm:mb-6 text-white shadow-lg shadow-rose-500/20">
+                            <i class="fa-solid fa-file-invoice text-base sm:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-black text-b2b-dark mb-2 sm:mb-3">Invoicing &amp; Customs Support</h3>
+                        <p class="text-text-secondary text-sm leading-relaxed">We provide formal commercial invoices, packing lists, and certificates of origin — full support for global customs clearance.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Step-by-Step Application Process -->
+        <!-- ======================================== -->
+        <section class="py-12 sm:py-16 md:py-24 b2b-gradient-light relative" aria-labelledby="process-heading">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10 sm:mb-14 reveal from-bottom">
+                    <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 sm:mb-3 block">Get Started</span>
+                    <h2 id="process-heading" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-b2b-dark mb-3 sm:mb-4">Four Simple Steps to <span class="text-brand">Start Wholesaling</span></h2>
+                    <p class="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">From application to your first order, we've streamlined the entire process so you can start purchasing quickly.</p>
+                </div>
+
+                <!-- Process steps -->
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- Progress indicator text -->
+                    <div class="text-center mb-6 lg:mb-8">
+                        <span class="text-brand font-black text-sm tracking-wide" id="progress-label">Step 1 of 4</span>
+                    </div>
+                    <!-- Connector line (desktop) -->
+                    <div class="hidden lg:block absolute top-20 left-0 right-0 h-1 bg-gray-200 rounded-full z-0" aria-hidden="true">
+                        <div class="h-full bg-brand rounded-full transition-all duration-500" id="progress-bar" style="width: 0%"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative z-10">
+                        <!-- Step 1 -->
+                        <div class="text-center cursor-pointer" data-step="1" onclick="activateStep(1)">
+                            <div class="step-circle w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-white shadow-lg border-4 flex items-center justify-center mb-4 sm:mb-6 relative transition-all duration-500" data-step-circle="1">
+                                <span class="text-xl sm:text-2xl font-black transition-colors duration-500" data-step-num="1">1</span>
+                                <div class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-7 h-7 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-500" aria-hidden="true" data-step-check="1">
+                                    <i class="fa-solid fa-check text-white text-[10px] sm:text-xs"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-black text-b2b-dark mb-1 sm:mb-2 transition-colors duration-500" data-step-title="1">Online Application</h3>
+                            <p class="text-text-secondary text-sm">Fill in your business details and requirements — submit in under 2 minutes.</p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="text-center cursor-pointer" data-step="2" onclick="activateStep(2)">
+                            <div class="step-circle w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-white shadow-lg border-4 flex items-center justify-center mb-4 sm:mb-6 relative transition-all duration-500" data-step-circle="2">
+                                <span class="text-xl sm:text-2xl font-black transition-colors duration-500" data-step-num="2">2</span>
+                                <div class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-7 h-7 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-500" aria-hidden="true" data-step-check="2">
+                                    <i class="fa-solid fa-check text-white text-[10px] sm:text-xs"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-black text-b2b-dark mb-1 sm:mb-2 transition-colors duration-500" data-step-title="2">Verification</h3>
+                            <p class="text-text-secondary text-sm">Qualification review within 1-2 business days. Your dedicated manager will call to confirm.</p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="text-center cursor-pointer" data-step="3" onclick="activateStep(3)">
+                            <div class="step-circle w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-white shadow-lg border-4 flex items-center justify-center mb-4 sm:mb-6 relative transition-all duration-500" data-step-circle="3">
+                                <span class="text-xl sm:text-2xl font-black transition-colors duration-500" data-step-num="3">3</span>
+                                <div class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-7 h-7 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-500" aria-hidden="true" data-step-check="3">
+                                    <i class="fa-solid fa-check text-white text-[10px] sm:text-xs"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-black text-b2b-dark mb-1 sm:mb-2 transition-colors duration-500" data-step-title="3">Account Activation</h3>
+                            <p class="text-text-secondary text-sm">Once approved, your wholesale account is activated with exclusive pricing and ordering access.</p>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="text-center cursor-pointer" data-step="4" onclick="activateStep(4)">
+                            <div class="step-circle w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-white shadow-lg border-4 flex items-center justify-center mb-4 sm:mb-6 relative transition-all duration-500" data-step-circle="4">
+                                <span class="text-xl sm:text-2xl font-black transition-colors duration-500" data-step-num="4">4</span>
+                                <div class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-7 h-7 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-500" aria-hidden="true" data-step-check="4">
+                                    <i class="fa-solid fa-check text-white text-[10px] sm:text-xs"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-black text-b2b-dark mb-1 sm:mb-2 transition-colors duration-500" data-step-title="4">First Order</h3>
+                            <p class="text-text-secondary text-sm">Browse the wholesale catalog, enjoy tiered pricing, and get your order shipped within 48 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Required Documents Checklist & Application Form -->
+        <!-- ======================================== -->
+        <section class="py-12 sm:py-16 md:py-24 bg-white" aria-labelledby="documents-heading" id="apply-section">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
+                    <!-- Left: Document checklist -->
+                    <div class="text-center sm:text-left">
+                        <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 sm:mb-3 block">Application Prep</span>
+                        <h2 id="documents-heading" class="text-2xl sm:text-3xl md:text-4xl font-black text-b2b-dark mb-3 sm:mb-4">Required <span class="text-brand">Documents</span></h2>
+                        <p class="text-text-secondary text-sm sm:text-base mb-6 sm:mb-8">Have the following materials ready to speed up the verification process. All information is kept strictly confidential and used solely for qualification review.</p>
+
+                        <div class="space-y-3 sm:space-y-4">
+                            <label class="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-gray-50 hover:bg-b2b-card transition-colors cursor-pointer group">
+                                <input type="checkbox" class="doc-check sr-only">
+                                <div class="check-circle w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover:border-brand">
+                                    <i class="fa-solid fa-check text-white text-[10px] sm:text-xs opacity-0 transition-opacity"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm sm:text-base text-b2b-dark group-hover:text-brand transition-colors">Business License / Registration</h4>
+                                    <p class="text-text-secondary text-xs sm:text-sm">Valid business registration document clearly showing company name and registration number</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-gray-50 hover:bg-b2b-card transition-colors cursor-pointer group">
+                                <input type="checkbox" class="doc-check sr-only">
+                                <div class="check-circle w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover:border-brand">
+                                    <i class="fa-solid fa-check text-white text-[10px] sm:text-xs opacity-0 transition-opacity"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm sm:text-base text-b2b-dark group-hover:text-brand transition-colors">Tax Registration Certificate</h4>
+                                    <p class="text-text-secondary text-xs sm:text-sm">Relevant tax registration document (e.g. VAT / GST / Tax ID)</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-gray-50 hover:bg-b2b-card transition-colors cursor-pointer group">
+                                <input type="checkbox" class="doc-check sr-only">
+                                <div class="check-circle w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover:border-brand">
+                                    <i class="fa-solid fa-check text-white text-[10px] sm:text-xs opacity-0 transition-opacity"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm sm:text-base text-b2b-dark group-hover:text-brand transition-colors">Legal Representative ID</h4>
+                                    <p class="text-text-secondary text-xs sm:text-sm">Identification document of the legal representative or authorized signatory (passport or national ID)</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-gray-50 hover:bg-b2b-card transition-colors cursor-pointer group">
+                                <input type="checkbox" class="doc-check sr-only">
+                                <div class="check-circle w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover:border-brand">
+                                    <i class="fa-solid fa-check text-white text-[10px] sm:text-xs opacity-0 transition-opacity"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm sm:text-base text-b2b-dark group-hover:text-brand transition-colors">Business Profile / Company Brief</h4>
+                                    <p class="text-text-secondary text-xs sm:text-sm">Brief description of business type, target market, and estimated purchase volume (optional but recommended)</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Right: Application form -->
+                    <div>
+                        <div class="bg-b2b-dark rounded-3xl p-6 sm:p-8 md:p-10 text-white shadow-2xl">
+                            <h3 class="text-xl sm:text-2xl font-black mb-1 sm:mb-2">Apply for Wholesale Account</h3>
+                            <p class="text-gray-400 text-sm sm:text-base mb-6 sm:mb-8">Fill in the details below and our team will contact you within 24 hours.</p>
+
+                            <form class="space-y-4 sm:space-y-5" onsubmit="handleB2BApply(event)">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                                    <div>
+                                        <label class="block text-xs sm:text-sm font-bold text-gray-300 mb-1.5 sm:mb-2">Company Name *</label>
+                                        <input type="text" required placeholder="Enter company name" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs sm:text-sm font-bold text-gray-300 mb-1.5 sm:mb-2">Contact Name *</label>
+                                        <input type="text" required placeholder="Enter contact name" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-all">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs sm:text-sm font-bold text-gray-300 mb-1.5 sm:mb-2">Business Email *</label>
+                                    <input type="email" required placeholder="company@example.com" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-xs sm:text-sm font-bold text-gray-300 mb-1.5 sm:mb-2">Phone Number *</label>
+                                    <input type="tel" required placeholder="Enter phone number" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-xs sm:text-sm font-bold text-gray-300 mb-1.5 sm:mb-2">Business Type</label>
+                                    <select class="w-full bg-white/10 border border-white/20 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-all appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%239ca3af%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22/></svg>'); background-repeat: no-repeat; background-position: right 1rem center;">
+                                        <option value="" class="text-gray-800">Select business type</option>
+                                        <option value="retail" class="text-gray-800">Retailer / Brick &amp; Mortar</option>
+                                        <option value="repair" class="text-gray-800">Phone Repair Shop</option>
+                                        <option value="ecommerce" class="text-gray-800">E-commerce Seller</option>
+                                        <option value="distributor" class="text-gray-800">Distributor / Wholesaler</option>
+                                        <option value="other" class="text-gray-800">Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs sm:text-sm font-bold text-gray-300 mb-1.5 sm:mb-2">Monthly Purchase Budget</label>
+                                    <select class="w-full bg-white/10 border border-white/20 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/30 transition-all appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%239ca3af%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22/></svg>'); background-repeat: no-repeat; background-position: right 1rem center;">
+                                        <option value="" class="text-gray-800">Select budget range</option>
+                                        <option value="1k-5k" class="text-gray-800">$1,000 - $5,000</option>
+                                        <option value="5k-20k" class="text-gray-800">$5,000 - $20,000</option>
+                                        <option value="20k-50k" class="text-gray-800">$20,000 - $50,000</option>
+                                        <option value="50k+" class="text-gray-800">$50,000+</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3.5 sm:py-4 rounded-xl transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 shadow-lg shadow-brand/25 text-base sm:text-lg mt-3 sm:mt-4">
+                                    Submit Application
+                                    <i class="fa-solid fa-paper-plane ml-2"></i>
+                                </button>
+                                <p class="text-gray-500 text-[11px] sm:text-xs text-center mt-3 sm:mt-4">By submitting, you agree to our <a href="#" class="text-brand-light hover:underline">Terms of Service</a> and <a href="#" class="text-brand-light hover:underline">Privacy Policy</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Wholesale Tiered Discounts -->
+        <!-- ======================================== -->
+        <section class="py-12 sm:py-16 md:py-24 bg-gray-50" aria-labelledby="pricing-heading" id="pricing-section">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10 sm:mb-14">
+                    <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 sm:mb-3 block">Transparent Pricing</span>
+                    <h2 id="pricing-heading" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-b2b-dark mb-3 sm:mb-4">Tiered <span class="text-brand">Discount Program</span></h2>
+                    <p class="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">The more you order, the bigger your savings. Enjoy automatic tiered discounts across all products with no hidden conditions.</p>
+                </div>
+
+                <!-- Discount tier cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+                    <!-- Tier 1: Starter -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200 text-center relative group hover:shadow-lg transition-all duration-300" style="border-color: #e5e7eb;" onmouseover="this.style.borderColor='#ff6700'" onmouseout="this.style.borderColor='#e5e7eb'">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-gray-100 flex items-center justify-center mb-4 transition-colors" onmouseover="this.style.backgroundColor='#fff5f0'" onmouseout="this.style.backgroundColor='#f3f4f6'">
+                            <i class="fa-solid fa-seedling text-2xl text-gray-500 group-hover:text-brand transition-colors"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-b2b-dark mb-1">Starter</h3>
+                        <p class="text-text-muted text-xs mb-4">$1,000 – $4,999</p>
+                        <div class="text-4xl sm:text-5xl font-black text-b2b-dark mb-2">5<span class="text-brand">%</span></div>
+                        <p class="text-text-secondary text-xs mb-5">off retail price</p>
+                        <ul class="space-y-2 text-left text-xs text-text-secondary">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Standard wholesale pricing</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Regular shipping rates</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Email support</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tier 2: Growth -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200 text-center relative group hover:shadow-lg transition-all duration-300" style="border-color: #e5e7eb;" onmouseover="this.style.borderColor='#ff6700'" onmouseout="this.style.borderColor='#e5e7eb'">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-gray-100 flex items-center justify-center mb-4 transition-colors" onmouseover="this.style.backgroundColor='#eff6ff'" onmouseout="this.style.backgroundColor='#f3f4f6'">
+                            <i class="fa-solid fa-chart-simple text-2xl text-gray-500 group-hover:text-b2b-blue transition-colors"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-b2b-dark mb-1">Growth</h3>
+                        <p class="text-text-muted text-xs mb-4">$5,000 – $19,999</p>
+                        <div class="text-4xl sm:text-5xl font-black text-b2b-dark mb-2">15<span class="text-b2b-blue">%</span></div>
+                        <p class="text-text-secondary text-xs mb-5">off retail price</p>
+                        <ul class="space-y-2 text-left text-xs text-text-secondary">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-b2b-blue mt-0.5 flex-shrink-0"></i> Priority shipping rates</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-b2b-blue mt-0.5 flex-shrink-0"></i> Dedicated account rep</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-b2b-blue mt-0.5 flex-shrink-0"></i> Priority support</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tier 3: Professional -->
+                    <div class="rounded-2xl p-5 sm:p-6 border-2 text-center relative group hover:shadow-xl transition-all duration-300" style="background-color: rgba(255,245,240,0.5); border-color: rgba(255,103,0,0.3);">
+                        <div class="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4" style="background-color: rgba(255,103,0,0.1);">
+                            <i class="fa-solid fa-crown text-2xl text-brand"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-b2b-dark mb-1">Professional</h3>
+                        <p class="text-text-muted text-xs mb-4">$20,000 – $49,999</p>
+                        <div class="text-4xl sm:text-5xl font-black text-b2b-dark mb-2">25<span class="text-brand">%</span></div>
+                        <p class="text-text-secondary text-xs mb-5">off retail price</p>
+                        <ul class="space-y-2 text-left text-xs text-text-secondary">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Expedited shipping</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Net 30 payment terms</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Market insights reports</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Early access to new items</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tier 4: Enterprise -->
+                    <div class="bg-b2b-dark rounded-2xl p-5 sm:p-6 border border-white/10 text-center relative group hover:shadow-lg transition-all duration-300 text-white overflow-hidden" style="background: linear-gradient(135deg, #0a1628 0%, #0f1f3d 50%, #1a2d54 100%);">
+                        <div class="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4" style="background-color: rgba(255,103,0,0.2); box-shadow: 0 0 0 2px rgba(255,103,0,0.3);">
+                            <i class="fa-solid fa-building text-2xl text-brand-light"></i>
+                        </div>
+                        <h3 class="text-lg font-black mb-1">Enterprise</h3>
+                        <p class="text-white/70 text-xs font-medium mb-4">$50,000+ / year</p>
+                        <div class="text-4xl sm:text-5xl font-black mb-2">
+                            <span style="background: linear-gradient(90deg, #ff8f40, #ff6700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">35%</span><span class="text-brand-light text-lg">+</span>
+                        </div>
+                        <p class="text-white/70 text-xs font-medium mb-5">off retail price</p>
+                        <ul class="space-y-2.5 text-left text-xs text-white/80 font-medium">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-light mt-0.5 flex-shrink-0"></i> Custom pricing &amp; OEM</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-light mt-0.5 flex-shrink-0"></i> Free global shipping</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-light mt-0.5 flex-shrink-0"></i> Net 60 payment terms</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-light mt-0.5 flex-shrink-0"></i> Dedicated supply chain</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-light mt-0.5 flex-shrink-0"></i> Exclusive product rights</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Bottom note -->
+                <div class="text-center mt-8 sm:mt-10">
+                    <p class="text-text-muted text-xs sm:text-sm">
+                        <i class="fa-solid fa-circle-info mr-1 text-brand"></i> 
+                        Discounts apply to all products. Volume is calculated per order. Contact your account manager for custom enterprise agreements.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- FAQ Accordion -->
+        <!-- ======================================== -->
+        <section class="py-12 sm:py-16 md:py-24 bg-white" aria-labelledby="faq-heading">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+                <div class="text-center mb-10 sm:mb-14 reveal from-bottom">
+                    <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 sm:mb-3 block">Common Questions</span>
+                    <h2 id="faq-heading" class="text-2xl sm:text-3xl md:text-4xl font-black text-b2b-dark mb-3 sm:mb-4">Frequently Asked <span class="text-brand">Questions</span></h2>
+                    <p class="text-text-secondary text-sm sm:text-base md:text-lg">Find answers to common questions about our wholesale program.</p>
+                </div>
+
+                <div class="space-y-0 reveal from-bottom">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item active">
+                        <button class="faq-question w-full flex items-center justify-between py-4 sm:py-5 text-left" onclick="toggleFaq(this)" aria-expanded="true">
+                            <span class="font-bold text-base sm:text-lg text-b2b-dark pr-4">What are the requirements to become a wholesale customer?</span>
+                            <span class="faq-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-text-muted">
+                                <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
+                            </span>
+                        </button>
+                        <div class="faq-answer" style="max-height: 400px; padding-bottom: 1.5rem;">
+                            <p class="text-text-secondary text-sm sm:text-base leading-relaxed">To apply as a wholesale customer, you need: a valid business license or registration certificate, tax registration documents, and legal representative ID. We also recommend providing a business profile to help us serve you better. Verification is typically completed within 1-2 business days.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full flex items-center justify-between py-4 sm:py-5 text-left" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span class="font-bold text-base sm:text-lg text-b2b-dark pr-4">Is there a Minimum Order Quantity (MOQ)?</span>
+                            <span class="faq-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-text-muted">
+                                <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="text-text-secondary text-sm sm:text-base leading-relaxed">Yes, MOQ varies by product. Generally, accessories have an MOQ of 10-50 units, while core components like screens are 3-10 units. Refer to the product price list or consult your account manager for specifics. Flexible MOQ policies are available for first-time orders.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full flex items-center justify-between py-4 sm:py-5 text-left" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span class="font-bold text-base sm:text-lg text-b2b-dark pr-4">How are international shipping and freight calculated?</span>
+                            <span class="faq-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-text-muted">
+                                <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="text-text-secondary text-sm sm:text-base leading-relaxed">We ship globally via DHL, FedEx, UPS, and other international logistics partners. Shipping costs are calculated by actual weight and volume. Orders over $5,000 qualify for free shipping. We provide complete customs documentation including commercial invoices, packing lists, and certificates of origin. Typical delivery time is 3-7 business days.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full flex items-center justify-between py-4 sm:py-5 text-left" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span class="font-bold text-base sm:text-lg text-b2b-dark pr-4">What payment methods do you accept? Do you offer credit terms?</span>
+                            <span class="faq-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-text-muted">
+                                <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="text-text-secondary text-sm sm:text-base leading-relaxed">We accept multiple payment methods: bank wire transfer (T/T), credit card (Visa/Mastercard), PayPal, and letter of credit (L/C). Long-term clients with good credit history may apply for Net 30 or Net 60 payment terms. New clients typically pay upfront for their first order, with credit terms available thereafter.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full flex items-center justify-between py-4 sm:py-5 text-left" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span class="font-bold text-base sm:text-lg text-b2b-dark pr-4">What about product quality and after-sales support?</span>
+                            <span class="faq-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-text-muted">
+                                <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="text-text-secondary text-sm sm:text-base leading-relaxed">All products undergo rigorous quality inspection before shipping and comply with CE, FCC, RoHS, and other international certification standards. Wholesale products come with a 90-day warranty, with free replacement for defective items. Our dedicated after-sales team responds within 24 hours.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full flex items-center justify-between py-4 sm:py-5 text-left" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span class="font-bold text-base sm:text-lg text-b2b-dark pr-4">Can I customize products or do OEM branding?</span>
+                            <span class="faq-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-text-muted">
+                                <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="text-text-secondary text-sm sm:text-base leading-relaxed">Yes, we offer OEM/ODM customization services including product appearance customization, packaging design, and logo printing. Minimum order quantities vary by product type, typically 500-1,000 units. Contact your account manager for customization options and quotes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Bottom CTA -->
+        <!-- ======================================== -->
+        <section class="py-12 sm:py-16 md:py-20 bg-white hero-pattern relative overflow-hidden border-t border-gray-100">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" aria-hidden="true"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" aria-hidden="true"></div>
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <div class="reveal from-bottom max-w-2xl mx-auto">
+                    <h2 class="text-2xl sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 text-[#383838]">Ready to Scale Your<br><span class="text-brand">Wholesale Business</span>?</h2>
+                    <p class="text-[#555] text-sm sm:text-base md:text-lg mb-8 sm:mb-10">Join 5,000+ businesses that trust our B2B Partner Program. Apply now for exclusive pricing and priority service.</p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                        <a href="#apply-section" class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 sm:hover:-translate-y-1 shadow-xl shadow-brand/30 text-base sm:text-lg group text-center">
+                            Apply Now
+                            <i class="fa-solid fa-arrow-right ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="mailto:b2b@3ceasy.com" class="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-[#383838] border-2 border-gray-200 font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 text-base sm:text-lg hover:border-brand hover:text-brand text-center">
+                            <i class="fa-solid fa-envelope mr-2"></i> Contact Sales
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="../components/footer.html"></div>
+
+    <!-- ======================================== -->
+    <!-- Floating Apply Button -->
+    <!-- ======================================== -->
+    <a href="#apply-section" class="float-apply-btn fixed bottom-6 right-6 z-[80] bg-brand hover:bg-brand-dark text-white font-bold px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 transition-all duration-300 hover:scale-105 group" aria-label="Apply for wholesale account">
+        <i class="fa-solid fa-file-signature text-lg group-hover:scale-110 transition-transform"></i>
+        <span class="hidden sm:inline">Apply Now</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="/assets/js/include.js"></script>
+    <script src="/assets/js/common.js"></script>
+
+    <script>
+        // ===== FAQ accordion interaction =====
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const btn = item.querySelector('.faq-question');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+                const answer = item.querySelector('.faq-answer');
+                if (answer) answer.style.maxHeight = '0';
+            });
+
+            // Open current
+            if (!isActive) {
+                faqItem.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+                const answer = faqItem.querySelector('.faq-answer');
+                if (answer) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            }
+        }
+
+        // ===== Scroll-triggered reveal animations (Intersection Observer) =====
+        function initRevealAnimations() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -80px 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // ===== Interactive step progress =====
+        function activateStep(stepNum) {
+            const totalSteps = 4;
+
+            for (let i = 1; i <= totalSteps; i++) {
+                const circle = document.querySelector(`[data-step-circle="${i}"]`);
+                const num = document.querySelector(`[data-step-num="${i}"]`);
+                const check = document.querySelector(`[data-step-check="${i}"]`);
+
+                if (!circle || !num || !check) continue;
+
+                if (i <= stepNum) {
+                    // Active / completed state
+                    circle.style.borderColor = '#ff6700';
+                    num.style.color = '#ff6700';
+                    check.style.opacity = '1';
+                } else {
+                    // Inactive state
+                    circle.style.borderColor = '#e5e7eb';
+                    num.style.color = '#9ca3af';
+                    check.style.opacity = '0';
+                }
+            }
+
+            // Update progress bar: completed segments / total segments
+            const bar = document.getElementById('progress-bar');
+            if (bar) {
+                const pct = (stepNum / totalSteps) * 100;
+                bar.style.width = pct + '%';
+            }
+
+            // Update label
+            const label = document.getElementById('progress-label');
+            if (label) {
+                label.textContent = `Step ${stepNum} of ${totalSteps}`;
+            }
+        }
+
+        // ===== Counter number animation =====
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'countUp 0.6s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        // ===== Form submission handler =====
+        function handleB2BApply(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            // Simulate submission
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Submitting...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i> Submitted!';
+                submitBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                submitBtn.classList.remove('bg-brand', 'hover:bg-brand-dark');
+
+                // Show toast notification
+                showToast('Application submitted successfully! We will contact you within 24 hours.', 'success');
+
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                    submitBtn.classList.add('bg-brand', 'hover:bg-brand-dark');
+                    form.reset();
+                }, 3000);
+            }, 1500);
+
+            return false;
+        }
+
+        // ===== Toast notification =====
+        function showToast(message, type) {
+            const container = document.getElementById('toast-container');
+            if (!container) {
+                const div = document.createElement('div');
+                div.id = 'toast-container';
+                div.className = 'fixed bottom-24 right-5 z-[200] flex flex-col space-y-2';
+                document.body.appendChild(div);
+            }
+
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast-enter bg-white rounded-2xl px-6 py-4 shadow-2xl border flex items-center gap-3 min-w-[300px] max-w-md`;
+            toast.innerHTML = `
+                <div class="w-10 h-10 rounded-full ${type === 'success' ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-blue-600'} flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid ${type === 'success' ? 'fa-check' : 'fa-info'}"></i>
+                </div>
+                <span class="font-bold text-text-main text-sm">${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('toast-leave');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // ===== Desktop table sticky header =====
+        function initStickyTableHeader() {
+            const tableWrapper = document.querySelector('.table-wrapper');
+            if (!tableWrapper) return;
+            // Horizontal scroll enabled via CSS when table exceeds container width
+        }
+
+        // ===== Initialize =====
+        document.addEventListener('DOMContentLoaded', () => {
+            initRevealAnimations();
+            activateStep(1);
+            animateCounters();
+            initStickyTableHeader();
+        });
+    </script>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-24 right-5 z-[200] flex flex-col space-y-2"></div>
+</body>
+</html>

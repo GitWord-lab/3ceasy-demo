@@ -1,3 +1,15 @@
+    <style>
+        /* 移动端底部 Tab 栏占位及防横向滚动 */
+        html, body {
+            overflow-x: clip;
+            max-width: 100vw;
+        }
+        @media (max-width: 767px) {
+            body {
+                padding-bottom: calc(56px + env(safe-area-inset-bottom));
+            }
+        }
+    </style>
     <!-- Store Header -->
     <header class="bg-white sticky top-0 z-50 transition-all duration-300 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
         <!-- Top Utility Bar - Clean & Minimal -->
@@ -31,15 +43,15 @@
 
         <!-- Main Header - Spacious & Focused -->
         <div class="container mx-auto px-4 lg:px-8 py-4 lg:py-5">
-            <div class="flex items-center justify-between gap-4 lg:gap-12">
+            <div class="flex items-center justify-between gap-2 lg:gap-12">
                 <!-- Mobile Menu Toggle (Left) -->
-                <button id="mobile-menu-toggle" class="md:hidden p-2 text-text-main hover:text-brand transition-colors">
+                <button id="mobile-menu-toggle" class="md:hidden p-2 text-text-main hover:text-brand transition-colors hidden">
                     <i class="fa-solid fa-bars-staggered text-xl"></i>
                 </button>
 
                 <!-- Logo Area -->
                 <a href="/index.html" class="flex items-center flex-shrink-0 group mr-auto md:mr-0">
-                    <img src="/assets/img/3ceasy%20logo.svg" alt="3C Easy Logo" class="h-10 lg:h-12 w-auto group-hover:scale-105 transition-transform duration-300">
+                    <img src="/assets/img/3ceasy%20logo.svg" alt="3C Easy Logo" class="h-8 lg:h-12 w-auto group-hover:scale-105 transition-transform duration-300">
                 </a>
                 
                 <!-- Central Search - Modern Pill Shape (Hidden on Mobile) -->
@@ -187,6 +199,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </li>
 
                         <li class="h-full flex items-center group static">
@@ -332,6 +345,12 @@
                             <a href="/pages/events.html" class="nav-link px-4 py-2 rounded-full transition hover:text-brand hover:bg-brand-50" data-page="events">Events</a>
                         </li>
                         <li class="h-full flex items-center">
+                            <a href="/pages/b2b.html" class="nav-link px-4 py-2 rounded-full transition hover:text-brand hover:bg-brand-50 flex items-center gap-1.5" data-page="b2b">
+                                <span>Wholesale B2B</span>
+                                <span class="bg-brand text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">NEW</span>
+                            </a>
+                        </li>
+                        <li class="h-full flex items-center">
                             <a href="/pages/about.html" class="nav-link px-4 py-2 rounded-full transition hover:text-brand hover:bg-brand-50" data-page="about">About</a>
                         </li>
                     </ul>
@@ -429,6 +448,16 @@
                                 </div>
                                 <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all"></i>
                             </a>
+                            <a href="/pages/b2b.html" class="nav-link flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-text-secondary font-bold transition-all group" data-page="b2b">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-text-muted group-hover:bg-brand/10 group-hover:text-brand transition-colors">
+                                        <i class="fa-solid fa-building text-sm"></i>
+                                    </div>
+                                    <span>Wholesale B2B</span>
+                                    <span class="bg-brand text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none ml-2">NEW</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all"></i>
+                            </a>
                             <a href="/pages/about.html" class="nav-link flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-text-secondary font-bold transition-all group" data-page="about">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-text-muted group-hover:bg-brand/10 group-hover:text-brand transition-colors">
@@ -516,7 +545,7 @@
                 <!-- Cart items will be dynamically rendered here by JS -->
             </div>
             
-            <div class="p-6 bg-gray-50/50 border-t border-gray-100 mt-auto">
+            <div class="p-6 bg-gray-50/50 border-t border-gray-100 mt-auto pb-[calc(1.5rem+56px+env(safe-area-inset-bottom))]">
                 <div class="flex justify-between text-sm-sec font-bold text-text-secondary mb-2">
                     <span>Subtotal</span>
                     <span id="drawer-cart-subtotal">$899.00</span>
@@ -538,3 +567,214 @@
 
         <div id="cart-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300" onclick="toggleCart()"></div>
     </header>
+
+    <!-- 移动端底部固定 Tab 栏 -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-[100] shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.1)] pb-[env(safe-area-inset-bottom)]" style="position: fixed !important;">
+        <div class="flex items-center justify-around h-14">
+            <a href="/index.html" class="nav-link flex flex-col items-center justify-center w-full h-full text-text-muted hover:text-brand transition-colors" data-page="home">
+                <i class="fa-solid fa-house text-lg mb-1"></i>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <button onclick="toggleMobileCategory()" class="nav-link flex flex-col items-center justify-center w-full h-full text-text-muted hover:text-brand transition-colors" data-page="products">
+                <i class="fa-solid fa-box text-lg mb-1"></i>
+                <span class="text-[10px] font-medium">Products</span>
+            </button>
+            <button onclick="toggleCart()" class="flex flex-col items-center justify-center w-full h-full text-text-muted hover:text-brand transition-colors relative">
+                <div class="relative">
+                    <i class="fa-solid fa-cart-shopping text-lg mb-1"></i>
+                    <span class="absolute -top-1 -right-2 bg-brand text-white text-[8px] font-bold min-w-[14px] h-[14px] flex items-center justify-center rounded-full border border-white cart-badge-count hidden">0</span>
+                </div>
+                <span class="text-[10px] font-medium">Cart</span>
+            </button>
+            <a href="/pages/profile.html" class="nav-link flex flex-col items-center justify-center w-full h-full text-text-muted hover:text-brand transition-colors" data-page="profile">
+                <i class="fa-regular fa-user text-lg mb-1"></i>
+                <span class="text-[10px] font-medium">Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Category Bottom Sheet (Mega Menu - Dual Column Layout) -->
+    <div id="mobile-category-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[110] hidden opacity-0 transition-opacity duration-300" onclick="toggleMobileCategory()" style="position: fixed !important;"></div>
+    
+    <div id="mobile-category-drawer" class="md:hidden fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl z-[120] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] transform translate-y-full transition-transform duration-300 flex flex-col h-[85vh] pb-[calc(56px+env(safe-area-inset-bottom))]" style="position: fixed !important;">
+        <!-- Drag Handle -->
+        <div class="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mt-3 mb-1 shrink-0"></div>
+        
+        <!-- Header -->
+        <div class="px-6 py-3 border-b border-gray-100 flex items-center justify-between shrink-0">
+            <h3 class="text-lg font-black text-text-main tracking-tight">All Categories</h3>
+            <button onclick="toggleMobileCategory()" class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-text-muted hover:text-brand hover:bg-brand-50 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <!-- Content (Dual Column) -->
+        <div class="flex flex-1 overflow-hidden bg-gray-50/30">
+            <!-- Left Column: Main Categories -->
+            <div class="w-[32%] bg-gray-50/80 border-r border-gray-100 overflow-y-auto no-scrollbar">
+                <ul class="flex flex-col py-2" id="mobile-cat-tabs">
+                    <!-- Tab 1 (Active) -->
+                    <li>
+                        <button onclick="switchMobileCategory(0, this)" class="w-full text-left px-4 py-4 text-xs font-bold text-brand bg-white relative transition-colors cat-tab">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand rounded-r-full"></div>
+                            <i class="fa-solid fa-mobile-screen-button block text-lg mb-1"></i>
+                            Phones
+                        </button>
+                    </li>
+                    <!-- Tab 2 -->
+                    <li>
+                        <button onclick="switchMobileCategory(1, this)" class="w-full text-left px-4 py-4 text-xs font-bold text-text-secondary hover:text-brand hover:bg-white transition-colors cat-tab relative">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand rounded-r-full opacity-0"></div>
+                            <i class="fa-solid fa-headphones-simple block text-lg mb-1"></i>
+                            Audio
+                        </button>
+                    </li>
+                    <!-- Tab 3 -->
+                    <li>
+                        <button onclick="switchMobileCategory(2, this)" class="w-full text-left px-4 py-4 text-xs font-bold text-text-secondary hover:text-brand hover:bg-white transition-colors cat-tab relative">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand rounded-r-full opacity-0"></div>
+                            <i class="fa-solid fa-laptop block text-lg mb-1"></i>
+                            Computers
+                        </button>
+                    </li>
+                    <!-- Tab 4 -->
+                    <li>
+                        <button onclick="switchMobileCategory(3, this)" class="w-full text-left px-4 py-4 text-xs font-bold text-text-secondary hover:text-brand hover:bg-white transition-colors cat-tab relative">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand rounded-r-full opacity-0"></div>
+                            <i class="fa-brands fa-apple block text-lg mb-1"></i>
+                            Apple Parts
+                        </button>
+                    </li>
+                    <!-- Tab 5 -->
+                    <li>
+                        <button onclick="switchMobileCategory(4, this)" class="w-full text-left px-4 py-4 text-xs font-bold text-text-secondary hover:text-brand hover:bg-white transition-colors cat-tab relative">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand rounded-r-full opacity-0"></div>
+                            <i class="fa-solid fa-screwdriver-wrench block text-lg mb-1"></i>
+                            Samsung
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right Column: Sub Categories -->
+            <div class="w-[68%] bg-white overflow-y-auto p-4 custom-scrollbar relative" id="mobile-cat-content">
+                
+                <!-- Content 1: Phones (Visible) -->
+                <div class="cat-pane block animate-[fadeIn_0.3s_ease-out]">
+                    <div class="mb-5">
+                        <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=400&auto=format&fit=crop" class="w-full h-24 object-cover rounded-xl shadow-sm mb-3" alt="Phones Promo">
+                        <h4 class="text-sm font-black text-text-main mb-3 flex items-center justify-between border-b border-gray-100 pb-2">
+                            Apple iPhone
+                            <a href="#" class="text-[10px] text-brand font-bold">View All <i class="fa-solid fa-angle-right"></i></a>
+                        </h4>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="#" class="bg-gray-50 rounded-lg p-2 text-center hover:bg-brand-50 hover:text-brand transition-colors">
+                                <span class="text-xs font-bold text-text-main block">iPhone 15 Pro</span>
+                                <span class="text-[9px] text-red-500 font-bold block mt-0.5">New</span>
+                            </a>
+                            <a href="#" class="bg-gray-50 rounded-lg p-2 text-center hover:bg-brand-50 hover:text-brand transition-colors">
+                                <span class="text-xs font-bold text-text-main block">iPhone 15</span>
+                            </a>
+                            <a href="#" class="bg-gray-50 rounded-lg p-2 text-center hover:bg-brand-50 hover:text-brand transition-colors">
+                                <span class="text-xs font-bold text-text-main block">iPhone 14 Pro</span>
+                            </a>
+                            <a href="#" class="bg-gray-50 rounded-lg p-2 text-center hover:bg-brand-50 hover:text-brand transition-colors">
+                                <span class="text-xs font-bold text-text-main block">iPhone 13</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h4 class="text-sm font-black text-text-main mb-3 flex items-center justify-between border-b border-gray-100 pb-2">
+                            Samsung Galaxy
+                        </h4>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="#" class="bg-gray-50 rounded-lg p-2 text-center hover:bg-brand-50 hover:text-brand transition-colors">
+                                <span class="text-xs font-bold text-text-main block">S24 Ultra</span>
+                            </a>
+                            <a href="#" class="bg-gray-50 rounded-lg p-2 text-center hover:bg-brand-50 hover:text-brand transition-colors">
+                                <span class="text-xs font-bold text-text-main block">Z Fold 5</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content 2: Audio (Hidden) -->
+                <div class="cat-pane hidden animate-[fadeIn_0.3s_ease-out]">
+                    <div class="mb-5">
+                        <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=400&auto=format&fit=crop" class="w-full h-24 object-cover rounded-xl shadow-sm mb-3" alt="Audio Promo">
+                        <h4 class="text-sm font-black text-text-main mb-3 border-b border-gray-100 pb-2">Headphones</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">Over-Ear Headphones <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">In-Ear Earbuds <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">Noise Cancelling <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="mb-5">
+                        <h4 class="text-sm font-black text-text-main mb-3 border-b border-gray-100 pb-2">Speakers</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">Portable Bluetooth <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">Home Audio <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Content 3: Computers (Hidden) -->
+                <div class="cat-pane hidden animate-[fadeIn_0.3s_ease-out]">
+                    <div class="mb-5">
+                        <h4 class="text-sm font-black text-text-main mb-3 border-b border-gray-100 pb-2">MacBook</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">MacBook Pro M3 <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">MacBook Air M2 <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="mb-5">
+                        <h4 class="text-sm font-black text-text-main mb-3 border-b border-gray-100 pb-2">iPad</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">iPad Pro 13" (2024) <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">iPad Air 5th Gen <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Content 4: Apple Parts (Hidden) -->
+                <div class="cat-pane hidden animate-[fadeIn_0.3s_ease-out]">
+                    <div class="mb-5">
+                        <div class="bg-brand text-white p-3 rounded-xl mb-4 text-center">
+                            <i class="fa-brands fa-apple text-2xl mb-1"></i>
+                            <div class="text-xs font-black">Genuine Apple Parts</div>
+                        </div>
+                        <h4 class="text-sm font-black text-text-main mb-3 border-b border-gray-100 pb-2">Replacement Screens</h4>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <a href="#" class="bg-gray-50 border border-gray-100 rounded-lg p-2 text-center hover:border-brand transition-colors"><span class="text-[10px] font-bold block">iPhone 14 Pro Max</span></a>
+                            <a href="#" class="bg-gray-50 border border-gray-100 rounded-lg p-2 text-center hover:border-brand transition-colors"><span class="text-[10px] font-bold block">iPhone 13</span></a>
+                        </div>
+                        <h4 class="text-sm font-black text-text-main mb-3 border-b border-gray-100 pb-2">Batteries</h4>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="#" class="bg-gray-50 border border-gray-100 rounded-lg p-2 text-center hover:border-brand transition-colors"><span class="text-[10px] font-bold block">iPhone 12 Series</span></a>
+                            <a href="#" class="bg-gray-50 border border-gray-100 rounded-lg p-2 text-center hover:border-brand transition-colors"><span class="text-[10px] font-bold block">iPhone 11 Series</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content 5: Samsung Parts (Hidden) -->
+                <div class="cat-pane hidden animate-[fadeIn_0.3s_ease-out]">
+                    <div class="mb-5">
+                        <h4 class="text-sm font-black text-text-main mb-3 border-b border-gray-100 pb-2">Galaxy S Series Parts</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">S24 Ultra Screen <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                            <li><a href="#" class="text-xs font-bold text-text-secondary hover:text-brand flex justify-between">S23 Battery <i class="fa-solid fa-angle-right text-[10px] text-gray-300"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>

@@ -177,8 +177,9 @@ window.renderCartDrawer = function() {
                 <button onclick="toggleCart()" class="mt-4 text-brand font-bold hover:underline">Continue Shopping</button>
             </div>
         `;
-        document.getElementById('drawer-cart-subtotal').textContent = '$0.00';
-        updateCartBadges();
+    // 更新购物车总数和总价
+    updateCartBadges();
+    document.getElementById('drawer-cart-subtotal').textContent = `$${CartManager.getSubtotal().toFixed(2)}`;
         return;
     }
 
@@ -251,6 +252,69 @@ window.addEventListener('cartUpdated', () => {
     if (typeof window.renderCartPage === 'function') window.renderCartPage();
     if (typeof window.renderCheckoutPage === 'function') window.renderCheckoutPage();
 });
+
+// 移动端超级菜单 (Bottom Sheet) 逻辑
+window.toggleMobileCategory = function() {
+    const drawer = document.getElementById('mobile-category-drawer');
+    const overlay = document.getElementById('mobile-category-overlay');
+    
+    if (!drawer || !overlay) {
+        console.warn('Mobile category elements not found');
+        return;
+    }
+    
+    if (drawer.classList.contains('translate-y-full')) {
+        // Open
+        overlay.classList.remove('hidden');
+        // Force reflow
+        void overlay.offsetWidth;
+        overlay.classList.remove('opacity-0');
+        drawer.classList.remove('translate-y-full');
+        document.body.style.overflow = 'hidden';
+    } else {
+        // Close
+        overlay.classList.add('opacity-0');
+        drawer.classList.add('translate-y-full');
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 300);
+        document.body.style.overflow = '';
+    }
+};
+
+window.switchMobileCategory = function(index, tabElement) {
+    // 1. Reset all tabs
+    const allTabs = document.querySelectorAll('.cat-tab');
+    allTabs.forEach(tab => {
+        tab.classList.remove('text-brand', 'bg-white');
+        tab.classList.add('text-text-secondary', 'hover:bg-white');
+        const indicator = tab.querySelector('div');
+        if (indicator) indicator.classList.add('opacity-0');
+    });
+    
+    // 2. Set active tab
+    tabElement.classList.remove('text-text-secondary', 'hover:bg-white');
+    tabElement.classList.add('text-brand', 'bg-white');
+    const activeIndicator = tabElement.querySelector('div');
+    if (activeIndicator) activeIndicator.classList.remove('opacity-0');
+    
+    // 3. Hide all panes
+    const allPanes = document.querySelectorAll('.cat-pane');
+    allPanes.forEach(pane => {
+        pane.classList.remove('block');
+        pane.classList.add('hidden');
+    });
+    
+    // 4. Show target pane
+    if (allPanes[index]) {
+        allPanes[index].classList.remove('hidden');
+        allPanes[index].classList.add('block');
+    }
+    
+    // Scroll right content to top
+    const contentArea = document.getElementById('mobile-cat-content');
+    if (contentArea) contentArea.scrollTop = 0;
+};
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
