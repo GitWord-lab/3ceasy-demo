@@ -53,10 +53,76 @@
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
+            appearance: none;
             margin: 0;
         }
         input[type="number"] {
             -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        /* Product detail tab navigation */
+        .detail-tab {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .detail-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 50%;
+            height: 3px;
+            background: #ff6700;
+            border-radius: 3px 3px 0 0;
+            transition: transform 0.3s ease;
+        }
+        .detail-tab.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* FAQ accordion */
+        .faq-item {
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+        .faq-chevron {
+            transition: transform 0.35s ease;
+        }
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Spec table */
+        .spec-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .spec-table td:first-child {
+            font-weight: 700;
+            color: #6b7280;
+            width: 35%;
+            background: #f9fafb;
+        }
+        .spec-table td:last-child {
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        /* Feature image hover */
+        .feature-block:hover .feature-img {
+            transform: scale(1.03);
+        }
+        .feature-img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
 </head>
@@ -196,6 +262,253 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ======================================== -->
+            <!-- Product Detail Tabs: Description | Specs | FAQ -->
+            <!-- ======================================== -->
+            <div class="mt-8 sm:mt-12">
+                <!-- Tab Navigation -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="flex border-b border-gray-100 overflow-x-auto no-scrollbar">
+                        <button class="detail-tab active flex-1 sm:flex-none min-w-[100px] px-4 sm:px-8 py-4 sm:py-5 text-sm sm:text-base font-bold text-brand whitespace-nowrap transition-colors"
+                                data-tab="description" onclick="switchDetailTab('description')">
+                            <i class="fa-solid fa-align-left mr-2 hidden sm:inline-block"></i> Description
+                        </button>
+                        <button class="detail-tab flex-1 sm:flex-none min-w-[100px] px-4 sm:px-8 py-4 sm:py-5 text-sm sm:text-base font-bold text-text-muted hover:text-text-secondary whitespace-nowrap transition-colors"
+                                data-tab="specs" onclick="switchDetailTab('specs')">
+                            <i class="fa-solid fa-list-check mr-2 hidden sm:inline-block"></i> Specifications
+                        </button>
+                        <button class="detail-tab flex-1 sm:flex-none min-w-[100px] px-4 sm:px-8 py-4 sm:py-5 text-sm sm:text-base font-bold text-text-muted hover:text-text-secondary whitespace-nowrap transition-colors"
+                                data-tab="faq" onclick="switchDetailTab('faq')">
+                            <i class="fa-solid fa-circle-question mr-2 hidden sm:inline-block"></i> FAQ
+                        </button>
+                    </div>
+
+                    <!-- ======== Tab 1: Product Description ======== -->
+                    <div id="tab-description" class="p-0">
+                        <!-- Feature Block 1: Display -->
+                        <div class="feature-block overflow-hidden">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                <div class="flex flex-col justify-center p-6 sm:p-10 lg:p-14 order-2 md:order-1">
+                                    <span class="text-brand font-bold text-xs uppercase tracking-[0.2em] mb-2 sm:mb-3">Stunning Display</span>
+                                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-black text-text-main mb-3 sm:mb-4">Super Retina XDR Display</h3>
+                                    <p class="text-text-secondary text-sm sm:text-base leading-relaxed mb-4">
+                                        Immerse yourself in a breathtaking 6.7-inch OLED display with ProMotion technology. With a 120Hz adaptive refresh rate, every scroll, swipe, and animation feels incredibly fluid and responsive.
+                                    </p>
+                                    <ul class="space-y-2 text-text-secondary text-sm">
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> 6.7" OLED, 2796 x 1290 resolution at 460 ppi</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> ProMotion 120Hz adaptive refresh rate</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> HDR10+ & Dolby Vision certified</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> Ceramic Shield front, tougher than any smartphone glass</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 flex items-center justify-center min-h-[280px] sm:min-h-[380px] order-1 md:order-2 overflow-hidden">
+                                    <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Smartphone%20with%20stunning%20OLED%20display%20showing%20vibrant%20colors%2C%20product%20photography%20on%20white%20background%2C%20minimalist%20style%2C%20professional%20lighting&image_size=square_hd" 
+                                         alt="Smartphone Display" class="feature-img w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Block 2: Camera -->
+                        <div class="feature-block overflow-hidden border-t border-gray-100">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                <div class="bg-gray-50 flex items-center justify-center min-h-[280px] sm:min-h-[380px] overflow-hidden">
+                                    <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Professional%20smartphone%20camera%20lens%20close-up%20with%20multiple%20lenses%2C%20product%20photography%2C%20dark%20background%2C%20dramatic%20lighting%2C%20premium%20feel&image_size=square_hd" 
+                                         alt="Camera System" class="feature-img w-full h-full object-cover">
+                                </div>
+                                <div class="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
+                                    <span class="text-brand font-bold text-xs uppercase tracking-[0.2em] mb-2 sm:mb-3">Pro Camera</span>
+                                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-black text-text-main mb-3 sm:mb-4">48MP Triple Camera System</h3>
+                                    <p class="text-text-secondary text-sm sm:text-base leading-relaxed mb-4">
+                                        Capture every moment in breathtaking detail with the advanced triple-camera system. From ultra-wide landscapes to portrait masterpieces, professional-grade photography is always at your fingertips.
+                                    </p>
+                                    <ul class="space-y-2 text-text-secondary text-sm">
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> 48MP Main (f/1.78) with sensor-shift OIS</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> 12MP Ultra Wide (f/2.2) with 120° FOV</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> 12MP Telephoto (f/2.8) with 5x optical zoom</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> 4K Dolby Vision video recording up to 60 fps</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Block 3: Performance -->
+                        <div class="feature-block overflow-hidden border-t border-gray-100">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                <div class="flex flex-col justify-center p-6 sm:p-10 lg:p-14 order-2 md:order-1">
+                                    <span class="text-brand font-bold text-xs uppercase tracking-[0.2em] mb-2 sm:mb-3">Performance</span>
+                                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-black text-text-main mb-3 sm:mb-4">A18 Pro Chip</h3>
+                                    <p class="text-text-secondary text-sm sm:text-base leading-relaxed mb-4">
+                                        Powered by the revolutionary A18 Pro chip built on 3-nanometer technology. Experience lightning-fast performance, console-level gaming, and incredible energy efficiency that lasts all day.
+                                    </p>
+                                    <ul class="space-y-2 text-text-secondary text-sm">
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> 3nm architecture with 6-core CPU, 6-core GPU</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> 16-core Neural Engine for advanced AI tasks</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> Up to 29 hours video playback battery life</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i> 8GB RAM with intelligent memory management</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 flex items-center justify-center min-h-[280px] sm:min-h-[380px] order-1 md:order-2 overflow-hidden">
+                                    <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Futuristic%20computer%20chip%20or%20processor%20on%20a%20circuit%20board%2C%20blue%20and%20gold%20accents%2C%20technology%20close-up%2C%20clean%20modern%20aesthetic&image_size=square_hd" 
+                                         alt="Chip Performance" class="feature-img w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ======== Tab 2: Specifications ======== -->
+                    <div id="tab-specs" class="hidden">
+                        <div class="p-6 sm:p-10">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+                                <!-- Left Column Specs -->
+                                <div class="space-y-6">
+                                    <!-- Display Specs -->
+                                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+                                        <h4 class="font-black text-text-main text-sm px-5 py-4 bg-white border-b border-gray-100 flex items-center gap-2">
+                                            <i class="fa-solid fa-mobile-screen text-brand"></i> Display
+                                        </h4>
+                                        <table class="spec-table w-full">
+                                            <tr><td>Size</td><td>6.7 inches</td></tr>
+                                            <tr><td>Type</td><td>OLED Super Retina XDR</td></tr>
+                                            <tr><td>Resolution</td><td>2796 x 1290 @ 460 ppi</td></tr>
+                                            <tr><td>Refresh Rate</td><td>120Hz ProMotion</td></tr>
+                                            <tr><td>Protection</td><td>Ceramic Shield</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <!-- Camera Specs -->
+                                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+                                        <h4 class="font-black text-text-main text-sm px-5 py-4 bg-white border-b border-gray-100 flex items-center gap-2">
+                                            <i class="fa-solid fa-camera text-brand"></i> Camera
+                                        </h4>
+                                        <table class="spec-table w-full">
+                                            <tr><td>Main</td><td>48MP, f/1.78, OIS</td></tr>
+                                            <tr><td>Ultra Wide</td><td>12MP, f/2.2, 120°</td></tr>
+                                            <tr><td>Telephoto</td><td>12MP, f/2.8, 5x zoom</td></tr>
+                                            <tr><td>Front</td><td>12MP, f/1.9, AutoFocus</td></tr>
+                                            <tr><td>Video</td><td>4K 60fps Dolby Vision</td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Right Column Specs -->
+                                <div class="space-y-6">
+                                    <!-- Performance Specs -->
+                                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+                                        <h4 class="font-black text-text-main text-sm px-5 py-4 bg-white border-b border-gray-100 flex items-center gap-2">
+                                            <i class="fa-solid fa-microchip text-brand"></i> Performance
+                                        </h4>
+                                        <table class="spec-table w-full">
+                                            <tr><td>Processor</td><td>A18 Pro (3nm)</td></tr>
+                                            <tr><td>CPU</td><td>6-core</td></tr>
+                                            <tr><td>GPU</td><td>6-core</td></tr>
+                                            <tr><td>Neural Engine</td><td>16-core</td></tr>
+                                            <tr><td>RAM</td><td>8GB</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <!-- Battery & Dimensions Specs -->
+                                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+                                        <h4 class="font-black text-text-main text-sm px-5 py-4 bg-white border-b border-gray-100 flex items-center gap-2">
+                                            <i class="fa-solid fa-battery-full text-brand"></i> Battery & Dimensions
+                                        </h4>
+                                        <table class="spec-table w-full">
+                                            <tr><td>Battery Life</td><td>Up to 29 hrs video</td></tr>
+                                            <tr><td>Charging</td><td>USB-C, 35W fast charge</td></tr>
+                                            <tr><td>Wireless</td><td>MagSafe 25W</td></tr>
+                                            <tr><td>Weight</td><td>201g</td></tr>
+                                            <tr><td>Dimensions</td><td>159.9 x 76.7 x 8.3 mm</td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ======== Tab 3: FAQ ======== -->
+                    <div id="tab-faq" class="hidden">
+                        <div class="p-6 sm:p-10 max-w-3xl mx-auto">
+                            <!-- FAQ Item 1 -->
+                            <div class="faq-item" onclick="toggleFaq(this)">
+                                <button type="button" class="w-full flex items-center justify-between py-5 text-left group">
+                                    <span class="font-bold text-text-main text-sm sm:text-base pr-4 group-hover:text-brand transition-colors">What is the warranty period for this smartphone?</span>
+                                    <i class="fa-solid fa-chevron-down faq-chevron text-text-muted group-hover:text-brand transition-colors flex-shrink-0"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <div class="pb-5 text-text-secondary text-sm sm:text-base leading-relaxed">
+                                        This smartphone comes with a <strong class="text-text-main">1-year limited warranty</strong> from the date of purchase, covering manufacturing defects. We also offer extended warranty plans up to 3 years, which include accidental damage protection. Visit our Support page or contact customer service for details on extended coverage options.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 2 -->
+                            <div class="faq-item" onclick="toggleFaq(this)">
+                                <button type="button" class="w-full flex items-center justify-between py-5 text-left group">
+                                    <span class="font-bold text-text-main text-sm sm:text-base pr-4 group-hover:text-brand transition-colors">Does this phone support 5G connectivity?</span>
+                                    <i class="fa-solid fa-chevron-down faq-chevron text-text-muted group-hover:text-brand transition-colors flex-shrink-0"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <div class="pb-5 text-text-secondary text-sm sm:text-base leading-relaxed">
+                                        Yes, it supports <strong class="text-text-main">5G (sub-6 GHz and mmWave)</strong> across all major carriers worldwide. It also supports Wi-Fi 7, Bluetooth 5.4, and Ultra Wideband (UWB) for seamless connectivity and precise device tracking.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 3 -->
+                            <div class="faq-item" onclick="toggleFaq(this)">
+                                <button type="button" class="w-full flex items-center justify-between py-5 text-left group">
+                                    <span class="font-bold text-text-main text-sm sm:text-base pr-4 group-hover:text-brand transition-colors">What is your return and refund policy?</span>
+                                    <i class="fa-solid fa-chevron-down faq-chevron text-text-muted group-hover:text-brand transition-colors flex-shrink-0"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <div class="pb-5 text-text-secondary text-sm sm:text-base leading-relaxed">
+                                        We offer a <strong class="text-text-main">30-day hassle-free return policy</strong>. Products must be returned in their original condition with all accessories and packaging. Refunds are processed within 5-7 business days after we receive the returned item. For DPA (dead-on-arrival) units, we provide immediate replacement at no extra cost.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 4 -->
+                            <div class="faq-item" onclick="toggleFaq(this)">
+                                <button type="button" class="w-full flex items-center justify-between py-5 text-left group">
+                                    <span class="font-bold text-text-main text-sm sm:text-base pr-4 group-hover:text-brand transition-colors">Is the storage expandable via microSD?</span>
+                                    <i class="fa-solid fa-chevron-down faq-chevron text-text-muted group-hover:text-brand transition-colors flex-shrink-0"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <div class="pb-5 text-text-secondary text-sm sm:text-base leading-relaxed">
+                                        No, this model does not support microSD card expansion. It is available in <strong class="text-text-main">128GB, 256GB, and 512GB</strong> internal storage options. We recommend choosing a storage tier that fits your needs. You can also use cloud storage solutions like iCloud (up to 2TB) for additional space.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 5 -->
+                            <div class="faq-item" onclick="toggleFaq(this)">
+                                <button type="button" class="w-full flex items-center justify-between py-5 text-left group">
+                                    <span class="font-bold text-text-main text-sm sm:text-base pr-4 group-hover:text-brand transition-colors">Do you offer bulk or B2B pricing?</span>
+                                    <i class="fa-solid fa-chevron-down faq-chevron text-text-muted group-hover:text-brand transition-colors flex-shrink-0"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <div class="pb-5 text-text-secondary text-sm sm:text-base leading-relaxed">
+                                        Absolutely! We have dedicated <strong class="text-text-main">B2B and bulk purchase programs</strong> with tiered discounts starting from 10 units. Visit our <a href="b2b.html" class="text-brand font-bold hover:underline">B2B Wholesale page</a> or contact our enterprise sales team at wholesale@3ceasy.com for custom quotes and volume pricing.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 6 -->
+                            <div class="faq-item" onclick="toggleFaq(this)">
+                                <button type="button" class="w-full flex items-center justify-between py-5 text-left group">
+                                    <span class="font-bold text-text-main text-sm sm:text-base pr-4 group-hover:text-brand transition-colors">What's included in the box?</span>
+                                    <i class="fa-solid fa-chevron-down faq-chevron text-text-muted group-hover:text-brand transition-colors flex-shrink-0"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <div class="pb-5 text-text-secondary text-sm sm:text-base leading-relaxed">
+                                        The box includes: <strong class="text-text-main">Smartphone</strong>, USB-C to USB-C charging cable (1m), SIM ejector tool, quick start guide, and warranty card. Please note that the <strong class="text-text-main">power adapter is sold separately</strong> as part of our environmental commitment. Any 20W+ USB-C PD charger will work perfectly.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -205,6 +518,43 @@
     <script src="../assets/js/include.js"></script>
     <script src="../assets/js/common.js"></script>
     <script>
+        // ===== Tab Switching =====
+        function switchDetailTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.detail-tab').forEach(tab => {
+                tab.classList.remove('active', 'text-brand');
+                tab.classList.add('text-text-muted');
+            });
+            const activeBtn = document.querySelector(`.detail-tab[data-tab="${tabName}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'text-brand');
+                activeBtn.classList.remove('text-text-muted');
+            }
+
+            // Switch panels
+            ['description', 'specs', 'faq'].forEach(name => {
+                const panel = document.getElementById('tab-' + name);
+                if (panel) {
+                    panel.classList.toggle('hidden', name !== tabName);
+                }
+            });
+        }
+
+        // ===== FAQ Accordion =====
+        function toggleFaq(item) {
+            const isOpen = item.classList.contains('open');
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                if (openItem !== item) openItem.classList.remove('open');
+            });
+            // Toggle current
+            if (isOpen) {
+                item.classList.remove('open');
+            } else {
+                item.classList.add('open');
+            }
+        }
+
         // Custom add to cart for detail page
         window.addDetailPageToCart = function(btn) {
             const id = 'p1';

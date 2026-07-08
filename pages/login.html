@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3C Easy Login - Retail and Purchaser user login portal. Enjoy exclusive member benefits and wholesale discounts.">
+    <meta name="keywords" content="3C Easy Login, Retail Login, Purchaser Login, B2B Login, Electronics Member">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="3C Easy | User Login - Retail & Purchaser">
+    <meta property="og:description" content="Sign in to 3C Easy for retail discounts or wholesale B2B pricing. New users get a welcome gift upon registration.">
+    <title>3C Easy | User Login - Retail & Purchaser</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700',
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',
+                            secondary: '#4b5563',
+                            muted: '#9ca3af',
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Fade animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Scroll-triggered reveal */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.from-bottom { transform: translateY(60px); }
+        .reveal.from-left { transform: translateX(-60px); }
+        .reveal.from-right { transform: translateX(60px); }
+        .reveal.scale-in { transform: scale(0.85); }
+        .reveal.visible {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+
+        /* Login card shadow */
+        .login-card {
+            box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Tab switch animation */
+        .login-tab {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .login-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 3px;
+            background: #ff6700;
+            border-radius: 3px 3px 0 0;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .login-tab.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* Input focus effect */
+        .custom-input {
+            transition: all 0.3s ease;
+        }
+        .custom-input:focus {
+            border-color: #ff6700;
+            box-shadow: 0 0 0 4px rgba(255, 103, 0, 0.08);
+        }
+
+        /* Promo card hover */
+        .promo-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+        .promo-card:hover {
+            transform: translateY(-6px);
+            border-color: #e2e8f0;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Password toggle */
+        .password-toggle {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .password-toggle:hover { color: #ff6700; }
+
+        /* Social login button */
+        .social-btn {
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Purchaser button - explicit dark bg */
+        .btn-purchaser {
+            background-color: #0a1628;
+            color: #ffffff;
+        }
+        .btn-purchaser:hover {
+            background-color: #132142;
+        }
+
+        /* Toast animation */
+        .toast-enter {
+            animation: fadeInRight 0.4s ease-out;
+        }
+        .toast-leave {
+            animation: fadeInLeft 0.3s ease-in reverse;
+        }
+
+        /* Mobile */
+        @media (max-width: 639px) {
+            .reveal.from-bottom { transform: translateY(30px); }
+            .reveal.from-left { transform: translateX(-30px); }
+            .reveal.from-right { transform: translateX(30px); }
+            .reveal.scale-in { transform: scale(0.92); }
+            .promo-card:hover { transform: none; }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased bg-gray-50" data-page="login">
+
+    <!-- Store Header -->
+    <div data-include="../components/header.html"></div>
+
+    <main>
+        <!-- ======================================== -->
+        <!-- Hero: Login Form + Promotions -->
+        <!-- ======================================== -->
+        <section class="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[680px] flex items-center bg-white overflow-hidden">
+            <!-- Background decoration -->
+            <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+                <div class="absolute top-0 right-0 w-1/2 h-full opacity-[0.03]">
+                    <div class="absolute top-20 right-20 w-96 h-96 bg-brand rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-20 right-60 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
+                </div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+            </div>
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14 lg:py-20 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-start lg:items-stretch max-w-6xl mx-auto">
+                    
+                    <!-- ===== Left: Login / Register Card ===== -->
+                    <div class="w-full max-w-md mx-auto lg:mx-0 lg:h-full">
+                        <div class="bg-white rounded-3xl login-card p-5 sm:p-8 lg:p-10 flex flex-col lg:h-full">
+                            <!-- Mode Toggle: Login / Register -->
+                            <div class="flex bg-gray-100 rounded-2xl p-1.5 mb-7">
+                                <button class="mode-toggle-btn active flex-1 py-2.5 text-center font-bold text-sm rounded-xl transition-all duration-300 bg-white text-brand shadow-sm" 
+                                        data-mode="login" onclick="switchMode('login')">
+                                    <i class="fa-solid fa-right-to-bracket mr-1.5"></i> Login
+                                </button>
+                                <button class="mode-toggle-btn flex-1 py-2.5 text-center font-bold text-sm rounded-xl transition-all duration-300 text-text-muted" 
+                                        data-mode="register" onclick="switchMode('register')">
+                                    <i class="fa-solid fa-user-plus mr-1.5"></i> Register
+                                </button>
+                            </div>
+
+                            <!-- User Type Tabs (shared across modes) -->
+                            <div class="flex border-b-2 border-gray-100 mb-6" id="user-type-tabs">
+                                <button class="login-tab active flex-1 pb-4 text-center font-bold text-base sm:text-lg transition-colors text-brand" 
+                                        data-tab="retail" onclick="switchUserType('retail')">
+                                    <i class="fa-solid fa-user mr-2"></i> Retail
+                                </button>
+                                <button class="login-tab flex-1 pb-4 text-center font-bold text-base sm:text-lg transition-colors text-text-muted hover:text-text-secondary" 
+                                        data-tab="purchaser" onclick="switchUserType('purchaser')">
+                                    <i class="fa-solid fa-building mr-2"></i> Purchaser
+                                </button>
+                            </div>
+
+                            <!-- ==================== Login Mode ==================== -->
+                            <div id="login-panels" class="lg:flex-1 flex flex-col">
+                                <!-- Retail Login Form -->
+                                <form id="retail-login-form" class="space-y-5" onsubmit="handleLogin(event, 'retail')">
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-2">Email Address</label>
+                                        <div class="relative">
+                                            <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="email" required placeholder="Enter your email" 
+                                                   class="custom-input w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-2">Password</label>
+                                        <div class="relative">
+                                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="password" required placeholder="Enter your password" 
+                                                   class="custom-input w-full pl-11 pr-12 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
+                                                   id="retail-login-password">
+                                            <button type="button" class="password-toggle absolute right-4 top-1/2 -translate-y-1/2 text-text-muted" 
+                                                    onclick="togglePassword('retail-login-password', this)">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between text-sm">
+                                        <label class="flex items-center gap-2 cursor-pointer group">
+                                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand/30">
+                                            <span class="text-text-muted group-hover:text-text-secondary transition-colors">Remember me</span>
+                                        </label>
+                                        <a href="#" class="text-brand font-semibold hover:text-brand-dark transition">Forgot password?</a>
+                                    </div>
+                                    <button type="submit" 
+                                            class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-base">
+                                        Sign In
+                                    </button>
+                                </form>
+
+                                <!-- Purchaser Login Form -->
+                                <form id="purchaser-login-form" class="space-y-5 hidden" onsubmit="handleLogin(event, 'purchaser')">
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-2">Business Email</label>
+                                        <div class="relative">
+                                            <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="email" required placeholder="Enter business email" 
+                                                   class="custom-input w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-2">Password</label>
+                                        <div class="relative">
+                                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="password" required placeholder="Enter your password" 
+                                                   class="custom-input w-full pl-11 pr-12 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
+                                                   id="purchaser-login-password">
+                                            <button type="button" class="password-toggle absolute right-4 top-1/2 -translate-y-1/2 text-text-muted" 
+                                                    onclick="togglePassword('purchaser-login-password', this)">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between text-sm">
+                                        <label class="flex items-center gap-2 cursor-pointer group">
+                                            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand/30">
+                                            <span class="text-text-muted group-hover:text-text-secondary transition-colors">Remember me</span>
+                                        </label>
+                                        <a href="#" class="text-brand font-semibold hover:text-brand-dark transition">Forgot password?</a>
+                                    </div>
+                                    <button type="submit" 
+                                            class="w-full btn-purchaser font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg text-base"
+                                            style="background-color: #0a1628; color: #fff; box-shadow: 0 4px 15px rgba(10, 22, 40, 0.3);">
+                                        Purchaser Sign In
+                                    </button>
+                                </form>
+
+                                <!-- Divider -->
+                                <div class="relative my-6">
+                                    <div class="absolute inset-0 flex items-center">
+                                        <div class="w-full border-t border-gray-200"></div>
+                                    </div>
+                                    <div class="relative flex justify-center text-sm">
+                                        <span class="px-4 bg-white text-text-muted font-medium">Or sign in with</span>
+                                    </div>
+                                </div>
+
+                                <!-- Social Login -->
+                                <div class="grid grid-cols-3 gap-1.5 sm:gap-3">
+                                    <button class="social-btn flex items-center justify-center gap-1 sm:gap-2 py-2.5 sm:py-3 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-text-secondary font-medium text-xs sm:text-sm">
+                                        <i class="fa-brands fa-google text-red-500"></i> Google
+                                    </button>
+                                    <button class="social-btn flex items-center justify-center gap-1 sm:gap-2 py-2.5 sm:py-3 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-text-secondary font-medium text-xs sm:text-sm">
+                                        <i class="fa-brands fa-apple text-gray-800"></i> Apple
+                                    </button>
+                                    <button class="social-btn flex items-center justify-center gap-1 sm:gap-2 py-2.5 sm:py-3 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-text-secondary font-medium text-xs sm:text-sm">
+                                        <i class="fa-brands fa-facebook text-blue-600"></i> Facebook
+                                    </button>
+                                </div>
+
+                                <!-- Register prompt -->
+                                <p class="text-center text-sm text-text-muted mt-6">
+                                    Don't have an account?
+                                    <button type="button" onclick="switchMode('register')" class="text-brand font-bold hover:text-brand-dark transition ml-1">
+                                        Sign Up <i class="fa-solid fa-arrow-right text-xs ml-0.5"></i>
+                                    </button>
+                                </p>
+                            </div>
+
+                            <!-- ==================== Register Mode ==================== -->
+                            <div id="register-panels" class="hidden lg:flex-1 flex flex-col">
+                                <!-- Retail Register Form -->
+                                <form id="retail-register-form" class="space-y-4" onsubmit="handleRegister(event, 'retail')">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-bold text-text-main mb-1.5">Full Name *</label>
+                                            <input type="text" required placeholder="Enter your name" 
+                                                   class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-bold text-text-main mb-1.5">Phone</label>
+                                            <input type="tel" placeholder="Optional" 
+                                                   class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-1.5">Email Address *</label>
+                                        <div class="relative">
+                                            <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="email" required placeholder="Enter your email" 
+                                                   class="custom-input w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-1.5">Password *</label>
+                                        <div class="relative">
+                                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="password" required placeholder="At least 8 characters" minlength="8" 
+                                                   class="custom-input w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
+                                                   id="retail-register-password">
+                                            <button type="button" class="password-toggle absolute right-4 top-1/2 -translate-y-1/2 text-text-muted" 
+                                                    onclick="togglePassword('retail-register-password', this)">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-1.5">Confirm Password *</label>
+                                        <div class="relative">
+                                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="password" required placeholder="Re-enter your password" minlength="8" 
+                                                   class="custom-input w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
+                                                   id="retail-register-confirm">
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-2 text-sm">
+                                        <input type="checkbox" required class="mt-1 w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand/30">
+                                        <span class="text-text-muted">I agree to the <a href="#" class="text-brand font-semibold hover:underline">Terms of Service</a> and <a href="#" class="text-brand font-semibold hover:underline">Privacy Policy</a></span>
+                                    </div>
+                                    <button type="submit" 
+                                            class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-base">
+                                        <i class="fa-solid fa-user-plus mr-2"></i> Create Retail Account
+                                    </button>
+                                </form>
+
+                                <!-- Purchaser Register Form -->
+                                <form id="purchaser-register-form" class="space-y-4 hidden" onsubmit="handleRegister(event, 'purchaser')">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-bold text-text-main mb-1.5">Contact Name *</label>
+                                            <input type="text" required placeholder="Enter contact name" 
+                                                   class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-bold text-text-main mb-1.5">Phone</label>
+                                            <input type="tel" placeholder="Optional" 
+                                                   class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-1.5">Company Name *</label>
+                                        <input type="text" required placeholder="Enter company name" 
+                                               class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-1.5">Business Email *</label>
+                                        <div class="relative">
+                                            <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="email" required placeholder="Enter business email" 
+                                                   class="custom-input w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-1.5">Password *</label>
+                                        <div class="relative">
+                                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="password" required placeholder="At least 8 characters" minlength="8" 
+                                                   class="custom-input w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
+                                                   id="purchaser-register-password">
+                                            <button type="button" class="password-toggle absolute right-4 top-1/2 -translate-y-1/2 text-text-muted" 
+                                                    onclick="togglePassword('purchaser-register-password', this)">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-1.5">Confirm Password *</label>
+                                        <div class="relative">
+                                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
+                                            <input type="password" required placeholder="Re-enter your password" minlength="8" 
+                                                   class="custom-input w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
+                                                   id="purchaser-register-confirm">
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-2 text-sm">
+                                        <input type="checkbox" required class="mt-1 w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand/30">
+                                        <span class="text-text-muted">I agree to the <a href="#" class="text-brand font-semibold hover:underline">Terms of Service</a> and <a href="#" class="text-brand font-semibold hover:underline">Privacy Policy</a></span>
+                                    </div>
+                                    <button type="submit" 
+                                            class="w-full font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg text-base"
+                                            style="background-color: #0a1628; color: #fff; box-shadow: 0 4px 15px rgba(10, 22, 40, 0.3);">
+                                        <i class="fa-solid fa-building-circle-check mr-2"></i> Create Purchaser Account
+                                    </button>
+                                </form>
+
+                                <!-- Login prompt -->
+                                <p class="text-center text-sm text-text-muted mt-6">
+                                    Already have an account?
+                                    <button type="button" onclick="switchMode('login')" class="text-brand font-bold hover:text-brand-dark transition ml-1">
+                                        Sign In <i class="fa-solid fa-arrow-right text-xs ml-0.5"></i>
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== Right: Promotions Panel ===== -->
+                    <div class="w-full max-w-md mx-auto lg:mx-0 lg:h-full">
+                        <!-- Main Promo Banner -->
+                        <div class="bg-gradient-to-br from-brand to-brand-dark rounded-3xl p-5 sm:p-8 text-white relative overflow-hidden shadow-xl shadow-brand/20 mb-5 sm:mb-6">
+                            <!-- Decoration -->
+                            <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3" aria-hidden="true"></div>
+                            <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/3" aria-hidden="true"></div>
+                            
+                            <div class="relative z-10">
+                                <div class="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1.5 text-xs font-bold mb-3 sm:mb-4">
+                                    <i class="fa-solid fa-fire mr-2 animate-pulse"></i> Limited Time Offer
+                                </div>
+                                <h2 class="text-xl sm:text-2xl lg:text-3xl font-black mb-2 sm:mb-3 leading-tight">
+                                    New User Sign-Up<br>Get <span class="text-yellow-300">$10 Coupon</span>
+                                </h2>
+                                <p class="text-white/80 text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed">
+                                    Valid on first order over $50. Store-wide, all categories. Exclusive for new members — claim now!
+                                </p>
+                                <div class="flex items-center gap-2 sm:gap-4 mb-4">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl px-2 sm:px-4 py-2 text-center flex-1 sm:flex-none">
+                                        <div class="text-xl sm:text-2xl font-black" id="countdown-days">07</div>
+                                        <div class="text-[10px] text-white/70">Days</div>
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl px-2 sm:px-4 py-2 text-center flex-1 sm:flex-none">
+                                        <div class="text-xl sm:text-2xl font-black" id="countdown-hours">12</div>
+                                        <div class="text-[10px] text-white/70">Hrs</div>
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl px-2 sm:px-4 py-2 text-center flex-1 sm:flex-none">
+                                        <div class="text-xl sm:text-2xl font-black" id="countdown-mins">45</div>
+                                        <div class="text-[10px] text-white/70">Min</div>
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl px-2 sm:px-4 py-2 text-center flex-1 sm:flex-none">
+                                        <div class="text-xl sm:text-2xl font-black" id="countdown-secs">30</div>
+                                        <div class="text-[10px] text-white/70">Sec</div>
+                                    </div>
+                                </div>
+                                <button onclick="switchMode('register')" 
+                                   class="inline-flex items-center justify-center w-full sm:w-auto bg-white text-brand font-bold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full hover:bg-yellow-50 transition-all duration-300 active:scale-95 hover:-translate-y-1 shadow-lg text-sm sm:text-base gap-2">
+                                    Sign Up & Claim <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sub Promo Cards -->
+                        <div class="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
+                            <div class="promo-card bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-sm">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-2 sm:mb-3">
+                                    <i class="fa-solid fa-truck-fast text-blue-500 text-sm sm:text-base"></i>
+                                </div>
+                                <h4 class="font-bold text-text-main text-xs sm:text-sm mb-1">Free First Shipping</h4>
+                                <p class="text-text-muted text-[11px] sm:text-xs">Enjoy free global shipping on your very first order</p>
+                            </div>
+                            <div class="promo-card bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-sm">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-green-50 flex items-center justify-center mb-2 sm:mb-3">
+                                    <i class="fa-solid fa-tags text-green-500 text-sm sm:text-base"></i>
+                                </div>
+                                <h4 class="font-bold text-text-main text-xs sm:text-sm mb-1">Member Discounts</h4>
+                                <p class="text-text-muted text-[11px] sm:text-xs">Unlock member pricing and save up to 30%</p>
+                            </div>
+                            <div class="promo-card bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-sm">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-purple-50 flex items-center justify-center mb-2 sm:mb-3">
+                                    <i class="fa-solid fa-gift text-purple-500 text-sm sm:text-base"></i>
+                                </div>
+                                <h4 class="font-bold text-text-main text-xs sm:text-sm mb-1">Double Points</h4>
+                                <p class="text-text-muted text-[11px] sm:text-xs">Earn 2x reward points on all purchases in your first month</p>
+                            </div>
+                            <div class="promo-card bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-sm">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-50 flex items-center justify-center mb-2 sm:mb-3">
+                                    <i class="fa-solid fa-headset text-amber-500 text-sm sm:text-base"></i>
+                                </div>
+                                <h4 class="font-bold text-text-main text-xs sm:text-sm mb-1">Priority Support</h4>
+                                <p class="text-text-muted text-[11px] sm:text-xs">Registered users get priority customer service and after-sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom transition -->
+            <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 to-transparent"></div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Promotions Showcase Section -->
+        <!-- ======================================== -->
+        <section class="py-10 sm:py-16 md:py-20 bg-gray-50 relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center mb-8 sm:mb-14 reveal from-bottom">
+                    <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 sm:mb-3 block">Limited Offers</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-3 sm:mb-4">
+                        Join Now for <span class="text-brand">Exclusive Benefits</span>
+                    </h2>
+                    <p class="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
+                        Whether you're an individual consumer or a business buyer, we have exclusive deals for you. Limited-time offers — don't miss out!
+                    </p>
+                </div>
+
+                <!-- Three Promo Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
+                    <!-- Card 1: Retail Exclusive -->
+                    <div class="reveal from-bottom delay-100 bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 group hover:shadow-xl transition-all duration-500">
+                        <div class="relative h-40 sm:h-48 overflow-hidden">
+                            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Modern%20electronic%20accessories%20retail%20shopping%20scene%2C%20smartphones%20and%20chargers%20displayed%20on%20a%20clean%20white%20desk%2C%20warm%20lighting%2C%20professional%20product%20photography%20style%2C%20minimalist%20composition&image_size=landscape_16_9" 
+                                 alt="Retail Exclusive" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 bg-brand text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                <i class="fa-solid fa-user mr-1"></i> Retail Only
+                            </div>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <h3 class="text-lg font-black text-text-main mb-2">Retail Welcome Gift</h3>
+                            <p class="text-text-secondary text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">Get a $10 coupon + double points on your first purchase. Selected accessories up to 50% off.</p>
+                            <ul class="space-y-2 text-sm text-text-secondary mb-5">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> $10 no-minimum coupon</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> 2x points in first month</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> Member Day exclusive deals</li>
+                            </ul>
+                            <button onclick="switchMode('register')" class="block text-center w-full bg-brand-50 text-brand font-bold py-2.5 rounded-xl hover:bg-brand hover:text-white transition-all duration-300 text-sm">
+                                Sign Up Now <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Purchaser Exclusive -->
+                    <div class="reveal from-bottom delay-200 bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 group hover:shadow-xl transition-all duration-500">
+                        <div class="relative h-40 sm:h-48 overflow-hidden">
+                            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Professional%20B2B%20wholesale%20electronics%20warehouse%20scene%2C%20organized%20shelves%20with%20packaged%20electronic%20products%2C%20business%20professionals%20reviewing%20products%2C%20clean%20industrial%20lighting%2C%20modern%20logistics%20setting&image_size=landscape_16_9" 
+                                 alt="Purchaser Exclusive" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style="background-color:#0a1628;">
+                                <i class="fa-solid fa-building mr-1"></i> Purchaser Only
+                            </div>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <h3 class="text-lg font-black text-text-main mb-2">Purchaser Mega Deals</h3>
+                            <p class="text-text-secondary text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">Tiered wholesale pricing + free first shipping + dedicated account manager. Buy more, save more.</p>
+                            <ul class="space-y-2 text-sm text-text-secondary mb-5">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> Free global first shipping</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> Tiered discounts up to 35% OFF</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> Dedicated account manager</li>
+                            </ul>
+                            <button onclick="switchMode('register')" class="block text-center w-full font-bold py-2.5 rounded-xl transition-all duration-300 text-sm text-white" 
+                                    style="background-color:#0a1628;" onmouseover="this.style.backgroundColor='#132142'" onmouseout="this.style.backgroundColor='#0a1628'">
+                                Apply Purchaser Account <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Referral Rewards -->
+                    <div class="reveal from-bottom delay-300 bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 group hover:shadow-xl transition-all duration-500">
+                        <div class="relative h-40 sm:h-48 overflow-hidden">
+                            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Friends%20sharing%20electronic%20gadgets%20together%20in%20a%20modern%20environment%2C%20happy%20people%20looking%20at%20smartphones%2C%20casual%20lifestyle%20photography%2C%20warm%20natural%20lighting%2C%20contemporary%20aesthetic&image_size=landscape_16_9" 
+                                 alt="Referral Rewards" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                <i class="fa-solid fa-users mr-1"></i> Refer & Earn
+                            </div>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <h3 class="text-lg font-black text-text-main mb-2">Refer Friends, Earn Rewards</h3>
+                            <p class="text-text-secondary text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">Invite a friend to sign up and purchase — both get a $5 coupon. No limit on referrals!</p>
+                            <ul class="space-y-2 text-sm text-text-secondary mb-5">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> $5 reward for both parties</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> Unlimited referrals</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500 text-xs"></i> Coupons can be stacked</li>
+                            </ul>
+                            <button onclick="switchMode('register')" class="block text-center w-full bg-green-50 text-green-600 font-bold py-2.5 rounded-xl hover:bg-green-500 hover:text-white transition-all duration-300 text-sm">
+                                Learn More <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Registration Flow Section -->
+        <!-- ======================================== -->
+        <section class="py-10 sm:py-16 md:py-24 bg-white relative" id="register-section">
+            <!-- Background decoration -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brand/3 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <!-- Section Header -->
+                <div class="text-center mb-8 sm:mb-14 reveal from-bottom">
+                    <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 sm:mb-3 block">Quick Registration</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-3 sm:mb-4">
+                        Complete in 3 Steps,<span class="text-brand"> Start Instantly</span>
+                    </h2>
+                    <p class="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
+                        A simple and fast registration process. Choose your account type, fill in basic info, and you're all set.
+                    </p>
+                </div>
+
+                <!-- Registration Steps -->
+                <div class="max-w-2xl mx-auto">
+                    <!-- Step Indicators -->
+                    <div class="flex items-center justify-center mb-10 sm:mb-12 relative">
+                        <div class="hidden sm:block absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -translate-y-1/2 z-0"></div>
+                        <div class="hidden sm:block absolute top-1/2 left-0 h-0.5 bg-brand -translate-y-1/2 z-0 transition-all duration-500" 
+                             id="reg-progress-bar" style="width: 0%"></div>
+                        
+                        <div class="flex items-center gap-6 sm:gap-12 lg:gap-20 relative z-10">
+                            <div class="flex flex-col items-center cursor-pointer" onclick="goToRegStep(1)">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 bg-brand text-white shadow-lg shadow-brand/30" 
+                                     id="reg-step-circle-1">
+                                    <span>1</span>
+                                </div>
+                                <span class="text-xs font-bold mt-2 text-brand" id="reg-step-label-1">Select Type</span>
+                            </div>
+                            <div class="flex flex-col items-center cursor-pointer" onclick="goToRegStep(2)">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 bg-gray-100 text-text-muted" 
+                                     id="reg-step-circle-2">
+                                    <span>2</span>
+                                </div>
+                                <span class="text-xs font-bold mt-2 text-text-muted" id="reg-step-label-2">Fill Details</span>
+                            </div>
+                            <div class="flex flex-col items-center cursor-pointer" onclick="goToRegStep(3)">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 bg-gray-100 text-text-muted" 
+                                     id="reg-step-circle-3">
+                                    <span>3</span>
+                                </div>
+                                <span class="text-xs font-bold mt-2 text-text-muted" id="reg-step-label-3">Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Select Account Type -->
+                    <div id="reg-step-1" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100">
+                        <h3 class="text-xl sm:text-2xl font-black text-text-main mb-2 text-center">Select Your Account Type</h3>
+                        <p class="text-text-secondary text-sm text-center mb-8">Choose the account type that matches your needs. Different account types enjoy different benefits.</p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                            <label class="relative cursor-pointer group">
+                                <input type="radio" name="reg-type" value="retail" class="sr-only peer" onchange="updateRegTypeSelection()">
+                                <div class="border-2 border-gray-200 rounded-2xl p-6 text-center peer-checked:border-brand peer-checked:bg-brand-50 peer-checked:shadow-lg peer-checked:shadow-brand/10 transition-all duration-300 group-hover:border-gray-300">
+                                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-brand-50 transition-colors">
+                                        <i class="fa-solid fa-user text-3xl text-text-muted group-hover:text-brand transition-colors"></i>
+                                    </div>
+                                    <h4 class="text-lg font-black text-text-main mb-1">Retail User</h4>
+                                    <p class="text-text-muted text-xs mb-3">Individual Consumer</p>
+                                    <ul class="text-left text-xs text-text-secondary space-y-1.5">
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Member exclusive pricing</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Points earning & redemption</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Early access to new arrivals</li>
+                                    </ul>
+                                </div>
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-gray-300 peer-checked:border-brand peer-checked:bg-brand flex items-center justify-center transition-all">
+                                    <i class="fa-solid fa-check text-white text-[10px] opacity-0 peer-checked:opacity-100"></i>
+                                </div>
+                            </label>
+
+                            <label class="relative cursor-pointer group">
+                                <input type="radio" name="reg-type" value="purchaser" class="sr-only peer" onchange="updateRegTypeSelection()">
+                                <div class="border-2 border-gray-200 rounded-2xl p-6 text-center peer-checked:border-blue-600 peer-checked:bg-blue-50 peer-checked:shadow-lg peer-checked:shadow-blue-500/10 transition-all duration-300 group-hover:border-gray-300">
+                                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-blue-50 transition-colors">
+                                        <i class="fa-solid fa-building text-3xl text-text-muted group-hover:text-blue-600 transition-colors"></i>
+                                    </div>
+                                    <h4 class="text-lg font-black text-text-main mb-1">Purchaser User</h4>
+                                    <p class="text-text-muted text-xs mb-3">Business / Wholesale</p>
+                                    <ul class="text-left text-xs text-text-secondary space-y-1.5">
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-600 mt-0.5 flex-shrink-0"></i> Tiered wholesale pricing</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-600 mt-0.5 flex-shrink-0"></i> Dedicated account manager</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-600 mt-0.5 flex-shrink-0"></i> Flexible payment terms</li>
+                                    </ul>
+                                </div>
+                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-gray-300 peer-checked:border-blue-600 peer-checked:bg-blue-600 flex items-center justify-center transition-all">
+                                    <i class="fa-solid fa-check text-white text-[10px] opacity-0 peer-checked:opacity-100"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                        <button onclick="goToRegStep(2)" 
+                                class="w-full mt-8 bg-brand hover:bg-brand-dark text-white font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:scale-100"
+                                id="reg-step-1-next" disabled>
+                            Next <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+
+                    <!-- Step 2: Fill Details -->
+                    <div id="reg-step-2" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 hidden">
+                        <h3 class="text-xl sm:text-2xl font-black text-text-main mb-2 text-center">Fill Basic Information</h3>
+                        <p class="text-text-secondary text-sm text-center mb-8">Please fill in the following details to create your account. We are committed to protecting your privacy.</p>
+                        
+                        <form class="space-y-4" onsubmit="goToRegStep(3); return false;">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-text-main mb-1.5">Full Name *</label>
+                                    <input type="text" required placeholder="Enter your name" 
+                                           class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-text-main mb-1.5">Email *</label>
+                                    <input type="email" required placeholder="Enter your email" 
+                                           class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-text-main mb-1.5">Password *</label>
+                                    <div class="relative">
+                                        <input type="password" required placeholder="At least 8 characters" minlength="8" 
+                                               class="custom-input w-full px-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
+                                               id="reg-password">
+                                        <button type="button" class="password-toggle absolute right-3 top-1/2 -translate-y-1/2 text-text-muted" 
+                                                onclick="togglePassword('reg-password', this)">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-text-main mb-1.5">Phone</label>
+                                    <input type="tel" placeholder="Optional" 
+                                           class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
+                                </div>
+                            </div>
+                            <div id="reg-company-field" class="hidden">
+                                <label class="block text-sm font-bold text-text-main mb-1.5">Company Name</label>
+                                <input type="text" placeholder="Enter company name (required for purchasers)" 
+                                       class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
+                                       id="reg-company-input">
+                            </div>
+                            <div class="flex items-start gap-2 text-sm">
+                                <input type="checkbox" required class="mt-1 w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand/30">
+                                <span class="text-text-muted">I agree to the <a href="#" class="text-brand font-semibold hover:underline">Terms of Service</a> and <a href="#" class="text-brand font-semibold hover:underline">Privacy Policy</a></span>
+                            </div>
+                            <div class="flex gap-3 pt-2">
+                                <button type="button" onclick="goToRegStep(1)" 
+                                        class="flex-1 bg-gray-100 hover:bg-gray-200 text-text-secondary font-bold py-3.5 rounded-xl transition-all duration-300 text-base">
+                                    <i class="fa-solid fa-arrow-left mr-2"></i> Previous
+                                </button>
+                                <button type="submit" 
+                                        class="flex-1 bg-brand hover:bg-brand-dark text-white font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-base">
+                                    Next <i class="fa-solid fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Step 3: Complete -->
+                    <div id="reg-step-3" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 hidden text-center">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-check text-4xl text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black text-text-main mb-2">Registration Successful!</h3>
+                        <p class="text-text-secondary text-sm mb-8 max-w-sm mx-auto">
+                            Your account has been created successfully. A $10 welcome coupon has been automatically added to your account. Start shopping now!
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                            <a href="/index.html" 
+                               class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-300 active:scale-95 hover:-translate-y-1 shadow-lg shadow-brand/25 text-base gap-2">
+                                Start Shopping <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="/pages/profile.html" 
+                               class="inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-text-main font-bold px-8 py-3.5 rounded-xl transition-all duration-300 text-base gap-2">
+                                Complete Profile <i class="fa-solid fa-user-pen"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Bottom CTA -->
+        <!-- ======================================== -->
+        <section class="py-10 sm:py-16 md:py-20 bg-gray-50 relative overflow-hidden border-t border-gray-100">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" aria-hidden="true"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" aria-hidden="true"></div>
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <div class="reveal from-bottom max-w-2xl mx-auto">
+                    <h2 class="text-2xl sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 text-text-main">Don't Have an Account Yet?</h2>
+                    <p class="text-text-secondary text-sm sm:text-base md:text-lg mb-8 sm:mb-10">
+                        Sign up for 3C Easy today and enjoy member-exclusive discounts, welcome coupons, and premium support. Exclusive benefits for both retail and purchaser accounts!
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                        <button onclick="switchMode('register')" 
+                           class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 hover:-translate-y-1 shadow-xl shadow-brand/30 text-base sm:text-lg group">
+                            Sign Up Free
+                            <i class="fa-solid fa-arrow-right ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <a href="/pages/b2b.html" 
+                           class="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-text-main border-2 border-gray-200 font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 text-base sm:text-lg hover:border-brand hover:text-brand">
+                            <i class="fa-solid fa-building mr-2"></i> B2B Wholesale
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="../components/footer.html"></div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/include.js"></script>
+    <script src="/assets/js/common.js"></script>
+
+    <script>
+        // ===== Login / Register Mode Switch =====
+        let currentMode = 'login';
+        let currentUserType = 'retail';
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const modeBtns = document.querySelectorAll('.mode-toggle-btn');
+            const loginPanels = document.getElementById('login-panels');
+            const registerPanels = document.getElementById('register-panels');
+
+            modeBtns.forEach(btn => {
+                btn.classList.remove('active', 'bg-white', 'text-brand', 'shadow-sm');
+                btn.classList.add('text-text-muted');
+            });
+            const activeBtn = document.querySelector(`.mode-toggle-btn[data-mode="${mode}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-white', 'text-brand', 'shadow-sm');
+                activeBtn.classList.remove('text-text-muted');
+            }
+
+            if (mode === 'login') {
+                loginPanels.classList.remove('hidden');
+                registerPanels.classList.add('hidden');
+            } else {
+                loginPanels.classList.add('hidden');
+                registerPanels.classList.remove('hidden');
+            }
+
+            switchUserType(currentUserType);
+        }
+
+        // ===== User Type Switch (Retail / Purchaser) =====
+        function switchUserType(type) {
+            currentUserType = type;
+            const tabs = document.querySelectorAll('.login-tab');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active', 'text-brand');
+                tab.classList.add('text-text-muted');
+            });
+            const activeTab = document.querySelector(`.login-tab[data-tab="${type}"]`);
+            if (activeTab) {
+                activeTab.classList.add('active', 'text-brand');
+                activeTab.classList.remove('text-text-muted');
+            }
+
+            const allForms = document.querySelectorAll('#retail-login-form, #purchaser-login-form, #retail-register-form, #purchaser-register-form');
+            allForms.forEach(f => f.classList.add('hidden'));
+
+            const formId = type === 'retail' 
+                ? (currentMode === 'login' ? 'retail-login-form' : 'retail-register-form')
+                : (currentMode === 'login' ? 'purchaser-login-form' : 'purchaser-register-form');
+            
+            const activeForm = document.getElementById(formId);
+            if (activeForm) activeForm.classList.remove('hidden');
+        }
+
+        // ===== Password Visibility Toggle =====
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // ===== Login Form Handler =====
+        function handleLogin(event, type) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Signing in...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                const label = type === 'retail' ? 'Retail' : 'Purchaser';
+                showToast(`${label} login successful! Redirecting...`, 'success');
+                
+                submitBtn.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i> Success';
+                submitBtn.classList.add('bg-green-600');
+
+                setTimeout(() => {
+                    window.location.href = type === 'purchaser' ? '/pages/b2b.html' : '/pages/profile.html';
+                }, 1500);
+            }, 1200);
+        }
+
+        // ===== Register Form Handler =====
+        function handleRegister(event, type) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            const pwdId = type === 'retail' ? 'retail-register-password' : 'purchaser-register-password';
+            const confirmId = type === 'retail' ? 'retail-register-confirm' : 'purchaser-register-confirm';
+            const pwd = document.getElementById(pwdId);
+            const confirm = document.getElementById(confirmId);
+            
+            if (pwd && confirm && pwd.value !== confirm.value) {
+                showToast('Passwords do not match. Please try again.', 'info');
+                return false;
+            }
+
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Registering...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                const label = type === 'retail' ? 'Retail' : 'Purchaser';
+                showToast(`${label} account created! $10 welcome coupon issued.`, 'success');
+                
+                submitBtn.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i> Success';
+                submitBtn.classList.add('bg-green-600');
+
+                setTimeout(() => {
+                    window.location.href = '/pages/profile.html';
+                }, 1500);
+            }, 1200);
+
+            return false;
+        }
+
+        // ===== Registration Steps (separate section) =====
+        let currentRegStep = 1;
+        let selectedRegType = null;
+
+        function updateRegTypeSelection() {
+            const retailRadio = document.querySelector('input[name="reg-type"][value="retail"]');
+            const purchaserRadio = document.querySelector('input[name="reg-type"][value="purchaser"]');
+            const nextBtn = document.getElementById('reg-step-1-next');
+            const companyField = document.getElementById('reg-company-field');
+            
+            if (retailRadio && retailRadio.checked) {
+                selectedRegType = 'retail';
+                if (companyField) companyField.classList.add('hidden');
+            } else if (purchaserRadio && purchaserRadio.checked) {
+                selectedRegType = 'purchaser';
+                if (companyField) companyField.classList.remove('hidden');
+            }
+            
+            if (nextBtn) {
+                nextBtn.disabled = !selectedRegType;
+            }
+        }
+
+        function goToRegStep(step) {
+            if (step === 2 && !selectedRegType) {
+                showToast('Please select an account type first.', 'info');
+                return;
+            }
+
+            for (let i = 1; i <= 3; i++) {
+                const stepEl = document.getElementById(`reg-step-${i}`);
+                if (stepEl) stepEl.classList.add('hidden');
+            }
+
+            const targetStep = document.getElementById(`reg-step-${step}`);
+            if (targetStep) targetStep.classList.remove('hidden');
+
+            currentRegStep = step;
+            updateRegStepIndicators(step);
+
+            document.getElementById('register-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            if (step === 2 && selectedRegType === 'purchaser') {
+                const companyField = document.getElementById('reg-company-field');
+                if (companyField) companyField.classList.remove('hidden');
+                const companyInput = document.getElementById('reg-company-input');
+                if (companyInput) companyInput.required = true;
+            }
+        }
+
+        function updateRegStepIndicators(activeStep) {
+            const brandColor = '#ff6700';
+            const inactiveBg = '#f3f4f6';
+            const inactiveText = '#9ca3af';
+
+            for (let i = 1; i <= 3; i++) {
+                const circle = document.getElementById(`reg-step-circle-${i}`);
+                const label = document.getElementById(`reg-step-label-${i}`);
+
+                if (!circle || !label) continue;
+
+                if (i <= activeStep) {
+                    circle.style.background = brandColor;
+                    circle.style.color = '#ffffff';
+                    circle.style.boxShadow = '0 4px 15px rgba(255, 103, 0, 0.3)';
+                    label.style.color = brandColor;
+                } else {
+                    circle.style.background = inactiveBg;
+                    circle.style.color = inactiveText;
+                    circle.style.boxShadow = 'none';
+                    label.style.color = inactiveText;
+                }
+            }
+
+            const bar = document.getElementById('reg-progress-bar');
+            if (bar) {
+                const pct = ((activeStep - 1) / 2) * 100;
+                bar.style.width = pct + '%';
+            }
+        }
+
+        // ===== Toast Notification =====
+        function showToast(message, type) {
+            let container = document.getElementById('toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toast-container';
+                container.className = 'fixed bottom-24 right-5 z-[200] flex flex-col space-y-2';
+                document.body.appendChild(container);
+            }
+
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-green-100 text-green-600' : 
+                            type === 'info' ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600';
+            const icon = type === 'success' ? 'fa-check' : type === 'info' ? 'fa-info' : 'fa-exclamation';
+
+            toast.className = `toast-enter bg-white rounded-2xl px-6 py-4 shadow-2xl border flex items-center gap-3 min-w-[300px] max-w-md`;
+            toast.innerHTML = `
+                <div class="w-10 h-10 rounded-full ${bgColor} flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid ${icon}"></i>
+                </div>
+                <span class="font-bold text-text-main text-sm">${message}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('toast-leave');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // ===== Countdown Timer =====
+        function initCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 7);
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = endDate - now;
+
+                if (diff <= 0) {
+                    ['days', 'hours', 'mins', 'secs'].forEach(id => {
+                        const el = document.getElementById('countdown-' + id);
+                        if (el) el.textContent = '00';
+                    });
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
+                document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('countdown-mins').textContent = String(mins).padStart(2, '0');
+                document.getElementById('countdown-secs').textContent = String(secs).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // ===== Reveal Animations =====
+        function initRevealAnimations() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -80px 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // ===== Initialization =====
+        document.addEventListener('DOMContentLoaded', () => {
+            initRevealAnimations();
+            initCountdown();
+            updateRegStepIndicators(1);
+
+            const typeRadios = document.querySelectorAll('input[name="reg-type"]');
+            typeRadios.forEach(radio => {
+                radio.addEventListener('change', updateRegTypeSelection);
+            });
+        });
+    </script>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-24 right-5 z-[200] flex flex-col space-y-2"></div>
+</body>
+</html>
