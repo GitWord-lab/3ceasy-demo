@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visit the PISEN booth at the trade show for free gifts, lucky draw prizes, and exclusive dealer benefits. Spin to win coupons up to $200!">
+    <meta name="keywords" content="PISEN, lucky draw, trade show, mobile accessories, wholesale, dealer benefits, spin wheel">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="PISEN | Trade Show Lucky Draw - Win Up to $200 Coupon">
+    <meta property="og:description" content="Visit the PISEN booth for free gift bags, spin-to-win prizes, and exclusive new dealer rewards.">
+    <title>PISEN Trade Show - Lucky Draw &amp; Dealer Benefits</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700',
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',
+                            secondary: '#4b5563',
+                            muted: '#9ca3af',
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #fafafa; }
+
+        /* ===== Lucky Spin Wheel ===== */
+        .wheel-container {
+            position: relative;
+            width: 420px;
+            height: 420px;
+            margin: 0 auto;
+        }
+        .wheel-pointer {
+            position: absolute;
+            top: -26px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 22px solid transparent;
+            border-right: 22px solid transparent;
+            border-top: 38px solid #ff6700;
+            z-index: 10;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        .wheel-pointer::after {
+            content: '';
+            position: absolute;
+            top: -46px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: #ff6700;
+            border-radius: 50%;
+        }
+        #spin-wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #ff6700;
+            box-shadow: 0 0 0 10px #fff, 0 0 40px rgba(255,103,0,0.4);
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            background: conic-gradient(
+                #ff6700 0deg 36deg,
+                #e05a00 36deg 72deg,
+                #2563eb 72deg 108deg,
+                #1d4ed8 108deg 144deg,
+                #10b981 144deg 180deg,
+                #059669 180deg 216deg,
+                #f59e0b 216deg 252deg,
+                #d97706 252deg 288deg,
+                #8b5cf6 288deg 324deg,
+                #7c3aed 324deg 360deg
+            );
+        }
+        .wheel-segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* ===== Confetti ===== */
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        .confetti-piece {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            animation: confettiFall 3s ease-in forwards;
+            pointer-events: none;
+        }
+
+        /* ===== Tab switching for tables ===== */
+        .prize-tab {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .prize-tab.active {
+            color: #ff6700;
+            border-bottom-color: #ff6700;
+        }
+
+        /* ===== Pulse CTA ===== */
+        @keyframes pulseCta {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,103,0,0.4); }
+            50% { box-shadow: 0 0 0 16px rgba(255,103,0,0); }
+        }
+        .pulse-cta {
+            animation: pulseCta 2s infinite;
+        }
+
+        /* ===== Table styles ===== */
+        .prize-table th {
+            background: #ff6700;
+            color: #fff;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 14px 16px;
+            font-size: 0.8rem;
+        }
+        .prize-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 0.875rem;
+        }
+        .prize-table tr:hover td {
+            background: #fff5f0;
+        }
+
+        /* ===== Mobile wheel ===== */
+        @media (max-width: 639px) {
+            .wheel-container {
+                width: 310px;
+                height: 310px;
+            }
+            .wheel-pointer {
+                top: -22px;
+                border-left-width: 18px;
+                border-right-width: 18px;
+                border-top-width: 30px;
+            }
+            .wheel-pointer::after {
+                top: -38px;
+                left: -8px;
+                width: 16px;
+                height: 16px;
+            }
+            #spin-wheel {
+                border-width: 6px;
+                box-shadow: 0 0 0 8px #fff, 0 0 25px rgba(255,103,0,0.3);
+            }
+            .wheel-segment {
+                font-size: 13px;
+            }
+            .prize-table th,
+            .prize-table td {
+                padding: 10px 8px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* ===== Result popup ===== */
+        .result-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .result-card {
+            background: #fff;
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- ======================================== -->
+    <!-- Hero Banner -->
+    <!-- ======================================== -->
+    <header class="relative overflow-hidden bg-gradient-to-br from-[#0a1628] via-[#132142] to-[#1a2d54] text-white">
+        <!-- Background decorations -->
+        <div class="absolute inset-0 opacity-10" aria-hidden="true">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-brand rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Exhibition badge -->
+                <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6 text-xs sm:text-sm font-bold tracking-wide">
+                    <i class="fa-solid fa-calendar-check text-brand-light"></i>
+                    <span>2026 AWPE &bull; Las Vegas</span>
+                    <span class="text-white/40">|</span>
+                    <span>August 19–20, 2026</span>
+                    <span class="text-white/40">|</span>
+                    <span class="text-brand-light font-black">Booth #PISEN-3724</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-tight mb-4 sm:mb-6 tracking-tight">
+                    Spin &amp; Win at the<br class="sm:hidden">
+                    <span class="text-brand">PISEN</span> Booth!
+                </h1>
+
+                <p class="text-base sm:text-lg md:text-xl text-white/70 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
+                    Visit our booth, register on <strong class="text-white">3ceasy.com</strong> or share your visit on social media tagging <strong class="text-white">@PISEN</strong> — and spin the wheel to win coupons up to <strong class="text-brand-light">$200</strong>. No purchase necessary!
+                </p>
+
+                <!-- CTA buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
+                    <a href="#lucky-draw" class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 active:scale-95 sm:hover:-translate-y-1 shadow-[0_10px_30px_-8px_rgba(255,103,0,0.5)] text-sm sm:text-base group text-center">
+                        <i class="fa-solid fa-ticket mr-2"></i> Spin the Wheel Now
+                        <i class="fa-solid fa-arrow-down ml-2 group-hover:translate-y-0.5 transition-transform"></i>
+                    </a>
+                    <a href="login.html" class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 text-sm sm:text-base hover:border-white/50 text-center">
+                        <i class="fa-solid fa-user-plus mr-2"></i> Register on 3ceasy
+                    </a>
+                </div>
+
+                <!-- Quick stats -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-2xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-3 sm:p-4 border border-white/10">
+                        <div class="text-xl sm:text-2xl font-black text-brand-light">200+</div>
+                        <div class="text-[10px] sm:text-xs text-white/60 font-semibold mt-1">Daily Prizes</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-3 sm:p-4 border border-white/10">
+                        <div class="text-xl sm:text-2xl font-black text-brand-light">$200</div>
+                        <div class="text-[10px] sm:text-xs text-white/60 font-semibold mt-1">Grand Prize</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-3 sm:p-4 border border-white/10">
+                        <div class="text-xl sm:text-2xl font-black text-brand-light">FREE</div>
+                        <div class="text-[10px] sm:text-xs text-white/60 font-semibold mt-1">Gift Bag</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-3 sm:p-4 border border-white/10">
+                        <div class="text-xl sm:text-2xl font-black text-brand-light">0</div>
+                        <div class="text-[10px] sm:text-xs text-white/60 font-semibold mt-1">Purchase Needed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom wave -->
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#fafafa] to-transparent"></div>
+    </header>
+
+    <main>
+        <!-- ======================================== -->
+        <!-- Section 1: Free Gift Bag -->
+        <!-- ======================================== -->
+        <section class="py-8 sm:py-12 bg-[#fafafa]" id="gift-bag">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-6 sm:mb-8">
+                    <h2 class="text-xl sm:text-2xl font-black text-text-main mb-2">
+                        <i class="fa-solid fa-gift text-brand mr-2"></i> Free Gift Bag
+                    </h2>
+                    <p class="text-text-muted text-sm max-w-xl mx-auto">
+                        Every booth visitor receives a complimentary gift bag — no purchase required.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-center max-w-4xl mx-auto">
+                    <!-- Gift bag image -->
+                    <div class="bg-white rounded-2xl p-3 sm:p-4 shadow-sm border border-gray-100">
+                        <div class="rounded-xl overflow-hidden bg-gray-50 aspect-[4/3]">
+                            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Gift%20bag%20filled%20with%20mobile%20phone%20accessories%20-%20charging%20cables%2C%20power%20banks%2C%20screen%20protectors%2C%20phone%20cases%2C%20colorful%20packaging%2C%20clean%20white%20background%2C%20ecommerce%20product%20photography%2C%20bright%20lighting&image_size=landscape_4_3"
+                                 alt="Free Gift Bag Contents" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Gift bag contents -->
+                    <div>
+                        <h3 class="text-base sm:text-lg font-black text-text-main mb-3">What's Inside</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 sm:gap-3 bg-white rounded-xl p-2.5 sm:p-3 shadow-sm border border-gray-100 text-sm">
+                                <i class="fa-solid fa-plug-circle-bolt text-brand flex-shrink-0"></i>
+                                <span class="font-semibold text-text-main">USB-C Fast Charging Cable</span>
+                            </div>
+                            <div class="flex items-center gap-2 sm:gap-3 bg-white rounded-xl p-2.5 sm:p-3 shadow-sm border border-gray-100 text-sm">
+                                <i class="fa-solid fa-mobile-screen-button text-brand flex-shrink-0"></i>
+                                <span class="font-semibold text-text-main">Tempered Glass Screen Protector</span>
+                            </div>
+                            <div class="flex items-center gap-2 sm:gap-3 bg-white rounded-xl p-2.5 sm:p-3 shadow-sm border border-gray-100 text-sm">
+                                <i class="fa-solid fa-bolt text-brand flex-shrink-0"></i>
+                                <span class="font-semibold text-text-main">20W USB-C Wall Charger</span>
+                            </div>
+                            <div class="flex items-center gap-2 sm:gap-3 bg-white rounded-xl p-2.5 sm:p-3 shadow-sm border border-gray-100 text-sm">
+                                <i class="fa-solid fa-headphones text-brand flex-shrink-0"></i>
+                                <span class="font-semibold text-text-main">Wired Earphones with Mic</span>
+                            </div>
+                            <div class="flex items-center gap-2 sm:gap-3 bg-white rounded-xl p-2.5 sm:p-3 shadow-sm border border-gray-100 text-sm">
+                                <i class="fa-solid fa-book-open text-brand flex-shrink-0"></i>
+                                <span class="font-semibold text-text-main">Product Catalog &amp; Price List</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Section 2: Lucky Draw Wheel + Prize Table -->
+        <!-- ======================================== -->
+        <section class="py-12 sm:py-16 md:py-20 bg-white relative" id="lucky-draw">
+            <!-- Highlight background -->
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-50/50 to-transparent pointer-events-none" aria-hidden="true"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-8 sm:mb-12">
+                    <span class="inline-flex items-center gap-2 bg-brand text-white text-xs font-black px-4 py-1.5 rounded-full mb-3 sm:mb-4 tracking-wide uppercase">Main Event</span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-text-main mb-3 sm:mb-4">
+                        <i class="fa-solid fa-trophy text-brand mr-2"></i> Lucky Draw Spin-to-Win
+                    </h2>
+                    <p class="text-text-secondary text-base sm:text-lg max-w-2xl mx-auto">
+                        Take a spin for a chance to win amazing prizes — every spin wins, no purchase required!
+                    </p>
+                </div>
+
+                <!-- Participation Steps -->
+                <div class="max-w-4xl mx-auto mb-8 sm:mb-12">
+                    <h3 class="text-lg sm:text-xl font-black text-text-main mb-4 sm:mb-6 text-center">How to Participate</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                        <!-- Step 1 -->
+                        <div class="bg-brand-50 rounded-2xl p-4 sm:p-6 text-center border border-brand/10 relative">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full bg-brand text-white flex items-center justify-center font-black text-lg mb-3">1</div>
+                            <h4 class="font-black text-text-main text-sm sm:text-base mb-2">Visit PISEN Booth</h4>
+                            <p class="text-text-secondary text-xs sm:text-sm">Come to our booth during the exhibition and check in with our staff at the reception desk.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="bg-blue-50 rounded-2xl p-4 sm:p-6 text-center border border-blue/10 relative">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center font-black text-lg mb-3">2</div>
+                            <h4 class="font-black text-text-main text-sm sm:text-base mb-2">Register or Share</h4>
+                            <p class="text-text-secondary text-xs sm:text-sm">Register on <strong>3ceasy.com</strong> or post about our booth on social media tagging <strong>@PISEN</strong>.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="bg-green-50 rounded-2xl p-4 sm:p-6 text-center border border-green/10 relative">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full bg-green-500 text-white flex items-center justify-center font-black text-lg mb-3">3</div>
+                            <h4 class="font-black text-text-main text-sm sm:text-base mb-2">Spin &amp; Win</h4>
+                            <p class="text-text-secondary text-xs sm:text-sm">Take your spin on our prize wheel and claim your reward on the spot!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spin Wheel -->
+                <div class="text-center mb-8 sm:mb-12">
+                    <div class="wheel-container mb-4 sm:mb-6">
+                        <div class="wheel-pointer"></div>
+                        <div id="spin-wheel"></div>
+                    </div>
+                    <button id="spin-btn" onclick="spinWheel()"
+                            class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 sm:hover:-translate-y-1 text-base sm:text-lg group shadow-[0_10px_30px_-8px_rgba(255,103,0,0.5)]">
+                        <i class="fa-solid fa-rotate mr-2 group-hover:rotate-180 transition-transform duration-300"></i>
+                        Spin the Wheel!
+                    </button>
+                    <p class="text-text-muted text-xs sm:text-sm mt-3">Click the button to spin. Every spin wins a prize!</p>
+                </div>
+
+                <!-- Prize Table -->
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-lg sm:text-xl font-black text-text-main mb-4 sm:mb-6 text-center">Prize Details</h3>
+                    <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+                        <table class="prize-table w-full min-w-[640px]">
+                            <thead>
+                                <tr>
+                                    <th class="text-left rounded-tl-2xl">Prize Tier</th>
+                                    <th class="text-left">Prize</th>
+                                    <th class="text-center">Daily Qty</th>
+                                    <th class="text-center">Total Qty</th>
+                                    <th class="text-right rounded-tr-2xl">Min. Order</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-yellow-100 text-yellow-800 font-black text-xs">Grand</span></td>
+                                    <td class="font-bold text-text-main">$200 Coupon</td>
+                                    <td class="text-center font-bold text-brand">3</td>
+                                    <td class="text-center">6</td>
+                                    <td class="text-right font-bold">$1,500</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-700 font-black text-xs">1st</span></td>
+                                    <td class="font-bold text-text-main">$100 Coupon</td>
+                                    <td class="text-center font-bold text-brand">10</td>
+                                    <td class="text-center">20</td>
+                                    <td class="text-right font-bold">$1,000</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 font-black text-xs">2nd</span></td>
+                                    <td class="font-bold text-text-main">$50 Coupon</td>
+                                    <td class="text-center font-bold text-brand">30</td>
+                                    <td class="text-center">60</td>
+                                    <td class="text-right font-bold">$500</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 text-green-700 font-black text-xs">3rd</span></td>
+                                    <td class="font-bold text-text-main">$25 Coupon</td>
+                                    <td class="text-center font-bold text-brand">50</td>
+                                    <td class="text-center">100</td>
+                                    <td class="text-right font-bold">$250</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 font-black text-xs">Particip.</span></td>
+                                    <td class="font-bold text-text-main">Tempered Glass Screen Protector</td>
+                                    <td class="text-center font-bold text-green-600">Unlimited</td>
+                                    <td class="text-center text-text-muted">Unlimited</td>
+                                    <td class="text-right text-text-muted">--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="max-w-4xl mx-auto mt-6 sm:mt-8">
+                    <div class="bg-gray-50 rounded-2xl p-4 sm:p-6 border border-gray-200">
+                        <h4 class="font-black text-text-main text-sm sm:text-base mb-3 sm:mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-info text-brand"></i> Participation Eligibility &amp; Terms
+                        </h4>
+                        <ul class="space-y-2 sm:space-y-3 text-text-secondary text-xs sm:text-sm">
+                            <li class="flex items-start gap-2 sm:gap-3">
+                                <i class="fa-solid fa-check-circle text-green-500 mt-0.5 flex-shrink-0"></i>
+                                <span>Only visitors who are <strong class="text-text-main">received by PISEN booth staff</strong> during the exhibition are eligible to participate.</span>
+                            </li>
+                            <li class="flex items-start gap-2 sm:gap-3">
+                                <i class="fa-solid fa-check-circle text-green-500 mt-0.5 flex-shrink-0"></i>
+                                <span>Coupons are valid only when the customer <strong class="text-text-main">completes order payment within 14 days</strong> after the exhibition ends.</span>
+                            </li>
+                            <li class="flex items-start gap-2 sm:gap-3">
+                                <i class="fa-solid fa-check-circle text-green-500 mt-0.5 flex-shrink-0"></i>
+                                <span>Customer must be <strong class="text-text-main">registered in the PISEN CRM system</strong> and provide a <strong class="text-text-main">valid tax-exempt certificate</strong> where applicable.</span>
+                            </li>
+                            <li class="flex items-start gap-2 sm:gap-3">
+                                <i class="fa-solid fa-check-circle text-green-500 mt-0.5 flex-shrink-0"></i>
+                                <span>Each eligible visitor may spin the wheel <strong class="text-text-main">once per day</strong> of the exhibition. Prizes are non-transferable and cannot be exchanged for cash.</span>
+                            </li>
+                            <li class="flex items-start gap-2 sm:gap-3">
+                                <i class="fa-solid fa-check-circle text-green-500 mt-0.5 flex-shrink-0"></i>
+                                <span>No purchase is necessary to participate in the lucky draw. The minimum order amounts listed apply only when redeeming coupon prizes.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Section 3: Key Customer Gift Policy -->
+        <!-- ======================================== -->
+        <section class="py-8 sm:py-12 bg-[#fafafa]" id="key-customer">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-6 sm:mb-8">
+                    <h2 class="text-xl sm:text-2xl font-black text-text-main mb-2">
+                        <i class="fa-solid fa-star text-brand mr-2"></i> Key Customer Gifts
+                    </h2>
+                    <p class="text-text-muted text-sm max-w-2xl mx-auto">
+                        Special gifts for wholesale partners and high-volume buyers during the exhibition.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto mb-6 sm:mb-8">
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center text-sm">
+                        <i class="fa-solid fa-building text-brand text-xl mb-2 block"></i>
+                        <h4 class="font-black text-text-main text-sm mb-1">Existing Partners</h4>
+                        <p class="text-text-muted text-xs">Exclusive partner gift pack at booth</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center text-sm">
+                        <i class="fa-solid fa-handshake text-blue-600 text-xl mb-2 block"></i>
+                        <h4 class="font-black text-text-main text-sm mb-1">New Dealer Sign-ups</h4>
+                        <p class="text-text-muted text-xs">Extended welcome package + bonus samples</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center text-sm">
+                        <i class="fa-solid fa-cart-shopping text-green-600 text-xl mb-2 block"></i>
+                        <h4 class="font-black text-text-main text-sm mb-1">On-site Orders</h4>
+                        <p class="text-text-muted text-xs">Orders &ge;$2,000: premium gift selection</p>
+                    </div>
+                </div>
+
+                <!-- Prepared Gift List Table -->
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-base sm:text-lg font-black text-text-main mb-3 sm:mb-4 text-center">Prepared Gift Items</h3>
+                    <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+                        <table class="prize-table w-full min-w-[600px]">
+                            <thead>
+                                <tr>
+                                    <th class="text-left rounded-tl-xl">Gift Item</th>
+                                    <th class="text-center">Value</th>
+                                    <th class="text-center">Qty</th>
+                                    <th class="text-right rounded-tr-xl">Eligibility</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-bold text-text-main text-sm">Premium Accessory Kit</td>
+                                    <td class="text-center font-bold">$80</td>
+                                    <td class="text-center">50</td>
+                                    <td class="text-right text-sm">Existing VIP partners</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold text-text-main text-sm">PISEN Buds Pro</td>
+                                    <td class="text-center font-bold">$40</td>
+                                    <td class="text-center">100</td>
+                                    <td class="text-right text-sm">New dealer sign-ups</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold text-text-main text-sm">10000mAh Power Bank</td>
+                                    <td class="text-center font-bold">$25</td>
+                                    <td class="text-center">200</td>
+                                    <td class="text-right text-sm">On-site orders &ge;$2,000</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold text-text-main text-sm">Tote Bag + Notebook Set</td>
+                                    <td class="text-center font-bold">$15</td>
+                                    <td class="text-center">500</td>
+                                    <td class="text-right text-sm">All registered visitors</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold text-text-main text-sm">Full Sample Kit (12 items)</td>
+                                    <td class="text-center font-bold">$150</td>
+                                    <td class="text-center">30</td>
+                                    <td class="text-right text-sm">On-site orders &ge;$5,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- Bottom CTA -->
+        <!-- ======================================== -->
+        <section class="py-10 sm:py-16 md:py-20 bg-gradient-to-br from-[#0a1628] via-[#132142] to-[#1a2d54] text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5" aria-hidden="true">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-brand rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 left-0 w-72 h-72 bg-blue-500 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+            </div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-3 sm:mb-4">
+                    See You at Our <span class="text-brand">Booth!</span>
+                </h2>
+                <p class="text-white/60 text-sm sm:text-base md:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto">
+                    Don't miss out on exclusive prizes, free gifts, and unbeatable trade show deals. Find us at the exhibition or reach out to schedule a meeting in advance.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-10">
+                    <!-- Booth Location -->
+                    <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur border border-white/20 rounded-full px-5 sm:px-6 py-3 sm:py-4 font-bold text-sm sm:text-base">
+                        <i class="fa-solid fa-location-dot text-brand-light text-lg"></i>
+                        <span>Booth #PISEN-3724 &bull; LVCC Hall C</span>
+                    </div>
+                    <!-- Contact Sales -->
+                    <a href="mailto:sales@3ceasy.com" class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 text-sm sm:text-base hover:border-white/50">
+                        <i class="fa-solid fa-envelope mr-2"></i> Contact Sales
+                    </a>
+                    <!-- Register on 3ceasy -->
+                    <a href="login.html" class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 active:scale-95 sm:hover:-translate-y-1 text-sm sm:text-base pulse-cta">
+                        <i class="fa-solid fa-user-plus mr-2"></i> Register on 3ceasy
+                    </a>
+                </div>
+
+                <!-- Social share hint -->
+                <p class="text-white/40 text-xs sm:text-sm">
+                    <i class="fa-brands fa-instagram mr-1"></i>
+                    <i class="fa-brands fa-facebook mr-1"></i>
+                    <i class="fa-brands fa-linkedin mr-1"></i>
+                    Share your booth visit — tag <strong class="text-white/60">@PISEN</strong> for an extra spin!
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Lucky Draw Result Popup ===== -->
+    <div id="result-overlay" class="result-overlay hidden" onclick="closeResult(event)">
+        <div class="result-card" onclick="event.stopPropagation()">
+            <div id="result-icon" class="text-6xl mb-4"></div>
+            <h3 id="result-title" class="text-2xl sm:text-3xl font-black text-text-main mb-2"></h3>
+            <p id="result-desc" class="text-text-secondary text-sm mb-4"></p>
+            <div id="result-detail" class="bg-brand-50 rounded-xl p-4 mb-5 text-sm text-text-secondary"></div>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="closeResultDirect()" class="flex-1 bg-text-main hover:bg-black text-white font-bold py-3 rounded-full transition text-sm">
+                    <i class="fa-solid fa-check mr-1"></i> Got It!
+                </button>
+                <button onclick="spinWheel()" id="resp-btn" class="flex-1 bg-brand hover:bg-brand-dark text-white font-bold py-3 rounded-full transition text-sm">
+                    <i class="fa-solid fa-rotate mr-1"></i> Spin Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ===== Prize Definitions ===== */
+        const prizes = [
+            { name: 'Grand Prize', prize: '$200 Coupon', icon: 'fa-solid fa-crown', color: 'text-yellow-500', tier: 'grand', detail: 'Minimum order: $1,500. Limited to 3 winners per day.' },
+            { name: '1st Prize', prize: '$100 Coupon', icon: 'fa-solid fa-star', color: 'text-orange-500', tier: 'first', detail: 'Minimum order: $1,000. Limited to 10 winners per day.' },
+            { name: '2nd Prize', prize: '$50 Coupon', icon: 'fa-solid fa-gem', color: 'text-blue-500', tier: 'second', detail: 'Minimum order: $500. Limited to 30 winners per day.' },
+            { name: '3rd Prize', prize: '$25 Coupon', icon: 'fa-solid fa-tag', color: 'text-green-500', tier: 'third', detail: 'Minimum order: $250. Limited to 50 winners per day.' },
+            { name: 'Participation', prize: 'Screen Protector', icon: 'fa-solid fa-shield-halved', color: 'text-gray-500', tier: 'particip', detail: 'No minimum order. Unlimited quantity.' },
+            { name: 'Grand Prize', prize: '$200 Coupon', icon: 'fa-solid fa-crown', color: 'text-yellow-500', tier: 'grand', detail: 'Minimum order: $1,500. Limited to 3 winners per day.' },
+            { name: '1st Prize', prize: '$100 Coupon', icon: 'fa-solid fa-star', color: 'text-orange-500', tier: 'first', detail: 'Minimum order: $1,000. Limited to 10 winners per day.' },
+            { name: '2nd Prize', prize: '$50 Coupon', icon: 'fa-solid fa-gem', color: 'text-blue-500', tier: 'second', detail: 'Minimum order: $500. Limited to 30 winners per day.' },
+            { name: '3rd Prize', prize: '$25 Coupon', icon: 'fa-solid fa-tag', color: 'text-green-500', tier: 'third', detail: 'Minimum order: $250. Limited to 50 winners per day.' },
+            { name: 'Participation', prize: 'Screen Protector', icon: 'fa-solid fa-shield-halved', color: 'text-gray-500', tier: 'particip', detail: 'No minimum order. Unlimited quantity.' },
+        ];
+
+        let isSpinning = false;
+        let currentRotation = 0;
+
+        /* ===== Spin the Wheel ===== */
+        function spinWheel() {
+            if (isSpinning) return;
+            isSpinning = true;
+
+            const wheel = document.getElementById('spin-wheel');
+            const btn = document.getElementById('spin-btn');
+            const origText = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Spinning...';
+            btn.classList.add('opacity-70', 'pointer-events-none');
+
+            // Random target: 4-8 full rotations + random offset
+            const spins = 5 + Math.floor(Math.random() * 4);
+            const offset = Math.floor(Math.random() * 360);
+            const totalRotation = currentRotation + spins * 360 + offset;
+
+            wheel.style.transform = `rotate(${totalRotation}deg)`;
+            currentRotation = totalRotation;
+
+            // Determine prize after spin completes
+            setTimeout(() => {
+                // Calculate which segment the pointer landed on
+                const normalized = (totalRotation % 360 + 360) % 360;
+                const segmentAngle = 36; // 360 / 10 segments
+                const prizeIndex = 9 - Math.floor(normalized / segmentAngle); // reversed because wheel rotates clockwise
+                const safeIndex = Math.max(0, Math.min(9, prizeIndex));
+                const result = prizes[safeIndex];
+
+                showResult(result);
+
+                // Spawn confetti for non-participation prizes
+                if (result.tier !== 'particip') {
+                    spawnConfetti();
+                }
+
+                btn.innerHTML = origText;
+                btn.classList.remove('opacity-70', 'pointer-events-none');
+                isSpinning = false;
+            }, 4200);
+        }
+
+        /* ===== Show Result Popup ===== */
+        function showResult(result) {
+            document.getElementById('result-icon').innerHTML = `<i class="${result.icon} ${result.color}"></i>`;
+            document.getElementById('result-title').textContent = `You Won ${result.prize}!`;
+            document.getElementById('result-desc').textContent = result.name;
+            document.getElementById('result-detail').innerHTML = `<i class="fa-solid fa-circle-info mr-1 text-brand"></i> ${result.detail}`;
+
+            const respBtn = document.getElementById('resp-btn');
+            if (result.tier === 'grand') {
+                respBtn.classList.add('hidden');
+            } else {
+                respBtn.classList.remove('hidden');
+            }
+
+            document.getElementById('result-overlay').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        /* ===== Close Result ===== */
+        function closeResult(e) {
+            if (e && e.target !== e.currentTarget) return;
+            closeResultDirect();
+        }
+
+        function closeResultDirect() {
+            document.getElementById('result-overlay').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        /* ===== Confetti Effect ===== */
+        function spawnConfetti() {
+            const colors = ['#ff6700', '#ff8f40', '#f59e0b', '#10b981', '#2563eb', '#8b5cf6', '#ec4899'];
+            for (let i = 0; i < 80; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.width = (6 + Math.random() * 8) + 'px';
+                piece.style.height = (6 + Math.random() * 10) + 'px';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDuration = (2.5 + Math.random() * 2) + 's';
+                piece.style.animationDelay = Math.random() * 0.8 + 's';
+                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                document.body.appendChild(piece);
+
+                setTimeout(() => piece.remove(), 4000);
+            }
+        }
+
+        /* ===== Initial wheel render: draw segment labels ===== */
+        function drawWheelLabels() {
+            const wheel = document.getElementById('spin-wheel');
+            const segLabels = ['$200', '$100', '$50', '$25', 'SP', '$200', '$100', '$50', '$25', 'SP'];
+
+            for (let i = 0; i < 10; i++) {
+                const seg = document.createElement('div');
+                seg.className = 'wheel-segment';
+                const angle = i * 36 + 18;
+                const rad = angle * Math.PI / 180;
+                const x = 50 + 38 * Math.cos(rad);
+                const y = 50 + 38 * Math.sin(rad);
+                seg.style.left = (x - 50) + '%';
+                seg.style.top = (y - 50) + '%';
+                seg.style.transform = `rotate(${angle}deg)`;
+                seg.textContent = segLabels[i];
+                wheel.appendChild(seg);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            drawWheelLabels();
+        });
+    </script>
+</body>
+</html>

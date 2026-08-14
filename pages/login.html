@@ -339,17 +339,17 @@
 
                             <!-- ==================== Register Mode ==================== -->
                             <div id="register-panels" class="hidden lg:flex-1 flex flex-col">
-                                <!-- Retail Register Form -->
-                                <form id="retail-register-form" class="space-y-4" onsubmit="handleRegister(event, 'retail')">
+                                <!-- Unified Register Form (统一注册表单：仅收集账户基础信息) -->
+                                <form id="unified-register-form" class="space-y-4" onsubmit="handleRegister(event)">
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label class="block text-sm font-bold text-text-main mb-1.5">Full Name *</label>
-                                            <input type="text" required placeholder="Enter your name" 
+                                            <label class="block text-sm font-bold text-text-main mb-1.5">First Name *</label>
+                                            <input type="text" name="firstName" required placeholder="First name" 
                                                    class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-bold text-text-main mb-1.5">Phone</label>
-                                            <input type="tel" placeholder="Optional" 
+                                            <label class="block text-sm font-bold text-text-main mb-1.5">Last Name *</label>
+                                            <input type="text" name="lastName" required placeholder="Last name" 
                                                    class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
                                         </div>
                                     </div>
@@ -357,19 +357,38 @@
                                         <label class="block text-sm font-bold text-text-main mb-1.5">Email Address *</label>
                                         <div class="relative">
                                             <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
-                                            <input type="email" required placeholder="Enter your email" 
+                                            <input type="email" name="email" required placeholder="Enter your email" 
                                                    class="custom-input w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
                                         </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-text-main mb-1.5">Phone Number *</label>
+                                        <div class="flex gap-2">
+                                            <select name="countryCode" 
+                                                    class="shrink-0 px-3 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:border-brand transition-all text-text-main font-semibold">
+                                                <option value="+1">US +1</option>
+                                                <option value="+44">UK +44</option>
+                                                <option value="+86">CN +86</option>
+                                                <option value="+852">HK +852</option>
+                                                <option value="+65">SG +65</option>
+                                                <option value="+61">AU +61</option>
+                                                <option value="+49">DE +49</option>
+                                                <option value="+81">JP +81</option>
+                                            </select>
+                                            <input type="tel" name="phone" required placeholder="Phone number" pattern="[0-9+\-()\s]{7,20}" 
+                                                   class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all flex-1">
+                                        </div>
+                                        <p class="text-xs text-text-muted mt-1.5 ml-1">We may use your phone number to contact you regarding your orders or account.</p>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-bold text-text-main mb-1.5">Password *</label>
                                         <div class="relative">
                                             <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
-                                            <input type="password" required placeholder="At least 8 characters" minlength="8" 
+                                            <input type="password" name="password" required placeholder="At least 8 characters" minlength="8" 
                                                    class="custom-input w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
-                                                   id="retail-register-password">
+                                                   id="unified-register-password">
                                             <button type="button" class="password-toggle absolute right-4 top-1/2 -translate-y-1/2 text-text-muted" 
-                                                    onclick="togglePassword('retail-register-password', this)">
+                                                    onclick="togglePassword('unified-register-password', this)">
                                                 <i class="fa-regular fa-eye"></i>
                                             </button>
                                         </div>
@@ -378,9 +397,9 @@
                                         <label class="block text-sm font-bold text-text-main mb-1.5">Confirm Password *</label>
                                         <div class="relative">
                                             <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
-                                            <input type="password" required placeholder="Re-enter your password" minlength="8" 
+                                            <input type="password" name="confirmPassword" required placeholder="Re-enter your password" minlength="8" 
                                                    class="custom-input w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
-                                                   id="retail-register-confirm">
+                                                   id="unified-register-confirm">
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-2 text-sm">
@@ -389,67 +408,7 @@
                                     </div>
                                     <button type="submit" 
                                             class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-base">
-                                        <i class="fa-solid fa-user-plus mr-2"></i> Create Retail Account
-                                    </button>
-                                </form>
-
-                                <!-- Purchaser Register Form -->
-                                <form id="purchaser-register-form" class="space-y-4 hidden" onsubmit="handleRegister(event, 'purchaser')">
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-sm font-bold text-text-main mb-1.5">Contact Name *</label>
-                                            <input type="text" required placeholder="Enter contact name" 
-                                                   class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-bold text-text-main mb-1.5">Phone</label>
-                                            <input type="tel" placeholder="Optional" 
-                                                   class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-bold text-text-main mb-1.5">Company Name *</label>
-                                        <input type="text" required placeholder="Enter company name" 
-                                               class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-bold text-text-main mb-1.5">Business Email *</label>
-                                        <div class="relative">
-                                            <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
-                                            <input type="email" required placeholder="Enter business email" 
-                                                   class="custom-input w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-bold text-text-main mb-1.5">Password *</label>
-                                        <div class="relative">
-                                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
-                                            <input type="password" required placeholder="At least 8 characters" minlength="8" 
-                                                   class="custom-input w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
-                                                   id="purchaser-register-password">
-                                            <button type="button" class="password-toggle absolute right-4 top-1/2 -translate-y-1/2 text-text-muted" 
-                                                    onclick="togglePassword('purchaser-register-password', this)">
-                                                <i class="fa-regular fa-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-bold text-text-main mb-1.5">Confirm Password *</label>
-                                        <div class="relative">
-                                            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"></i>
-                                            <input type="password" required placeholder="Re-enter your password" minlength="8" 
-                                                   class="custom-input w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
-                                                   id="purchaser-register-confirm">
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start gap-2 text-sm">
-                                        <input type="checkbox" required class="mt-1 w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand/30">
-                                        <span class="text-text-muted">I agree to the <a href="#" class="text-brand font-semibold hover:underline">Terms of Service</a> and <a href="#" class="text-brand font-semibold hover:underline">Privacy Policy</a></span>
-                                    </div>
-                                    <button type="submit" 
-                                            class="w-full font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg text-base"
-                                            style="background-color: #0a1628; color: #fff; box-shadow: 0 4px 15px rgba(10, 22, 40, 0.3);">
-                                        <i class="fa-solid fa-building-circle-check mr-2"></i> Create Purchaser Account
+                                        <i class="fa-solid fa-user-plus mr-2"></i> Create Account
                                     </button>
                                 </form>
 
@@ -638,196 +597,6 @@
         </section>
 
         <!-- ======================================== -->
-        <!-- Registration Flow Section -->
-        <!-- ======================================== -->
-        <section class="py-10 sm:py-16 md:py-24 bg-white relative" id="register-section">
-            <!-- Background decoration -->
-            <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brand/3 rounded-full blur-3xl"></div>
-            </div>
-
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <!-- Section Header -->
-                <div class="text-center mb-8 sm:mb-14 reveal from-bottom">
-                    <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 sm:mb-3 block">Quick Registration</span>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-3 sm:mb-4">
-                        Complete in 3 Steps,<span class="text-brand"> Start Instantly</span>
-                    </h2>
-                    <p class="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
-                        A simple and fast registration process. Choose your account type, fill in basic info, and you're all set.
-                    </p>
-                </div>
-
-                <!-- Registration Steps -->
-                <div class="max-w-2xl mx-auto">
-                    <!-- Step Indicators -->
-                    <div class="flex items-center justify-center mb-10 sm:mb-12 relative">
-                        <div class="hidden sm:block absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -translate-y-1/2 z-0"></div>
-                        <div class="hidden sm:block absolute top-1/2 left-0 h-0.5 bg-brand -translate-y-1/2 z-0 transition-all duration-500" 
-                             id="reg-progress-bar" style="width: 0%"></div>
-                        
-                        <div class="flex items-center gap-6 sm:gap-12 lg:gap-20 relative z-10">
-                            <div class="flex flex-col items-center cursor-pointer" onclick="goToRegStep(1)">
-                                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 bg-brand text-white shadow-lg shadow-brand/30" 
-                                     id="reg-step-circle-1">
-                                    <span>1</span>
-                                </div>
-                                <span class="text-xs font-bold mt-2 text-brand" id="reg-step-label-1">Select Type</span>
-                            </div>
-                            <div class="flex flex-col items-center cursor-pointer" onclick="goToRegStep(2)">
-                                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 bg-gray-100 text-text-muted" 
-                                     id="reg-step-circle-2">
-                                    <span>2</span>
-                                </div>
-                                <span class="text-xs font-bold mt-2 text-text-muted" id="reg-step-label-2">Fill Details</span>
-                            </div>
-                            <div class="flex flex-col items-center cursor-pointer" onclick="goToRegStep(3)">
-                                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 bg-gray-100 text-text-muted" 
-                                     id="reg-step-circle-3">
-                                    <span>3</span>
-                                </div>
-                                <span class="text-xs font-bold mt-2 text-text-muted" id="reg-step-label-3">Complete</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 1: Select Account Type -->
-                    <div id="reg-step-1" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100">
-                        <h3 class="text-xl sm:text-2xl font-black text-text-main mb-2 text-center">Select Your Account Type</h3>
-                        <p class="text-text-secondary text-sm text-center mb-8">Choose the account type that matches your needs. Different account types enjoy different benefits.</p>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                            <label class="relative cursor-pointer group">
-                                <input type="radio" name="reg-type" value="retail" class="sr-only peer" onchange="updateRegTypeSelection()">
-                                <div class="border-2 border-gray-200 rounded-2xl p-6 text-center peer-checked:border-brand peer-checked:bg-brand-50 peer-checked:shadow-lg peer-checked:shadow-brand/10 transition-all duration-300 group-hover:border-gray-300">
-                                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-brand-50 transition-colors">
-                                        <i class="fa-solid fa-user text-3xl text-text-muted group-hover:text-brand transition-colors"></i>
-                                    </div>
-                                    <h4 class="text-lg font-black text-text-main mb-1">Retail User</h4>
-                                    <p class="text-text-muted text-xs mb-3">Individual Consumer</p>
-                                    <ul class="text-left text-xs text-text-secondary space-y-1.5">
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Member exclusive pricing</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Points earning & redemption</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand mt-0.5 flex-shrink-0"></i> Early access to new arrivals</li>
-                                    </ul>
-                                </div>
-                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-gray-300 peer-checked:border-brand peer-checked:bg-brand flex items-center justify-center transition-all">
-                                    <i class="fa-solid fa-check text-white text-[10px] opacity-0 peer-checked:opacity-100"></i>
-                                </div>
-                            </label>
-
-                            <label class="relative cursor-pointer group">
-                                <input type="radio" name="reg-type" value="purchaser" class="sr-only peer" onchange="updateRegTypeSelection()">
-                                <div class="border-2 border-gray-200 rounded-2xl p-6 text-center peer-checked:border-blue-600 peer-checked:bg-blue-50 peer-checked:shadow-lg peer-checked:shadow-blue-500/10 transition-all duration-300 group-hover:border-gray-300">
-                                    <div class="w-16 h-16 mx-auto rounded-2xl bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-blue-50 transition-colors">
-                                        <i class="fa-solid fa-building text-3xl text-text-muted group-hover:text-blue-600 transition-colors"></i>
-                                    </div>
-                                    <h4 class="text-lg font-black text-text-main mb-1">Purchaser User</h4>
-                                    <p class="text-text-muted text-xs mb-3">Business / Wholesale</p>
-                                    <ul class="text-left text-xs text-text-secondary space-y-1.5">
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-600 mt-0.5 flex-shrink-0"></i> Tiered wholesale pricing</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-600 mt-0.5 flex-shrink-0"></i> Dedicated account manager</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-600 mt-0.5 flex-shrink-0"></i> Flexible payment terms</li>
-                                    </ul>
-                                </div>
-                                <div class="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-gray-300 peer-checked:border-blue-600 peer-checked:bg-blue-600 flex items-center justify-center transition-all">
-                                    <i class="fa-solid fa-check text-white text-[10px] opacity-0 peer-checked:opacity-100"></i>
-                                </div>
-                            </label>
-                        </div>
-
-                        <button onclick="goToRegStep(2)" 
-                                class="w-full mt-8 bg-brand hover:bg-brand-dark text-white font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:scale-100"
-                                id="reg-step-1-next" disabled>
-                            Next <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-
-                    <!-- Step 2: Fill Details -->
-                    <div id="reg-step-2" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 hidden">
-                        <h3 class="text-xl sm:text-2xl font-black text-text-main mb-2 text-center">Fill Basic Information</h3>
-                        <p class="text-text-secondary text-sm text-center mb-8">Please fill in the following details to create your account. We are committed to protecting your privacy.</p>
-                        
-                        <form class="space-y-4" onsubmit="goToRegStep(3); return false;">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-bold text-text-main mb-1.5">Full Name *</label>
-                                    <input type="text" required placeholder="Enter your name" 
-                                           class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-bold text-text-main mb-1.5">Email *</label>
-                                    <input type="email" required placeholder="Enter your email" 
-                                           class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-bold text-text-main mb-1.5">Password *</label>
-                                    <div class="relative">
-                                        <input type="password" required placeholder="At least 8 characters" minlength="8" 
-                                               class="custom-input w-full px-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
-                                               id="reg-password">
-                                        <button type="button" class="password-toggle absolute right-3 top-1/2 -translate-y-1/2 text-text-muted" 
-                                                onclick="togglePassword('reg-password', this)">
-                                            <i class="fa-regular fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-bold text-text-main mb-1.5">Phone</label>
-                                    <input type="tel" placeholder="Optional" 
-                                           class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all">
-                                </div>
-                            </div>
-                            <div id="reg-company-field" class="hidden">
-                                <label class="block text-sm font-bold text-text-main mb-1.5">Company Name</label>
-                                <input type="text" placeholder="Enter company name (required for purchasers)" 
-                                       class="custom-input w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white transition-all"
-                                       id="reg-company-input">
-                            </div>
-                            <div class="flex items-start gap-2 text-sm">
-                                <input type="checkbox" required class="mt-1 w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand/30">
-                                <span class="text-text-muted">I agree to the <a href="#" class="text-brand font-semibold hover:underline">Terms of Service</a> and <a href="#" class="text-brand font-semibold hover:underline">Privacy Policy</a></span>
-                            </div>
-                            <div class="flex gap-3 pt-2">
-                                <button type="button" onclick="goToRegStep(1)" 
-                                        class="flex-1 bg-gray-100 hover:bg-gray-200 text-text-secondary font-bold py-3.5 rounded-xl transition-all duration-300 text-base">
-                                    <i class="fa-solid fa-arrow-left mr-2"></i> Previous
-                                </button>
-                                <button type="submit" 
-                                        class="flex-1 bg-brand hover:bg-brand-dark text-white font-bold py-3.5 rounded-xl transition-all duration-300 active:scale-[0.98] hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-base">
-                                    Next <i class="fa-solid fa-arrow-right ml-2"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Step 3: Complete -->
-                    <div id="reg-step-3" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 hidden text-center">
-                        <div class="w-20 h-20 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-check text-4xl text-green-500"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-black text-text-main mb-2">Registration Successful!</h3>
-                        <p class="text-text-secondary text-sm mb-8 max-w-sm mx-auto">
-                            Your account has been created successfully. A $10 welcome coupon has been automatically added to your account. Start shopping now!
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                            <a href="/index.html" 
-                               class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-300 active:scale-95 hover:-translate-y-1 shadow-lg shadow-brand/25 text-base gap-2">
-                                Start Shopping <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <a href="/pages/profile.html" 
-                               class="inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-text-main font-bold px-8 py-3.5 rounded-xl transition-all duration-300 text-base gap-2">
-                                Complete Profile <i class="fa-solid fa-user-pen"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================================== -->
         <!-- Bottom CTA -->
         <!-- ======================================== -->
         <section class="py-10 sm:py-16 md:py-20 bg-gray-50 relative overflow-hidden border-t border-gray-100">
@@ -873,6 +642,7 @@
             const modeBtns = document.querySelectorAll('.mode-toggle-btn');
             const loginPanels = document.getElementById('login-panels');
             const registerPanels = document.getElementById('register-panels');
+            const userTypeTabs = document.getElementById('user-type-tabs');
 
             modeBtns.forEach(btn => {
                 btn.classList.remove('active', 'bg-white', 'text-brand', 'shadow-sm');
@@ -887,12 +657,14 @@
             if (mode === 'login') {
                 loginPanels.classList.remove('hidden');
                 registerPanels.classList.add('hidden');
+                if (userTypeTabs) userTypeTabs.classList.remove('hidden');
+                switchUserType(currentUserType);
             } else {
                 loginPanels.classList.add('hidden');
                 registerPanels.classList.remove('hidden');
+                // 注册统一收集账户基础信息，不再区分 Retail / Purchaser
+                if (userTypeTabs) userTypeTabs.classList.add('hidden');
             }
-
-            switchUserType(currentUserType);
         }
 
         // ===== User Type Switch (Retail / Purchaser) =====
@@ -910,15 +682,11 @@
                 activeTab.classList.remove('text-text-muted');
             }
 
-            const allForms = document.querySelectorAll('#retail-login-form, #purchaser-login-form, #retail-register-form, #purchaser-register-form');
-            allForms.forEach(f => f.classList.add('hidden'));
-
-            const formId = type === 'retail' 
-                ? (currentMode === 'login' ? 'retail-login-form' : 'retail-register-form')
-                : (currentMode === 'login' ? 'purchaser-login-form' : 'purchaser-register-form');
-            
-            const activeForm = document.getElementById(formId);
-            if (activeForm) activeForm.classList.remove('hidden');
+            // 仅切换登录表单（注册已统一为单一表单）
+            const retailLogin = document.getElementById('retail-login-form');
+            const purchaserLogin = document.getElementById('purchaser-login-form');
+            if (retailLogin) retailLogin.classList.toggle('hidden', type !== 'retail');
+            if (purchaserLogin) purchaserLogin.classList.toggle('hidden', type !== 'purchaser');
         }
 
         // ===== Password Visibility Toggle =====
@@ -960,118 +728,35 @@
         }
 
         // ===== Register Form Handler =====
-        function handleRegister(event, type) {
+        function handleRegister(event) {
             event.preventDefault();
             const form = event.target;
             const submitBtn = form.querySelector('button[type="submit"]');
             
-            const pwdId = type === 'retail' ? 'retail-register-password' : 'purchaser-register-password';
-            const confirmId = type === 'retail' ? 'retail-register-confirm' : 'purchaser-register-confirm';
-            const pwd = document.getElementById(pwdId);
-            const confirm = document.getElementById(confirmId);
+            const pwd = form.querySelector('input[name="password"]');
+            const confirm = form.querySelector('input[name="confirmPassword"]');
             
             if (pwd && confirm && pwd.value !== confirm.value) {
                 showToast('Passwords do not match. Please try again.', 'info');
                 return false;
             }
 
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Registering...';
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Creating account...';
             submitBtn.disabled = true;
 
             setTimeout(() => {
-                const label = type === 'retail' ? 'Retail' : 'Purchaser';
-                showToast(`${label} account created! $10 welcome coupon issued.`, 'success');
+                showToast('Account created successfully! Let\'s set up your account.', 'success');
                 
                 submitBtn.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i> Success';
                 submitBtn.classList.add('bg-green-600');
 
                 setTimeout(() => {
-                    window.location.href = '/pages/profile.html';
-                }, 1500);
+                    // 注册完成后跳转到独立的账户用途选择页
+                    window.location.href = '/pages/account-intent.html';
+                }, 1000);
             }, 1200);
 
             return false;
-        }
-
-        // ===== Registration Steps (separate section) =====
-        let currentRegStep = 1;
-        let selectedRegType = null;
-
-        function updateRegTypeSelection() {
-            const retailRadio = document.querySelector('input[name="reg-type"][value="retail"]');
-            const purchaserRadio = document.querySelector('input[name="reg-type"][value="purchaser"]');
-            const nextBtn = document.getElementById('reg-step-1-next');
-            const companyField = document.getElementById('reg-company-field');
-            
-            if (retailRadio && retailRadio.checked) {
-                selectedRegType = 'retail';
-                if (companyField) companyField.classList.add('hidden');
-            } else if (purchaserRadio && purchaserRadio.checked) {
-                selectedRegType = 'purchaser';
-                if (companyField) companyField.classList.remove('hidden');
-            }
-            
-            if (nextBtn) {
-                nextBtn.disabled = !selectedRegType;
-            }
-        }
-
-        function goToRegStep(step) {
-            if (step === 2 && !selectedRegType) {
-                showToast('Please select an account type first.', 'info');
-                return;
-            }
-
-            for (let i = 1; i <= 3; i++) {
-                const stepEl = document.getElementById(`reg-step-${i}`);
-                if (stepEl) stepEl.classList.add('hidden');
-            }
-
-            const targetStep = document.getElementById(`reg-step-${step}`);
-            if (targetStep) targetStep.classList.remove('hidden');
-
-            currentRegStep = step;
-            updateRegStepIndicators(step);
-
-            document.getElementById('register-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            if (step === 2 && selectedRegType === 'purchaser') {
-                const companyField = document.getElementById('reg-company-field');
-                if (companyField) companyField.classList.remove('hidden');
-                const companyInput = document.getElementById('reg-company-input');
-                if (companyInput) companyInput.required = true;
-            }
-        }
-
-        function updateRegStepIndicators(activeStep) {
-            const brandColor = '#ff6700';
-            const inactiveBg = '#f3f4f6';
-            const inactiveText = '#9ca3af';
-
-            for (let i = 1; i <= 3; i++) {
-                const circle = document.getElementById(`reg-step-circle-${i}`);
-                const label = document.getElementById(`reg-step-label-${i}`);
-
-                if (!circle || !label) continue;
-
-                if (i <= activeStep) {
-                    circle.style.background = brandColor;
-                    circle.style.color = '#ffffff';
-                    circle.style.boxShadow = '0 4px 15px rgba(255, 103, 0, 0.3)';
-                    label.style.color = brandColor;
-                } else {
-                    circle.style.background = inactiveBg;
-                    circle.style.color = inactiveText;
-                    circle.style.boxShadow = 'none';
-                    label.style.color = inactiveText;
-                }
-            }
-
-            const bar = document.getElementById('reg-progress-bar');
-            if (bar) {
-                const pct = ((activeStep - 1) / 2) * 100;
-                bar.style.width = pct + '%';
-            }
         }
 
         // ===== Toast Notification =====
@@ -1162,12 +847,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             initRevealAnimations();
             initCountdown();
-            updateRegStepIndicators(1);
-
-            const typeRadios = document.querySelectorAll('input[name="reg-type"]');
-            typeRadios.forEach(radio => {
-                radio.addEventListener('change', updateRegTypeSelection);
-            });
         });
     </script>
 

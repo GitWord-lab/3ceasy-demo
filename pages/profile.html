@@ -90,6 +90,13 @@
                                 <div>
                                     <h2 class="font-bold text-text-main text-lg">Alex Johnson</h2>
                                     <p class="text-xs text-text-muted font-medium">alex.j@example.com</p>
+                                    <div class="flex items-center flex-wrap gap-1.5 mt-2">
+                                        <span data-role-label class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black bg-gray-100 text-text-secondary"></span>
+                                        <span class="wholesale-badge wholesale-badge-blink inline-flex items-center gap-1 bg-brand text-white text-[10px] font-black px-2 py-0.5 rounded-full leading-none cursor-pointer" style="display:none" onclick="window.location.href='/pages/wholesale-application.html'">
+                                            Apply for Wholesale
+                                            <button type="button" class="wholesale-badge-close text-white/80 hover:text-white text-xs" onclick="dismissWholesaleBadge(event)" aria-label="Dismiss">&times;</button>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -101,6 +108,12 @@
                                     <a href="#profile" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold transition-all group whitespace-nowrap">
                                         <i class="fa-solid fa-user w-5 text-center group-hover:scale-110 transition"></i>
                                         <span>Personal Info</span>
+                                    </a>
+                                </li>
+                                <li class="flex-shrink-0">
+                                    <a href="#wholesale" class="flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-bold text-text-secondary hover:bg-gray-50 hover:text-brand transition-all group whitespace-nowrap">
+                                        <i class="fa-solid fa-building w-5 text-center group-hover:scale-110 transition"></i>
+                                        <span>Business / Wholesale</span>
                                     </a>
                                 </li>
                                 <li class="flex-shrink-0">
@@ -304,6 +317,59 @@
                                 <button type="button" class="bg-brand text-white px-8 py-3.5 rounded-2xl font-black shadow-lg shadow-brand/20 hover:-translate-y-0.5 transition active:scale-95">Save Changes</button>
                             </div>
                         </form>
+                    </div>
+
+                    <!-- Section: Business / Wholesale -->
+                    <div id="wholesale" class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-6 md:p-10">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+                            <div>
+                                <h3 class="text-xl font-black text-text-main">Business / Wholesale</h3>
+                                <p class="text-sm text-text-secondary mt-1">Manage your user role and wholesale pricing application.</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-text-muted">Current Role</span>
+                                <span data-role-label class="inline-flex items-center px-3 py-1.5 bg-gray-100 text-text-secondary rounded-full text-[10px] font-black uppercase"></span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                            <!-- 当前用户角色 -->
+                            <div class="bg-gray-50 border border-gray-100 rounded-3xl p-6">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-xl bg-gray-200 text-text-secondary flex items-center justify-center">
+                                        <i class="fa-solid fa-id-badge"></i>
+                                    </div>
+                                    <h4 class="font-bold text-text-main">Current Role</h4>
+                                </div>
+                                <p class="text-sm text-text-secondary">
+                                    <span data-role-label class="font-black text-text-main"></span> — retail pricing only. Wholesale pricing requires a separate application and approval.
+                                </p>
+                            </div>
+
+                            <!-- 更改角色（需申请） -->
+                            <div class="bg-gradient-to-br from-brand-50 to-white border border-brand/10 rounded-3xl p-6">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand flex items-center justify-center">
+                                        <i class="fa-solid fa-building"></i>
+                                    </div>
+                                    <h4 class="font-bold text-text-main">Change to Wholesale</h4>
+                                </div>
+                                <p class="text-sm text-text-secondary mb-4">
+                                    Changing your role to a business account requires submitting a wholesale application for review.
+                                </p>
+                                <a href="/pages/wholesale-application.html" class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold px-5 py-2.5 rounded-xl transition-all duration-300 active:scale-95 hover:-translate-y-0.5 shadow-lg shadow-brand/20 text-sm gap-2">
+                                    Apply for Wholesale Pricing <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 申请状态说明 -->
+                        <div class="bg-blue-50 border border-blue-100 rounded-2xl p-4 flex items-start gap-3">
+                            <i class="fa-solid fa-circle-info text-blue-500 mt-0.5"></i>
+                            <p class="text-xs text-text-secondary leading-relaxed">
+                                Role changes are subject to review. Once approved, wholesale pricing will be enabled on your account automatically.
+                            </p>
+                        </div>
                     </div>
 
                     <!-- Section: Recent Orders (Preview) -->

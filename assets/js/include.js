@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
-            const response = await fetch(file);
+            // 添加时间戳参数，避免浏览器缓存旧组件（演示项目需要实时反映修改）
+            const separator = file.includes('?') ? '&' : '?';
+            const response = await fetch(file + separator + '_t=' + Date.now());
             if (!response.ok) throw new Error(`无法加载组件: ${file}`);
             
             const html = await response.text();

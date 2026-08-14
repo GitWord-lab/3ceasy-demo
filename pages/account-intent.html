@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3C Easy - Choose how you will use your account.">
+    <title>Choose Your Account Type - 3C Easy</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#ff6700',
+                            dark: '#e05a00',
+                            light: '#ff8f40',
+                            50: '#fff5f0'
+                        },
+                        text: {
+                            main: '#1f2937',
+                            secondary: '#4b5563',
+                            muted: '#9ca3af',
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased" data-page="login">
+
+    <!-- Store Header -->
+    <div data-include="../components/header.html"></div>
+
+    <main class="py-10 md:py-16">
+        <div class="container mx-auto px-4 lg:px-8">
+            <!-- Page Header -->
+            <div class="mb-8 md:mb-12 text-center">
+                <span class="text-brand font-bold text-xs sm:text-sm uppercase tracking-[0.2em] mb-2 block">Almost Done</span>
+                <h1 class="text-3xl md:text-5xl font-black text-text-main">How will you use your account?</h1>
+                <p class="text-sm md:text-lg text-text-secondary mt-3 max-w-2xl mx-auto">
+                    Choose the option that best matches your needs.
+                </p>
+            </div>
+
+            <!-- Intent Options -->
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
+                <!-- Option A: Retail -->
+                <div class="bg-white rounded-[2rem] border-2 border-gray-100 shadow-sm p-7 md:p-9 flex flex-col hover:border-brand hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-50 text-brand flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user text-3xl"></i>
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-black text-text-main mb-1">I'm shopping for myself</h2>
+                    <span class="text-brand font-bold text-xs uppercase tracking-wider mb-4">Retail Customer</span>
+                    <p class="text-text-secondary text-sm mb-6">
+                        Shop with retail pricing — no business documents required. Start browsing right away.
+                    </p>
+                    <ul class="text-sm text-text-secondary space-y-3 mb-8 flex-1">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-tag text-brand mt-0.5 flex-shrink-0"></i>
+                            Member-exclusive pricing & coupons
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-star text-brand mt-0.5 flex-shrink-0"></i>
+                            Points earning & redemption
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-truck-fast text-brand mt-0.5 flex-shrink-0"></i>
+                            Standard checkout & fast shipping
+                        </li>
+                    </ul>
+                    <a href="/index.html" class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-bold py-4 rounded-xl transition-all duration-300 active:scale-95 hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-base gap-2">
+                        Continue Shopping <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Option B: Business -->
+                <div class="bg-white rounded-[2rem] border-2 border-gray-100 shadow-sm p-7 md:p-9 flex flex-col hover:border-blue-600 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-building text-3xl"></i>
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-black text-text-main mb-1">I'm purchasing for my business</h2>
+                    <span class="text-blue-600 font-bold text-xs uppercase tracking-wider mb-4">Business / Wholesale</span>
+                    <p class="text-text-secondary text-sm mb-6">
+                        Apply for tax exemption and wholesale pricing. Submit your business information for review.
+                    </p>
+                    <ul class="text-sm text-text-secondary space-y-3 mb-8 flex-1">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-layer-group text-blue-600 mt-0.5 flex-shrink-0"></i>
+                            Tiered wholesale pricing
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-file-invoice text-blue-600 mt-0.5 flex-shrink-0"></i>
+                            Tax exemption on eligible orders
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-headset text-blue-600 mt-0.5 flex-shrink-0"></i>
+                            Dedicated account manager
+                        </li>
+                    </ul>
+                    <a href="/pages/wholesale-application.html" class="inline-flex items-center justify-center bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 rounded-xl transition-all duration-300 active:scale-95 hover:-translate-y-0.5 shadow-lg text-base gap-2">
+                        Apply for Wholesale Pricing <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-text-muted mt-8">You can change this later in your account settings.</p>
+        </div>
+    </main>
+
+    <!-- Store Footer -->
+    <div data-include="../components/footer.html"></div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/include.js"></script>
+    <script src="/assets/js/common.js"></script>
+</body>
+</html>

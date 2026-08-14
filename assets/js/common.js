@@ -484,3 +484,72 @@ document.addEventListener('click', function(e) {
         showToast(isAdded ? 'Added to favorites' : 'Removed from favorites');
     }
 });
+
+// ===== 用户角色与批发申请提醒（轻量本地状态，仅用于 UI 演示） =====
+(function() {
+    // 注入上下运动动画样式
+    if (!document.getElementById('wholesale-badge-style')) {
+        const style = document.createElement('style');
+        style.id = 'wholesale-badge-style';
+        style.textContent = `
+            @keyframes wholesaleBlink {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-3px); }
+            }
+            .wholesale-badge-blink { animation: wholesaleBlink 1.4s ease-in-out infinite; }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // 角色：retail（普通用户）| wholesale（批发用户）
+    // 使用新存储键，确保默认角色为普通用户（retail）
+    window.UserRole = {
+        get() { return localStorage.getItem('3c_easy_user_role_v2') || 'retail'; },
+        set(role) { localStorage.setItem('3c_easy_user_role_v2', role); },
+        isRetail() { return this.get() === 'retail'; }
+    };
+
+    // 批发申请提醒的关闭状态（默认未关闭，保证普通用户默认显示闪烁标签）
+    window.WholesaleBadge = {
+        isDismissed() { return localStorage.getItem('3c_easy_badge_dismissed_v2') === '1'; },
+        dismiss() { localStorage.setItem('3c_easy_badge_dismissed_v2', '1'); }
+    };
+
+    // 关闭闪烁提醒
+    window.dismissWholesaleBadge = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        window.WholesaleBadge.dismiss();
+        document.querySelectorAll('.wholesale-badge').forEach(b => { b.style.display = 'none'; });
+    };
+
+    // 初始化角色标签与闪烁提醒（需等 include 加载 header 后调用）
+    window.initRoleUI = function() {
+        // 用户角色文字标签：演示项目固定为普通用户
+        document.querySelectorAll('[data-role-label]').forEach(el => {
+            el.textContent = 'Retail User';
+        });
+
+        // 闪烁「申请批发」标签：演示项目常态显示并闪烁，不判定角色
+        document.querySelectorAll('.wholesale-badge').forEach(badge => {
+            badge.style.display = 'inline-flex';
+        });
+    };
+
+    // 可靠初始化：先立即尝试，再监听 header 异步注入，最后兜底延迟
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. 立即初始化（覆盖静态 HTML 中已存在的标签，如 profile 侧边栏）
+        window.initRoleUI();
+
+        // 2. 监听 include.js 异步注入的 header，出现 .wholesale-badge 或 [data-role-label] 时再次初始化
+        const observer = new MutationObserver((mutations) => {
+            const hasBadge = mutations.some(m => Array.from(m.addedNodes).some(n => {
+                return n.nodeType === 1 && n.querySelector && n.querySelector('.wholesale-badge, [data-role-label]');
+            }));
+            if (hasBadge) window.initRoleUI();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // 3. 兜底：稍后再执行一次，确保异步组件加载完成
+        setTimeout(() => window.initRoleUI(), 800);
+    });
+})();
